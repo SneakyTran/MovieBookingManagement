@@ -7,8 +7,6 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    /* trường hợp không khai báo font-size thì trình duyệt mặc định 16px; */
-    /* 1rem = 16px */
 }
 
 body {
