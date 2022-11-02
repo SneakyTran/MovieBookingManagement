@@ -4,3 +4,7 @@
 .navbar .nav-item a {
     color: white;
 }
+.navbar .nav-item a:hover {
+    color: #ff1744;
+    transition: all 0.3s;
+}
