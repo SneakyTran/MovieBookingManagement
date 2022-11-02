@@ -1,5 +1,5 @@
 import { createBrowserHistory } from "history";
-import { BrowserRouter, Route, Router, Routes, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./components/HeaderComponent/HeaderRFC";
 import Home from "./pages/Home/Home";
