@@ -16,3 +16,14 @@ body {
     color: white;
     letter-spacing: 1px;
 }
+
+/* Banner */
+.slick-arrow .slick-prev {
+    left: 0 !important;
+    padding: 40px!important;
+}
+
+.slick-arrow .slick-next {
+    margin-right: 10px !important;
+    padding: 40px
+}

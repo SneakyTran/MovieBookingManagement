@@ -1,0 +1,21 @@
+/* Banner */
+.slick-prev {
+    left: 0 !important;
+}
+
+.banner {
+    background-image: url("https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png");
+    background-size: 100%;
+    background-position: center;
+    height: 500px;
+}
+
+.slick-next {
+    margin-right: 10px !important;
+    padding: 40px !important
+}
+
+.abc {
+    color: "#000";
+
+}
