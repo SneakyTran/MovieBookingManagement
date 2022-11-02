@@ -16,14 +16,12 @@ body {
     color: white;
     letter-spacing: 1px;
 }
-
-/* Banner */
-.slick-arrow .slick-prev {
-    left: 0 !important;
-    padding: 40px!important;
+/* Overide css Slick */
+.slick-slider .slick-prev {
+    z-index: 10000 !important;
+    margin-left: 40px !important;
 }
-
-.slick-arrow .slick-next {
-    margin-right: 10px !important;
-    padding: 40px
+.slick-next {
+    z-index: 10000 !important;
+    margin-right: 40px !important;
 }
