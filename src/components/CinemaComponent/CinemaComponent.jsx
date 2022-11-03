@@ -1,7 +1,74 @@
 import "./CinemaComponent.css";
-import React from "react";
+import React, { useState } from "react";
+import "./lib/Calender";
+import { calender } from "./lib/Calender";
 
 export default function CinemaComponent() {
+    const [activeCinemaIndex, setActiveCinemaIndex] = useState(0);
+    const [activeDate, setActiveDate] = useState(0);
+
+    const cinemaListDemo = [
+        {
+            name: "CGV Vincom Đà Nẵng",
+        },
+        { name: "CGV Vĩnh Trung Plaza" },
+    ];
+
+    const cinemaActive = (index) => {
+        setActiveCinemaIndex(index);
+    };
+
+    const renderCinema = () => {
+        return cinemaListDemo.map((cinema, index) => {
+            let { name } = cinema;
+            return (
+                <div
+                    key={index}
+                    onClick={() => {
+                        cinemaActive(index);
+                    }}
+                    className={`cinema__detail px-4 py-2 ${
+                        activeCinemaIndex === index ? "active" : ""
+                    }`}
+                >
+                    <img
+                        src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
+                        alt=""
+                    />
+                    <span className="pl-3 pr-3">{name}</span>
+                    <span className="pl-5">
+                        <i className="fa-solid fa-chevron-right"></i>
+                    </span>
+                </div>
+            );
+        });
+    };
+
+    const calenderActive = (index) => {
+        setActiveDate(index);
+    };
+
+    const renderCalender = () => {
+        return calender().map((date, index) => {
+            return (
+                <div
+                    key={index}
+                    onClick={() => {
+                        calenderActive(index);
+                    }}
+                    className={`calender__card ${
+                        activeDate === index ? "active" : ""
+                    }`}
+                >
+                    <div className="calender__header">{date.date}</div>
+                    <div className="calender__body">
+                        {index === 0 ? "Today" : date.day}
+                    </div>
+                </div>
+            );
+        });
+    };
+
     return (
         <div className="container py-5">
             <h2 className="movie__title mb-5">Cinema Showtimes</h2>
@@ -26,32 +93,7 @@ export default function CinemaComponent() {
                                 </span>
                             </div>
                         </div>
-                        <div className="cinema__list">
-                            <div className="cinema__detail active px-4 py-2">
-                                <img
-                                    src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
-                                    alt=""
-                                />
-                                <span className="pl-3 pr-3">
-                                    CGV Vincom Đà Nẵng
-                                </span>
-                                <span className="pl-5">
-                                    <i className="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div className="cinema__detail px-4 py-2">
-                                <img
-                                    src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
-                                    alt=""
-                                />
-                                <span className="pl-3 pr-3">
-                                    CGV Vĩnh Trung Plaza
-                                </span>
-                                <span className="pl-5">
-                                    <i className="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </div>
-                        </div>
+                        <div className="cinema__list">{renderCinema()}</div>
                     </div>
                     <div className="col-8 pl-0">
                         <div className="cinema__info">
@@ -67,32 +109,7 @@ export default function CinemaComponent() {
                                 </p>
                             </div>
                         </div>
-                        <div className="calender">
-                            <div className="calender__card active">
-                                <div className="calender__header">3</div>
-                                <div className="calender__body">Today</div>
-                            </div>
-                            <div className="calender__card">
-                                <div className="calender__header">4</div>
-                                <div className="calender__body">Friday</div>
-                            </div>
-                            <div className="calender__card">
-                                <div className="calender__header">5</div>
-                                <div className="calender__body">Saturday</div>
-                            </div>
-                            <div className="calender__card">
-                                <div className="calender__header">6</div>
-                                <div className="calender__body">Sunday</div>
-                            </div>
-                            <div className="calender__card">
-                                <div className="calender__header">7</div>
-                                <div className="calender__body">Monday</div>
-                            </div>
-                            <div className="calender__card">
-                                <div className="calender__header">8</div>
-                                <div className="calender__body">Tuesday</div>
-                            </div>
-                        </div>
+                        <div className="calender">{renderCalender()}</div>
                         <div className="cinema__showTime">
                             <div className="showTime__movie">
                                 <div className="row">
