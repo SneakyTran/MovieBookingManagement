@@ -68,8 +68,66 @@ export default function CinemaComponent() {
                             </div>
                         </div>
                         <div className="calender">
-                            <div className="calender__header">
-                                
+                            <div className="calender__card active">
+                                <div className="calender__header">3</div>
+                                <div className="calender__body">Today</div>
+                            </div>
+                            <div className="calender__card">
+                                <div className="calender__header">4</div>
+                                <div className="calender__body">Friday</div>
+                            </div>
+                            <div className="calender__card">
+                                <div className="calender__header">5</div>
+                                <div className="calender__body">Saturday</div>
+                            </div>
+                            <div className="calender__card">
+                                <div className="calender__header">6</div>
+                                <div className="calender__body">Sunday</div>
+                            </div>
+                            <div className="calender__card">
+                                <div className="calender__header">7</div>
+                                <div className="calender__body">Monday</div>
+                            </div>
+                            <div className="calender__card">
+                                <div className="calender__header">8</div>
+                                <div className="calender__body">Tuesday</div>
+                            </div>
+                        </div>
+                        <div className="cinema__showTime">
+                            <div className="showTime__movie">
+                                <div className="row">
+                                    <div className="col-2">
+                                        <img
+                                            className="img-fluid"
+                                            src="https://movienew.cybersoft.edu.vn/hinhanh/hieu-test_gp03.jpg"
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div className="col-10">
+                                        <div className="movie__content">
+                                            <p className="age">16+</p>
+                                            <p className="movie__name">Home</p>
+                                            <p className="movie__type">
+                                                Kinh dị, Gây cấn
+                                            </p>
+                                            <p className="mt-3">2D Phụ đề</p>
+                                            <div className="showTimes__detail mt-2">
+                                                <div className="duration mr-3">
+                                                    <p>
+                                                        <strong>14:20 </strong>~
+                                                        15.53
+                                                    </p>
+                                                </div>
+                                                <div className="duration mr-3">
+                                                    <p>
+                                                        <strong>15:20 </strong>~
+                                                        16:53
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
