@@ -1,7 +1,7 @@
 /* Banner */
 
 .banner {
-    background-size: 100%;
-    background-position: center;
-    height: 500px;
+    background-size: cover;
+    background-position:center;
+    height: 600px;
 }
