@@ -11,6 +11,7 @@
 
     /* color background */
     --bg-main-body: #060f19;
+    --bg-main-div: #182028;
     /* btn color */
     --btn-primary: #ff1744;
 }
@@ -24,4 +25,29 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     letter-spacing: 1px;
+}
+
+/* Overide css Slick */
+.banner_icon-right,
+.banner_icon-left {
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.slick-slider.slick-initialized:hover .banner_icon-right,
+.slick-slider.slick-initialized:hover .banner_icon-left {
+    opacity: 1;
+
+}
+
+.slick-prev:before,
+.slick-next:before {
+    display: none;
+}
+
+/* modalCss */
+@media (min-width: 992px) {
+    .modal.show .modal-dialog {
+        max-width: 50% !important;
+    }
 }
