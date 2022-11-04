@@ -1,7 +1,7 @@
 import axios from "axios";
 import { serviceBase } from "../../Service/BaseService";
 import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
-import { GET_BANNER } from "../type/BannerType";
+import { GET_BANNER, PLAY_TRAILER } from "../type/BannerType";
 
 export function getBanner() {
   return async (dispatch) => {
@@ -13,9 +13,17 @@ export function getBanner() {
           TokenCybersoft: TOKEN,
         },
       });
+
       dispatch({ type: GET_BANNER, payload: data.content });
     } catch (e) {
       console.log(e.response);
     }
+  };
+}
+// PlayTrailer
+export function playTrailer(payload) {
+  console.log(payload)
+  return (dispatch) => {
+    dispatch({ type: PLAY_TRAILER, payload });
   };
 }

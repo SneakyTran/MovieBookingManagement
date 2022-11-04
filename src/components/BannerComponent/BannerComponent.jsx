@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import Slider from "react-slick";
-import styles from "./banner.module.css";
+import "./banner.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getBanner } from "../../redux/actions/BannerAction";
+import { getBanner, playTrailer } from "../../redux/actions/BannerAction";
+import IframeFilm from "./IframeFilm/IframeFilm";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -49,13 +50,21 @@ function SamplePrevArrow(props) {
 export default function BannerComponent() {
   const settings = {
     dots: true,
-    fade: true,
+    fade: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+  };
+  const settings2 = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    // autoplay: true,
+    autoplaySpeed: 2000,
   };
   const dispatch = useDispatch();
   const { arrPhim } = useSelector((state) => state.BannerReducer);
@@ -65,15 +74,72 @@ export default function BannerComponent() {
 
   const renderPhim = () => {
     return arrPhim?.map((phim) => {
+      console.log(phim);
+      const trailerphim = phim.trailer;
       return (
         <div key={phim.maPhim}>
           <div
-            className={styles.banner}
+            className="banner"
+            style={{
+              backgroundImage: `url(${phim.hinhAnh})`,
+              filter: "grayscale(40%)",
+            }}
+          >
+            <div
+              className="position-absolute banner_wrap-icon"
+              style={{
+                top: "50%",
+                left: "50%",
+              }}
+              onClick={() => {
+                console.log(trailerphim);
+                dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
+              }}
+            >
+              <i
+                className="fa-regular fa-circle-play  banner_play_icon"
+                style={{ fontSize: "50px" }}
+              ></i>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+  const renderPhimMini = () => {
+    return arrPhim?.map((phim) => {
+      console.log(phim);
+      const trailerphim = phim.trailer;
+      return (
+        <div key={phim.maPhim} className="position-relative banner_wrap-mini">
+          <div
+            className="bannerMini"
             style={{
               backgroundImage: `url(${phim.hinhAnh})`,
               filter: "grayscale(40%)",
             }}
           ></div>
+          <div
+            className="position-absolute banner_wrap-icon-mini"
+            style={{}}
+            onClick={() => {
+              dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
+            }}
+          >
+            <i className="fa-regular fa-circle-play  banner_play_icon-mini"></i>
+          </div>
+          <div className="banner_content container">
+            <div className="banner_content-title">
+              <h6>{phim.tenPhim}</h6>
+              <h6
+                className="banner_mota"
+                style={{ fontSize: "12px", height: "30px", overflow: "hidden" }}
+              >
+                {phim.moTa}
+              </h6>
+            </div>
+          </div>
+          <div className="banner_overlay"></div>
         </div>
       );
     });
@@ -81,8 +147,8 @@ export default function BannerComponent() {
   return (
     <>
       <div className="bg-dark ">
-        <h2>Fade</h2>
         <Slider {...settings}>{renderPhim()}</Slider>
+        <Slider {...settings2}>{renderPhimMini()}</Slider>
       </div>
     </>
   );

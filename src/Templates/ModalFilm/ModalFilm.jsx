@@ -15,7 +15,7 @@ export default function ModalFilm() {
     <>
       <>
         <Modal show={show} onHide={handleClose} style={{ border: "red" }}>
-          <Modal.Header style={{ backgroundColor: "var(--bg-main-body)" }} className="p-2">
+          <Modal.Header style={{ backgroundColor: "#182028" }} className="p-2">
             <i
               className="fa-solid fa-xmark ml-auto text-danger pr-3 pl-3"
               style={{ cursor: "pointer", fontSize: "30px" }}
