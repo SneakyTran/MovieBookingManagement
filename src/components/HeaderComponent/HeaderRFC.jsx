@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
+import { OPEN_LOGIN, OPEN_REGISTER } from "../../redux/type/FormType";
 import "./header.css";
 
 export default function Header() {
     const dispatch = useDispatch();
-    const openModalLogin = () => dispatch({ type: "OPEN_LOGIN", modalLogin: <Login/> });
-    const openModalRegister = () => dispatch({ type: "OPEN_REGISTER", modalRegister: <Register/> });
+    const openModalLogin = () => dispatch({ type: OPEN_LOGIN, modalLogin: <Login/> });
+    const openModalRegister = () => dispatch({ type: OPEN_REGISTER, modalRegister: <Register/> });
     return (
         <header className="nav__bg">
             <div className="container">
