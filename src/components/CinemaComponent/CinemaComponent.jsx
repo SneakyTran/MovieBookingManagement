@@ -2,10 +2,24 @@ import "./CinemaComponent.css";
 import React, { useState } from "react";
 import "./lib/Calender";
 import { calender } from "./lib/Calender";
+import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import CinemaModalComponent from "./CinemaModalComponent";
+import { OPEN_LIST_CINEMA_MODAL, OPEN_MODAL } from "../../redux/type/ModalType";
 
 export default function CinemaComponent() {
     const [activeCinemaIndex, setActiveCinemaIndex] = useState(0);
     const [activeDate, setActiveDate] = useState(0);
+
+    const handleClose = () =>
+        dispatch({
+            type: OPEN_MODAL,
+        });
+    const dispatch = useDispatch();
+
+    const { show, ComponentContentModal } = useSelector(
+        (state) => state.ModalFilmReducer
+    );
 
     const cinemaListDemo = [
         {
@@ -69,16 +83,33 @@ export default function CinemaComponent() {
         });
     };
 
+    const getCinemaModal = () => {
+        dispatch({
+            type: OPEN_LIST_CINEMA_MODAL,
+            Component: <CinemaModalComponent />,
+        });
+    };
     return (
         <div className="container py-5">
             <h2 className="movie__title mb-5">Cinema Showtimes</h2>
             <div className="cinema__content">
                 <div className="cinema__header py-3">
                     <span className="mx-3">Cinema</span>
-                    <span className="btn--cinema">
+                    <span
+                        onClick={() => {
+                            getCinemaModal();
+                        }}
+                        className="btn--cinema"
+                    >
                         CGV
                         <i className="fa-solid fa-chevron-down pl-4"></i>
                     </span>
+                    <div className="modal__cinema">
+                        <Modal show={show} onHide={handleClose}>
+                            <ModalHeader>Modal Header</ModalHeader>
+                            <ModalBody>{ComponentContentModal}</ModalBody>
+                        </Modal>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-4 cinema__left pr-0">

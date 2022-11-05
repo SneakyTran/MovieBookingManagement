@@ -111,7 +111,7 @@ p {
 
 .calender {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 1rem;
     padding: 12px 20px;
 }
