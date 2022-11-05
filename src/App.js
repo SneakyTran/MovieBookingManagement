@@ -12,7 +12,7 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <Header /> 
       <Router history={history}>
         <ModalFilm />
         <Switch>

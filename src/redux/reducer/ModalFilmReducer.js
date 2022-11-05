@@ -13,6 +13,14 @@ export const ModalFilmReducer = (state = initialState, action) => {
     case CLOSE_MODAL:
       state.show = false;
       return { ...state };
+    case "OPEN_LOGIN":
+      state.show = true;
+      state.ComponentContentModal = action.modalLogin;
+        return { ...state };
+    case "OPEN_REGISTER":
+      state.show = true;
+      state.ComponentContentModal = action.modalRegister;
+          return { ...state };
     default:
       return state;
   }

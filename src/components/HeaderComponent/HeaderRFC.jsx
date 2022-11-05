@@ -1,8 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 import "./header.css";
 
 export default function Header() {
+    const dispatch = useDispatch();
+    const openModalLogin = () => dispatch({ type: "OPEN_LOGIN", modalLogin: <Login/> });
+    const openModalRegister = () => dispatch({ type: "OPEN_REGISTER", modalRegister: <Register/> });
     return (
         <header className="nav__bg">
             <div className="container">
@@ -56,11 +62,14 @@ export default function Header() {
                                 </NavLink>
                             </li>
                         </ul>
-                        <span>
-                            Login
-                            <span> /</span>
-                            <span> Register</span>
-                        </span>
+                        <div>
+                            <span className="px-3" onClick={() => { 
+                                openModalLogin()
+                             }}>Login</span>
+                             <span className="px-3" onClick={() => { 
+                                openModalRegister()
+                             }}>Register</span>
+                        </div>
                     </div>
                 </nav>
             </div>
