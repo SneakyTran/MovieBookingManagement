@@ -1,8 +1,9 @@
+import { PLAY_TRAILER } from "../type/BannerType";
 import { CLOSE_MODAL, OPEN_MODAL } from "../type/ModalType";
 
 const initialState = {
-  show: false,
-  ComponentContentModal: <p>dfadfasdfasdf</p>,
+    show: false,
+    ComponentContentModal: <p>dfadfasdfasdf</p>,
 };
 
 export const ModalFilmReducer = (state = initialState, action) => {
@@ -21,6 +22,12 @@ export const ModalFilmReducer = (state = initialState, action) => {
       state.show = true;
       state.ComponentContentModal = action.modalRegister;
           return { ...state };
+    case PLAY_TRAILER:
+      state.ComponentContentModal = action.payload;
+      state.show = true;
+
+      return { ...state };
+
     default:
       return state;
   }

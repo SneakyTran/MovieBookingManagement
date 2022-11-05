@@ -1,5 +1,6 @@
 import React from "react";
 import BannerComponent from "../../components/BannerComponent/BannerComponent";
+import BlogComponent from "../../components/BlogComponent/BlogComponent";
 import CinemaComponent from "../../components/CinemaComponent/CinemaComponent";
 import Login from "../Login/Login";
 import "./home.css";
@@ -9,6 +10,7 @@ export default function Home() {
     <div>
       <BannerComponent />
       <CinemaComponent />
+      <BlogComponent />
     </div>
   );
 }
