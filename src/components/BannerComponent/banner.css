@@ -86,7 +86,9 @@
     height: 30px;
     transition: all 0.5s;
 }
-
+.banner_content-title h6{
+    color: #fff;
+}
 .slick-slide:hover .banner_mota {
     opacity: 1;
 }

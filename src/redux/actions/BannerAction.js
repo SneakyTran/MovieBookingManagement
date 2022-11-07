@@ -1,5 +1,4 @@
 import axios from "axios";
-import { serviceBase } from "../../Service/BaseService";
 import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import { GET_BANNER, PLAY_TRAILER } from "../type/BannerType";
 

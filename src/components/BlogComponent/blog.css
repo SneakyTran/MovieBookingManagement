@@ -39,13 +39,30 @@
 }
 
 .blog_wrap:hover .blog_content {
-    bottom: 40%;
+    bottom: 30%;
 }
 
-.blog_content-title {
-    height: 20px;
-    overflow: hidden;
-    transition: all 0.5s;
+.blogs_title {
+    font-size: 1.875rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.blogs_title::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50%;
+    bottom: -50%;
+    height: 3px;
+    background-color: red;
+}
+
+.blog_content-title h6 {
+    color: #fff;
+
 }
 
 .blog_wrap:hover .banner_overlay {
@@ -53,10 +70,7 @@
     cursor: pointer;
 }
 
-.blog_wrap:hover .blog_content-title {
-    height: 30px;
-    overflow: visible;
-}
+
 
 .blog_wrap:hover .blog_mota {
     opacity: 1;

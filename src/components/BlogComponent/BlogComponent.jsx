@@ -4,7 +4,10 @@ import "./blog.css";
 export default function BlogComponent() {
   return (
     <div className="container">
-      <div className="row">
+      <div className="position-relative d-inline">
+        <span className="blogs_title"> Tin tức</span>
+      </div>
+      <div className="row mt-3">
         <div className="col-6 blog_left-wrapper">
           <div className="position-relative blog_wrap">
             <div

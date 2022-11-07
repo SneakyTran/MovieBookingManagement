@@ -1,14 +1,14 @@
 import Axios from "axios";
 import { DOMAIN_CINEMA, TOKEN } from "../utils/setting";
 
-export class BaseService {
+export class TokenCyberSoftService {
   put = (url, data) => {
     return Axios({
       method: "PUT",
       url: `${DOMAIN_CINEMA}${url}`,
       data,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem(TOKEN),
+        TokenCyberSoft: TOKEN,
       },
     });
   };
@@ -19,7 +19,7 @@ export class BaseService {
       method: "POST",
       data: userProject,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem(TOKEN),
+        TokenCyberSoft: TOKEN,
       },
     });
   };
@@ -28,7 +28,7 @@ export class BaseService {
       method: "GET",
       url: `${DOMAIN_CINEMA}${url}`,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem(TOKEN),
+        TokenCyberSoft: TOKEN,
       },
     });
   };
@@ -37,9 +37,9 @@ export class BaseService {
       method: "DELETE",
       url: `${DOMAIN_CINEMA}${url}`,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem(TOKEN),
+        TokenCyberSoft: TOKEN,
       },
     });
   };
 }
-export const serviceBase = new BaseService();
+export const tokenCyberService = new TokenCyberSoftService();

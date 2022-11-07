@@ -1,7 +1,7 @@
-import React from 'react'
-
-export default function Admin() {
-  return (
-    <div>Admin</div>
-  )
-}
+const Admin = () => {
+  // const { Component } = useSelector((state)=>{});
+  return <div>
+    Admin
+  </div>;
+};
+export default Admin;
