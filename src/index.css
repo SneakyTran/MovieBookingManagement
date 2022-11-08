@@ -22,7 +22,7 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     color: white;
     letter-spacing: 1px;
     background-color: #080d15;
@@ -44,7 +44,6 @@ body {
 .slick-slider.slick-initialized:hover .banner_icon-right,
 .slick-slider.slick-initialized:hover .banner_icon-left {
     opacity: 1;
-
 }
 
 .slick-prev:before,
@@ -57,4 +56,8 @@ body {
     .modal.show .modal-dialog {
         max-width: 50% !important;
     }
+}
+
+.modal-dialog {
+    margin: 6rem auto;
 }

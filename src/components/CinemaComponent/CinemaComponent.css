@@ -151,7 +151,7 @@ p {
     font-size: 0.75rem;
 }
 
-.showTime__movie{
+.showTime__movie {
     padding: 1rem;
     border-top: 1px solid #768bad;
 }
@@ -181,4 +181,26 @@ p {
 .showTimes__detail .duration:hover {
     border: 1px solid rgba(255, 48, 90, 0.9);
     transition: all 0.3s;
+}
+
+.logo__container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #768bad;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.logo__container:hover {
+    border: 1px solid var(--second-color);
+    transition: all 0.5s;
+}
+
+.cinema__logo {
+    max-width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

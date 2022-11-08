@@ -2,24 +2,22 @@ import "./CinemaComponent.css";
 import React, { useState } from "react";
 import "./lib/Calender";
 import { calender } from "./lib/Calender";
-import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CinemaModalComponent from "./CinemaModalComponent";
-import { OPEN_LIST_CINEMA_MODAL, OPEN_MODAL } from "../../redux/type/ModalType";
+import {
+    getAllCinema,
+    cinemaModalAction,
+    getCinemaClusters,
+} from "../../redux/actions/CinemaAction";
+import { useEffect } from "react";
+import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
+import { GET_LIST_CINEMA_CLUSTERS } from "../../redux/type/CinemaType";
 
 export default function CinemaComponent() {
     const [activeCinemaIndex, setActiveCinemaIndex] = useState(0);
     const [activeDate, setActiveDate] = useState(0);
 
-    const handleClose = () =>
-        dispatch({
-            type: OPEN_MODAL,
-        });
     const dispatch = useDispatch();
-
-    const { show, ComponentContentModal } = useSelector(
-        (state) => state.ModalFilmReducer
-    );
 
     const cinemaListDemo = [
         {
@@ -27,6 +25,29 @@ export default function CinemaComponent() {
         },
         { name: "CGV Vĩnh Trung Plaza" },
     ];
+
+    const { currentCinema, arrCinema } = useSelector(
+        (state) => state.CinemaReducer
+    );
+
+    useEffect(() => {
+        getCinemaAPI();
+    }, []);
+
+    useEffect(() => {
+        getCinemaClustersAPI();
+    }, []);
+
+    const getCinemaClustersAPI = () => {
+        console.log(currentCinema.maHeThongRap);
+        let action = getCinemaClusters(currentCinema.maHeThongRap);
+        dispatch(action);
+    };
+
+    const getCinemaAPI = () => {
+        let action = getAllCinema();
+        dispatch(action);
+    };
 
     const cinemaActive = (index) => {
         setActiveCinemaIndex(index);
@@ -84,11 +105,13 @@ export default function CinemaComponent() {
     };
 
     const getCinemaModal = () => {
-        dispatch({
-            type: OPEN_LIST_CINEMA_MODAL,
-            Component: <CinemaModalComponent />,
-        });
+        let action = cinemaModalAction(
+            OPEN_LIST_CINEMA_MODAL,
+            <CinemaModalComponent arrCinema={arrCinema} />
+        );
+        dispatch(action);
     };
+
     return (
         <div className="container py-5">
             <h2 className="movie__title mb-5">Cinema Showtimes</h2>
@@ -101,15 +124,10 @@ export default function CinemaComponent() {
                         }}
                         className="btn--cinema"
                     >
-                        CGV
+                        {currentCinema.tenHeThongRap}
                         <i className="fa-solid fa-chevron-down pl-4"></i>
                     </span>
-                    <div className="modal__cinema">
-                        <Modal show={show} onHide={handleClose}>
-                            <ModalHeader>Modal Header</ModalHeader>
-                            <ModalBody>{ComponentContentModal}</ModalBody>
-                        </Modal>
-                    </div>
+                    <div className="modal__cinema"></div>
                 </div>
                 <div className="row">
                     <div className="col-4 cinema__left pr-0">

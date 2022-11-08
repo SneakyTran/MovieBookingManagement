@@ -8,28 +8,28 @@ const initialState = {
 };
 
 export const ModalFilmReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case OPEN_MODAL:
-      state.show = true;
-      return { ...state };
-    case CLOSE_MODAL:
-      state.show = false;
-      return { ...state };
-    case OPEN_LOGIN:
-      state.show = true;
-      state.ComponentContentModal = action.modalLogin;
-        return { ...state };
-    case OPEN_REGISTER:
-      state.show = true;
-      state.ComponentContentModal = action.modalRegister;
-          return { ...state };
-    case PLAY_TRAILER:
-      state.ComponentContentModal = action.payload;
-      state.show = true;
+    switch (action.type) {
+        case OPEN_MODAL:
+            state.show = true;
+            return { ...state };
+        case CLOSE_MODAL:
+            state.show = false;
+            return { ...state };
+        case OPEN_LOGIN:
+            state.show = true;
+            state.ComponentContentModal = action.modalLogin;
+            return { ...state };
+        case OPEN_REGISTER:
+            state.show = true;
+            state.ComponentContentModal = action.modalRegister;
+            return { ...state };
+        case PLAY_TRAILER:
+            state.ComponentContentModal = action.payload;
+            state.show = true;
 
-      return { ...state };
+            return { ...state };
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 };
