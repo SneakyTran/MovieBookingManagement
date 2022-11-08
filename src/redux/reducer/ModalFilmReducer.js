@@ -1,6 +1,10 @@
 import { PLAY_TRAILER } from "../type/BannerType";
 import { OPEN_LOGIN, OPEN_REGISTER } from "../type/FormType";
-import { CLOSE_MODAL, OPEN_MODAL } from "../type/ModalType";
+import {
+    CLOSE_MODAL,
+    OPEN_LIST_CINEMA_MODAL,
+    OPEN_MODAL,
+} from "../type/ModalType";
 
 const initialState = {
     show: false,
@@ -27,6 +31,11 @@ export const ModalFilmReducer = (state = initialState, action) => {
             state.ComponentContentModal = action.payload;
             state.show = true;
 
+            return { ...state };
+
+        case OPEN_LIST_CINEMA_MODAL:
+            state.ComponentContentModal = action.payload;
+            state.show = true;
             return { ...state };
 
         default:

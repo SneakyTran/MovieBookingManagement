@@ -34,9 +34,9 @@ export default function CinemaComponent() {
         getCinemaAPI();
     }, []);
 
-    useEffect(() => {
-        getCinemaClustersAPI();
-    }, []);
+    // useEffect(() => {
+    //     getCinemaClustersAPI();
+    // }, []);
 
     const getCinemaClustersAPI = () => {
         console.log(currentCinema.maHeThongRap);
