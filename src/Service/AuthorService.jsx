@@ -45,4 +45,4 @@ export class BaseService {
         });
     };
 }
-export const serviceBase = new BaseService();
+export const authorService = new BaseService();

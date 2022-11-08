@@ -1,11 +1,11 @@
-import { serviceBase } from "../../Service/BaseService";
+import { bothServiceToken } from "../../Service/BothTokenService";
 
 import { CINEMA_CLUSTERS, CINEMA_INFO } from "../../utils/setting";
 import { GET_ALL_CINEMA } from "../type/CinemaType";
 
 export const getAllCinema = () => {
     return (middleWareDispatch) => {
-        let promise = serviceBase.get(CINEMA_INFO);
+        let promise = bothServiceToken.get(CINEMA_INFO);
         promise
             .then((res) => {
                 middleWareDispatch({
@@ -21,7 +21,7 @@ export const getAllCinema = () => {
 
 export const getCinemaClusters = (cinemaId) => {
     return (middleWareDispatch) => {
-        serviceBase
+        bothServiceToken
             .get(CINEMA_CLUSTERS, cinemaId)
             .then((res) => {
                 console.log(res);
