@@ -19,14 +19,13 @@ export default function CinemaComponent() {
 
   const dispatch = useDispatch();
 
-  const cinemaListDemo = [
-    {
-      name: "CGV Vincom Đà Nẵng",
-    },
-    { name: "CGV Vĩnh Trung Plaza" },
-  ];
+  const [cinemaInfo, setCinemaInfo] = useState({
+    img: "",
+    cinemaName: "",
+    address: "",
+  });
 
-  const { currentCinema, arrCinema } = useSelector(
+  const { currentCinema, arrCinemaCluster, arrCinema } = useSelector(
     (state) => state.CinemaReducer
   );
 
@@ -38,8 +37,18 @@ export default function CinemaComponent() {
     getCinemaClustersAPI();
   }, [currentCinema]);
 
+  useEffect(() => {
+    if (arrCinemaCluster !== undefined) {
+      if (arrCinemaCluster.length > 0) {
+        cinemaActive(0, arrCinemaCluster[0]);
+      }
+    }
+  }, [arrCinemaCluster]);
+
   const getCinemaClustersAPI = () => {
-    console.log(currentCinema.maHeThongRap);
+    if (!currentCinema.maHeThongRap) {
+      return;
+    }
     let action = getCinemaClusters(currentCinema.maHeThongRap);
     dispatch(action);
   };
@@ -49,25 +58,33 @@ export default function CinemaComponent() {
     dispatch(action);
   };
 
-  const cinemaActive = (index) => {
+  const cinemaActive = (index, cinema) => {
+    const { tenCumRap, diaChi } = cinema;
     setActiveCinemaIndex(index);
+    setCinemaInfo({
+      img: currentCinema["logo"],
+      cinemaName: tenCumRap,
+      address: diaChi,
+    });
   };
 
   const renderCinema = () => {
-    return cinemaListDemo.map((cinema, index) => {
-      let { name } = cinema;
+    return arrCinemaCluster.map((cinema, index) => {
+      let { tenCumRap } = cinema;
       return (
         <div
           key={index}
           onClick={() => {
-            cinemaActive(index);
+            cinemaActive(index, cinema);
           }}
           className={`cinema__detail px-4 py-2 ${
             activeCinemaIndex === index ? "active" : ""
           }`}
         >
-          <img src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png" alt="" />
-          <span className="pl-3 pr-3">{name}</span>
+          <div className="cinema__logo__left">
+            <img src={currentCinema["logo"]} alt="" />
+            <span className="pl-3 pr-3">{tenCumRap}</span>
+          </div>
           <span className="pl-5">
             <i className="fa-solid fa-chevron-right"></i>
           </span>
