@@ -4,7 +4,6 @@ import { GET_INFO_FILM, GET_LIST_FILM } from "../type/MovieManagerType";
 import { history } from "../../App";
 //Get all movies, get movieBy Name
 export function getListMovie(tenPhim = "") {
-  console.log(123123123)
   return async (dispatch) => {
     try {
       let url;
