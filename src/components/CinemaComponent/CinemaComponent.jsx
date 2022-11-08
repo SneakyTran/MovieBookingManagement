@@ -19,14 +19,13 @@ export default function CinemaComponent() {
 
     const dispatch = useDispatch();
 
-    const cinemaListDemo = [
-        {
-            name: "CGV Vincom Đà Nẵng",
-        },
-        { name: "CGV Vĩnh Trung Plaza" },
-    ];
+    const [cinemaInfo, setCinemaInfo] = useState({
+        img: "",
+        cinemaName: "",
+        address: "",
+    });
 
-    const { currentCinema, arrCinema } = useSelector(
+    const { currentCinema, arrCinemaCluster, arrCinema } = useSelector(
         (state) => state.CinemaReducer
     );
 
@@ -38,8 +37,18 @@ export default function CinemaComponent() {
         getCinemaClustersAPI();
     }, [currentCinema]);
 
+    useEffect(() => {
+        if (arrCinemaCluster !== undefined) {
+            if (arrCinemaCluster.length > 0) {
+                cinemaActive(0, arrCinemaCluster[0]);
+            }
+        }
+    }, [arrCinemaCluster]);
+
     const getCinemaClustersAPI = () => {
-        console.log(currentCinema.maHeThongRap);
+        if (!currentCinema.maHeThongRap) {
+            return;
+        }
         let action = getCinemaClusters(currentCinema.maHeThongRap);
         dispatch(action);
     };
@@ -49,28 +58,33 @@ export default function CinemaComponent() {
         dispatch(action);
     };
 
-    const cinemaActive = (index) => {
+    const cinemaActive = (index, cinema) => {
+        const { tenCumRap, diaChi } = cinema;
         setActiveCinemaIndex(index);
+        setCinemaInfo({
+            img: currentCinema["logo"],
+            cinemaName: tenCumRap,
+            address: diaChi,
+        });
     };
 
     const renderCinema = () => {
-        return cinemaListDemo.map((cinema, index) => {
-            let { name } = cinema;
+        return arrCinemaCluster.map((cinema, index) => {
+            let { tenCumRap } = cinema;
             return (
                 <div
                     key={index}
                     onClick={() => {
-                        cinemaActive(index);
+                        cinemaActive(index, cinema);
                     }}
                     className={`cinema__detail px-4 py-2 ${
                         activeCinemaIndex === index ? "active" : ""
                     }`}
                 >
-                    <img
-                        src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
-                        alt=""
-                    />
-                    <span className="pl-3 pr-3">{name}</span>
+                    <div className="cinema__logo__left">
+                        <img src={currentCinema["logo"]} alt="" />
+                        <span className="pl-3 pr-3">{tenCumRap}</span>
+                    </div>
                     <span className="pl-5">
                         <i className="fa-solid fa-chevron-right"></i>
                     </span>
@@ -127,7 +141,6 @@ export default function CinemaComponent() {
                         {currentCinema.tenHeThongRap}
                         <i className="fa-solid fa-chevron-down pl-4"></i>
                     </span>
-                    <div className="modal__cinema"></div>
                 </div>
                 <div className="row">
                     <div className="col-4 cinema__left pr-0">
@@ -146,16 +159,10 @@ export default function CinemaComponent() {
                     </div>
                     <div className="col-8 pl-0">
                         <div className="cinema__info">
-                            <img
-                                src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
-                                alt=""
-                            />
+                            <img src={cinemaInfo.img} alt="" />
                             <div className="cinema__address pl-2">
-                                <h3>Lịch chiếu phim CGV Vincom Đà Nẵng</h3>
-                                <p>
-                                    Tầng 4, TTTM Vincom Đà Nẵng, đường Ngô
-                                    Quyền, P.An Hải Bắc, Q.Sơn Trà, TP. Đà Nẵng
-                                </p>
+                                <h3>Lịch chiếu phim {cinemaInfo.cinemaName}</h3>
+                                <p>{cinemaInfo.address}</p>
                             </div>
                         </div>
                         <div className="calender">{renderCalender()}</div>

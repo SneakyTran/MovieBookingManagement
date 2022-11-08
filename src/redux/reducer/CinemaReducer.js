@@ -22,7 +22,7 @@ export const CinemaReducer = (state = initialState, action) => {
             return { ...state };
 
         case GET_LIST_CINEMA_CLUSTERS:
-            console.log("first");
+            state.arrCinemaCluster = action.arrCinema;
             return { ...state };
 
         default:
