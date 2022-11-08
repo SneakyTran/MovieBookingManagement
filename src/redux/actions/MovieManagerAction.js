@@ -3,7 +3,6 @@ import { bothServiceToken } from "../../Service/BothTokenService";
 import { DOMAIN_CINEMA, MA_NHOM } from "../../utils/setting";
 import { GET_INFO_FILM, GET_LIST_FILM } from "../type/MovieManagerType";
 import history from "../../App";
-import { ACCESS_TOKEN } from "../../pages/Login/useLogin";
 //Get all movies
 export function getListMovie() {
     return async (dispatch) => {

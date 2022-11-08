@@ -12,7 +12,6 @@ import { NavLink } from "react-router-dom";
 
 import "../admincss.css";
 import { history } from "../../../App";
-import { ACCESS_TOKEN } from "../../Login/useLogin";
 
 const { Search } = Input;
 
