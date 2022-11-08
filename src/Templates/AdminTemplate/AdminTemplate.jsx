@@ -55,13 +55,6 @@ export default function AdminTemplate(props) {
                       },
                     ],
                   },
-                  {
-                    key: "3",
-                    icon: <UploadOutlined />,
-                    label: (
-                      <NavLink to="/admin/showtimeadmin">Show Time</NavLink>
-                    ),
-                  },
                 ]}
               />
             </Sider>
