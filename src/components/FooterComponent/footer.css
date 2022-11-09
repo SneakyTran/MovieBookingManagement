@@ -22,19 +22,40 @@
     height: 100%;
 }
 
+.col-3 span{
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+.col-3 h2 span::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #ff1744;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    
+}
+.col-3 h2 span:hover::after{
+    width: 100%;
+    
+}
+
 .social_link .social_icon{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .social_link li i {
     font-size: 30px;
     transition: all 0.4s ease-in-out;
 }
-.social_link li i:hover {
-    color: #ff1744;
+.social_icon li i:hover {
+    color: #fff;
     cursor: pointer;
 }
+
 .newsletter_input{
     margin-top: 30%;
     position: relative;
