@@ -55,7 +55,6 @@
   
 .login_box form .form_submit{
     position: relative;
-    display: inline-block;
     padding: 10px 20px;
     color: #ff1744;
     font-size: 16px;
@@ -68,6 +67,8 @@
     justify-content: center;
     align-items: end;
     display: flex;
+    border: none;
+    background: transparent;
 }
 
 .login_box .form_register:hover{
