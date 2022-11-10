@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
@@ -7,9 +7,27 @@ import { OPEN_LOGIN, OPEN_REGISTER } from "../../redux/type/FormType";
 import "./header.css";
 
 export default function Header() {
+    const { uLogin } = useSelector(state => state.FormReducer);
     const dispatch = useDispatch();
-    const openModalLogin = () => dispatch({ type: OPEN_LOGIN, modalLogin: <Login/> });
-    const openModalRegister = () => dispatch({ type: OPEN_REGISTER, modalRegister: <Register/> });
+    useEffect(() => {
+        renderAccount();
+    }, [uLogin])
+
+    const openModalLogin = () => dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
+    const openModalRegister = () => dispatch({ type: OPEN_REGISTER, modalRegister: <Register /> });
+    let renderAccount = () => {
+        if (uLogin != null) {
+            // đã đăng nhập
+            return <span className="px-3" onClick={() => {
+                openModalLogin()
+            }}>{uLogin.hoTen}</span>
+        } else {
+            return <span className="px-3" onClick={() => {
+                openModalLogin()
+            }}>Login</span>
+        }
+    }
+
     return (
         <header className="nav__bg">
             <div className="container">
@@ -64,12 +82,15 @@ export default function Header() {
                             </li>
                         </ul>
                         <div>
-                            <span className="px-3" onClick={() => { 
+                            {renderAccount()}
+                            {/* {uLogin ? <span className="px-3" onClick={() => {
                                 openModalLogin()
-                             }}>Login</span>
-                             <span className="px-3" onClick={() => { 
+                            }}>{uLogin.hoTen}</span> : <span className="px-3" onClick={() => {
+                                openModalLogin()
+                            }}>Login</span>} */}
+                            <span className="px-3" onClick={() => {
                                 openModalRegister()
-                             }}>Register</span>
+                            }}>Register</span>
                         </div>
                     </div>
                 </nav>

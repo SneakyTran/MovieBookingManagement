@@ -7,7 +7,8 @@ import Admin from "./pages/Admin/Admin";
 import AddMovie from "./pages/Admin/MovieAdmin/AddMovie/AddMovie";
 import EditMovie from "./pages/Admin/MovieAdmin/EditMovie/EditMovie";
 import MovieAdmin from "./pages/Admin/MovieAdmin/MovieAdmin";
-import ShowtimeAdmin from "./pages/Admin/ShowtimeAdmin/ShowtimeAdmin";
+import ShowtimeAdmin from "./pages/Admin/MovieAdmin/ShowtimeAdmin/ShowtimeAdmin";
+
 import UserAdmin from "./pages/Admin/UserAdmin/UserAdmin";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -39,7 +40,7 @@ function App() {
           />
           <AdminTemplate
             exact
-            path="/admin/showtimeadmin"
+            path="/admin/movieadmin/showtimeadmin/:maPhim"
             Component={ShowtimeAdmin}
           />
           <AdminTemplate

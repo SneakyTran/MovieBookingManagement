@@ -74,7 +74,6 @@ export default function BannerComponent() {
 
   const renderPhim = () => {
     return arrPhim?.map((phim) => {
-      console.log(phim);
       const trailerphim = phim.trailer;
       return (
         <div key={phim.maPhim}>
@@ -92,7 +91,6 @@ export default function BannerComponent() {
                 left: "50%",
               }}
               onClick={() => {
-                console.log(trailerphim);
                 dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
               }}
             >
@@ -108,7 +106,6 @@ export default function BannerComponent() {
   };
   const renderPhimMini = () => {
     return arrPhim?.map((phim) => {
-      console.log(phim);
       const trailerphim = phim.trailer;
       return (
         <div key={phim.maPhim} className="position-relative banner_wrap-mini">

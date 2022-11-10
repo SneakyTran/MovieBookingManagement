@@ -26,7 +26,7 @@ export const useEditMovie = (props) => {
       ngayKhoiChieu: thongTinPhim?.ngayKhoiChieu,
       dangChieu: thongTinPhim?.dangChieu,
       sapChieu: thongTinPhim?.sapChieu,
-      hot: thongTinPhim?.hot,
+      hot: thongTinPhim?.hot === null ? false : true,
       danhGia: thongTinPhim?.danhGia,
       hinhAnh: null,
       maNhom: thongTinPhim?.maNhom,

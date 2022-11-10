@@ -54,8 +54,7 @@ export default function CinemaComponent() {
         }
     }, [arrCinemaCluster]);
 
-
-    //Load movie when change Cinema 
+    //Load movie when change Cinema
     useEffect(() => {
         setShowTimeMovie();
     }, [arrShowTime, cinemaInfo]);
@@ -231,6 +230,39 @@ export default function CinemaComponent() {
             );
         });
     };
+
+    // const calenderActive = (index) => {
+    //     setActiveDate(index);
+    // };
+
+    // const renderCalender = () => {
+    //     return calender().map((date, index) => {
+    //         return (
+    //             <div
+    //                 key={index}
+    //                 onClick={() => {
+    //                     calenderActive(index);
+    //                 }}
+    //                 className={`calender__card ${
+    //                     activeDate === index ? "active" : ""
+    //                 }`}
+    //             >
+    //                 <div className="calender__header">{date.date}</div>
+    //                 <div className="calender__body">
+    //                     {index === 0 ? "Today" : date.day}
+    //                 </div>
+    //             </div>
+    //         );
+    //     });
+    // };
+
+    // const getCinemaModal = () => {
+    //     let action = cinemaModalAction(
+    //         OPEN_LIST_CINEMA_MODAL,
+    //         <CinemaModalComponent arrCinema={arrCinema} />
+    //     );
+    //     dispatch(action);
+    // };
 
     return (
         <div className="container py-5">

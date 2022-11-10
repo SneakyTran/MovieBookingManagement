@@ -46,19 +46,19 @@ export default function Footer() {
               <div className="social_link">
                 <ul className='d-flex social_icon'>
                   <li>
-                  <i className="fa-brands fa-square-facebook"></i>
+                  <i style={{color:"#3b5998"}} className="fa-brands fa-square-facebook"></i>
                   </li>
                   <li>
-                    <i className="fa-brands fa-square-twitter"></i>
+                    <i style={{color:"#02b0e8"}} className="fa-brands fa-square-twitter"></i>
                   </li>
                   <li>
-                    <i className="fa-brands fa-square-instagram"></i>
+                    <i style={{color:"#00a098"}} className="fa-brands fa-square-instagram"></i>
                   </li>
                   <li>
-                    <i className="fa-brands fa-youtube"></i>
+                    <i style={{color:"#c22e2a"}} className="fa-brands fa-youtube"></i>
                   </li>
                   <li>
-                    <i className="fa-brands fa-square-pinterest"></i>
+                    <i style={{color:"#b00a1b"}} className="fa-brands fa-square-pinterest"></i>
                   </li>
                 </ul>
               </div>
@@ -72,9 +72,10 @@ export default function Footer() {
               <div className="newsletter_input">
                   <input type="text" className="form-control" placeholder="Email Address" />
                   <button className="newsletter_btn">
-                    <span className="fa fa-paper-plane" />
+                    <span style={{color:"#000"}} className="fa fa-paper-plane" />
                   </button>
-              </div>
+              </div>   
+              <p className='pt-3'>Email:moviesupport@gmail.com</p>          
             </div>
           </div>
         </div>
