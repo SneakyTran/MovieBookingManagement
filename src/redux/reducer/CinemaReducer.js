@@ -1,6 +1,7 @@
 import {
     GET_ALL_CINEMA,
     GET_LIST_CINEMA_CLUSTERS,
+    GET_SHOW_TIMES,
     SELECT_CINEMA,
 } from "../type/CinemaType";
 
@@ -8,6 +9,7 @@ const initialState = {
     currentCinema: {},
     arrCinema: [],
     arrCinemaCluster: [],
+    arrShowTime: [],
 };
 
 export const CinemaReducer = (state = initialState, action) => {
@@ -23,6 +25,10 @@ export const CinemaReducer = (state = initialState, action) => {
 
         case GET_LIST_CINEMA_CLUSTERS:
             state.arrCinemaCluster = action.arrCinema;
+            return { ...state };
+
+        case GET_SHOW_TIMES:
+            state.arrShowTime = action.showTimes;
             return { ...state };
 
         default:

@@ -1,8 +1,19 @@
 import { bothServiceToken } from "../../Service/BothTokenService";
-import { getCinemaQuery } from "../../utils/cinemaConfigString";
+import {
+    getCinemaQuery,
+    getCinemaShowTImesQuery,
+} from "../../utils/cinemaConfigString";
 
-import { CINEMA_CLUSTERS, CINEMA_INFO } from "../../utils/setting";
-import { GET_ALL_CINEMA, GET_LIST_CINEMA_CLUSTERS } from "../type/CinemaType";
+import {
+    CINEMA_CLUSTERS,
+    CINEMA_INFO,
+    CINEMA_SHOWTIMES,
+} from "../../utils/setting";
+import {
+    GET_ALL_CINEMA,
+    GET_LIST_CINEMA_CLUSTERS,
+    GET_SHOW_TIMES,
+} from "../type/CinemaType";
 
 export const getAllCinema = () => {
     return (middleWareDispatch) => {
@@ -25,10 +36,25 @@ export const getCinemaClusters = (cinemaId) => {
         bothServiceToken
             .get(CINEMA_CLUSTERS + getCinemaQuery(cinemaId))
             .then((res) => {
-                console.log(res.data);
                 middleWareDispatch({
                     type: GET_LIST_CINEMA_CLUSTERS,
                     arrCinema: res.data.content,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
+export const getCinemaShowTimes = (cinemaId) => {
+    return (middleWareDispatch) => {
+        bothServiceToken
+            .get(CINEMA_SHOWTIMES + getCinemaShowTImesQuery(cinemaId))
+            .then((res) => {
+                middleWareDispatch({
+                    type: GET_SHOW_TIMES,
+                    showTimes: res.data.content[0].lstCumRap,
                 });
             })
             .catch((err) => {

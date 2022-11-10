@@ -1,42 +1,51 @@
 import "./CinemaComponent.css";
 import React, { useState } from "react";
 import "./lib/Calender";
-import { calender } from "./lib/Calender";
+import { calender, getTimeDuration, getTimeISO } from "./lib/Calender";
 import { useDispatch, useSelector } from "react-redux";
 import CinemaModalComponent from "./CinemaModalComponent";
 import {
     getAllCinema,
     cinemaModalAction,
     getCinemaClusters,
+    getCinemaShowTimes,
 } from "../../redux/actions/CinemaAction";
 import { useEffect } from "react";
 import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
-import { GET_LIST_CINEMA_CLUSTERS } from "../../redux/type/CinemaType";
 
 export default function CinemaComponent() {
-    const [activeCinemaIndex, setActiveCinemaIndex] = useState(0);
-    const [activeDate, setActiveDate] = useState(0);
-
     const dispatch = useDispatch();
 
+    const [activeCinemaIndex, setActiveCinemaIndex] = useState(-1);
+    const [activeDate, setActiveDate] = useState(0);
     const [cinemaInfo, setCinemaInfo] = useState({
         img: "",
+        cinemaCode: "",
         cinemaName: "",
         address: "",
     });
+    const [arrMovieSt, setArrMovieSt] = useState([]);
+    const [showTimes, setShowTimes] = useState({
+        img: "",
+        movieName: "",
+        showTimes: [{ time: "", price: "" }],
+    });
 
-    const { currentCinema, arrCinemaCluster, arrCinema } = useSelector(
-        (state) => state.CinemaReducer
-    );
+    const { currentCinema, arrCinemaCluster, arrCinema, arrShowTime } =
+        useSelector((state) => state.CinemaReducer);
 
+    //load all cinema
     useEffect(() => {
         getCinemaAPI();
     }, []);
 
+    //load api cluster
     useEffect(() => {
         getCinemaClustersAPI();
+        getCinemaShowTimesAPI(currentCinema.maHeThongRap);
     }, [currentCinema]);
 
+    //load current cinema
     useEffect(() => {
         if (arrCinemaCluster !== undefined) {
             if (arrCinemaCluster.length > 0) {
@@ -44,6 +53,17 @@ export default function CinemaComponent() {
             }
         }
     }, [arrCinemaCluster]);
+
+
+    //Load movie when change Cinema 
+    useEffect(() => {
+        setShowTimeMovie();
+    }, [arrShowTime, cinemaInfo]);
+
+    //Load movie when change Date
+    useEffect(() => {
+        setShowTimeMovie();
+    }, [activeDate]);
 
     const getCinemaClustersAPI = () => {
         if (!currentCinema.maHeThongRap) {
@@ -59,12 +79,52 @@ export default function CinemaComponent() {
     };
 
     const cinemaActive = (index, cinema) => {
-        const { tenCumRap, diaChi } = cinema;
+        const { maCumRap, tenCumRap, diaChi } = cinema;
         setActiveCinemaIndex(index);
         setCinemaInfo({
             img: currentCinema["logo"],
+            cinemaCode: maCumRap,
             cinemaName: tenCumRap,
             address: diaChi,
+        });
+    };
+
+    const getCinemaModal = () => {
+        let action = cinemaModalAction(
+            OPEN_LIST_CINEMA_MODAL,
+            <CinemaModalComponent arrCinema={arrCinema} />
+        );
+        dispatch(action);
+    };
+
+    const getCinemaShowTimesAPI = (cinemaId) => {
+        let action = getCinemaShowTimes(cinemaId);
+        dispatch(action);
+    };
+
+    /* ----------------------------- RENDER FUNCTION ---------------------------- */
+    const calenderActive = async (index) => {
+        setActiveDate(index);
+    };
+
+    const renderCalender = () => {
+        return calender().map((date, index) => {
+            return (
+                <div
+                    key={index}
+                    onClick={() => {
+                        calenderActive(index);
+                    }}
+                    className={`calender__card ${
+                        activeDate === index ? "active" : ""
+                    }`}
+                >
+                    <div className="calender__header">{date.date}</div>
+                    <div className="calender__body">
+                        {index === 0 ? "Today" : date.day}
+                    </div>
+                </div>
+            );
         });
     };
 
@@ -93,37 +153,83 @@ export default function CinemaComponent() {
         });
     };
 
-    const calenderActive = (index) => {
-        setActiveDate(index);
+    const renderCalenderShowTimes = (showTimes) => {
+        return showTimes.filter((showTime) => {
+            return showTime.ngayChieuGioChieu
+                .toString()
+                .includes(calender().at(activeDate).fullDate.toString());
+        });
     };
 
-    const renderCalender = () => {
-        return calender().map((date, index) => {
+    const handleClickDuration = (st) => {
+        console.log("first", st.maLichChieu);
+    };
+
+    const renderDuration = (showTimes) => {
+        return showTimes.map((st) => {
             return (
-                <div
-                    key={index}
-                    onClick={() => {
-                        calenderActive(index);
-                    }}
-                    className={`calender__card ${
-                        activeDate === index ? "active" : ""
-                    }`}
-                >
-                    <div className="calender__header">{date.date}</div>
-                    <div className="calender__body">
-                        {index === 0 ? "Today" : date.day}
-                    </div>
+                <div key={st.maLichChieu} className="duration mr-3 mb-2">
+                    <p
+                        onClick={(st) => {
+                            handleClickDuration(st);
+                        }}
+                    >
+                        <strong>{getTimeISO(st.ngayChieuGioChieu)} </strong>~{" "}
+                        {getTimeDuration(getTimeISO(st.ngayChieuGioChieu))}
+                    </p>
                 </div>
             );
         });
     };
 
-    const getCinemaModal = () => {
-        let action = cinemaModalAction(
-            OPEN_LIST_CINEMA_MODAL,
-            <CinemaModalComponent arrCinema={arrCinema} />
-        );
-        dispatch(action);
+    const setShowTimeMovie = () => {
+        let showTimeCinema = arrShowTime?.filter((cinema) => {
+            return cinema.maCumRap === cinemaInfo.cinemaCode;
+        });
+        const arrShowTimeByCalender = [];
+        if (showTimeCinema.length > 0) {
+            showTimeCinema[0].danhSachPhim.map((showTime) => {
+                const { hinhAnh, maPhim, tenPhim, lstLichChieuTheoPhim } =
+                    showTime;
+
+                //get list showTime of movie
+                const showTimeCinema =
+                    renderCalenderShowTimes(lstLichChieuTheoPhim);
+                if (showTimeCinema.length > 0) {
+                    arrShowTimeByCalender.push({
+                        movieId: maPhim,
+                        movieImg: hinhAnh,
+                        movieName: tenPhim,
+                        movieShowTime: showTimeCinema,
+                    });
+                }
+            });
+        }
+        setArrMovieSt(arrShowTimeByCalender);
+    };
+
+    const renderShowTimes = () => {
+        return arrMovieSt.map((movieSt) => {
+            let { movieId, movieImg, movieName, movieShowTime } = movieSt;
+            return (
+                <div key={movieId} className="row mb-5">
+                    <div className="col-2">
+                        <img className="img-fluid" src={movieImg} alt="" />
+                    </div>
+                    <div className="col-10 pl-1">
+                        <div className="movie__content">
+                            <p className="age">16+</p>
+                            <p className="movie__name">{movieName}</p>
+                            <p className="movie__type">Kinh dị, Gây cấn</p>
+                            <p className="mt-3">2D Phụ đề</p>
+                            <div className="showTimes__detail mt-2">
+                                {renderDuration(movieShowTime)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        });
     };
 
     return (
@@ -168,39 +274,7 @@ export default function CinemaComponent() {
                         <div className="calender">{renderCalender()}</div>
                         <div className="cinema__showTime">
                             <div className="showTime__movie">
-                                <div className="row">
-                                    <div className="col-2">
-                                        <img
-                                            className="img-fluid"
-                                            src="https://movienew.cybersoft.edu.vn/hinhanh/hieu-test_gp03.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div className="col-10">
-                                        <div className="movie__content">
-                                            <p className="age">16+</p>
-                                            <p className="movie__name">Home</p>
-                                            <p className="movie__type">
-                                                Kinh dị, Gây cấn
-                                            </p>
-                                            <p className="mt-3">2D Phụ đề</p>
-                                            <div className="showTimes__detail mt-2">
-                                                <div className="duration mr-3">
-                                                    <p>
-                                                        <strong>14:20 </strong>~
-                                                        15.53
-                                                    </p>
-                                                </div>
-                                                <div className="duration mr-3">
-                                                    <p>
-                                                        <strong>15:20 </strong>~
-                                                        16:53
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {renderShowTimes()}
                             </div>
                         </div>
                     </div>
