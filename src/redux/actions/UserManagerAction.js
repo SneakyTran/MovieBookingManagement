@@ -42,9 +42,10 @@ export function getTypeUser() {
 export function getInfoUser(ma) {
   return async (dispatch) => {
     try {
-      const { data } = await bothServiceToken.get(
+      const { data } = await bothServiceToken.post(
         `QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${ma}`
       );
+      console.log(data)
       dispatch({ type: GET_INFO_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
