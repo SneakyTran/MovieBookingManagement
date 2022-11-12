@@ -69,21 +69,21 @@ export default function Footer() {
               <h2>
                 <span>Newsletter</span>
               </h2>
-              <div class="twitter_content">
+              <div className="twitter_content">
                 <h2><span>Twitter</span></h2>
-                <div class="ft-twitter-feed">
-                  <div class="ft_twitter_icon">
+                <div className="ft-twitter-feed">
+                  <div className="ft_twitter_icon">
                     <i className="fa-brands fa-twitter"></i>
                   </div>
-                  <div class="ft_twitter_dec">
+                  <div className="ft_twitter_dec">
                     <a href="">black-one <span>@24Webpro</span></a>
                     <p>Lorem Ipsum is simply dumy text of the printing.</p>
-                    <div class="ft_twitter_meta">
+                    <div className="ft_twitter_meta">
                       <ul className='d-lfex'>
-                        <li><a href="#"><span class="fa fa-mail-reply"></span></a></li>
-                        <li><a href="#"><span class="fa fa-retweet"></span>12</a></li>
-                        <li><a href="#"><span class="fa fa-heart"></span>21</a></li>
-                        <li><a href="#"><span class="fa fa-ellipsis-h"></span></a></li>
+                        <li><a href="#"><span className="fa fa-mail-reply"></span></a></li>
+                        <li><a href="#"><span className="fa fa-retweet"></span>12</a></li>
+                        <li><a href="#"><span className="fa fa-heart"></span>21</a></li>
+                        <li><a href="#"><span className="fa fa-ellipsis-h"></span></a></li>
                       </ul>
                     </div>
                   </div>

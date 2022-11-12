@@ -61,3 +61,17 @@ body {
 .modal-dialog {
     margin: 6rem auto;
 }
+
+.btn_primary {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    background-color: yellow;
+    box-shadow: 0px 0px 8px yellow;
+}
+
+.btn_white {
+    font-size: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 8px white;
+}
