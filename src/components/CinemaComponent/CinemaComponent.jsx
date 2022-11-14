@@ -12,6 +12,7 @@ import {
 } from "../../redux/actions/CinemaAction";
 import { useEffect } from "react";
 import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
+import MovieStModaleComponent from "./MovieStModaleComponent";
 
 export default function CinemaComponent() {
     const dispatch = useDispatch();
@@ -25,11 +26,6 @@ export default function CinemaComponent() {
         address: "",
     });
     const [arrMovieSt, setArrMovieSt] = useState([]);
-    const [showTimes, setShowTimes] = useState({
-        img: "",
-        movieName: "",
-        showTimes: [{ time: "", price: "" }],
-    });
 
     const { currentCinema, arrCinemaCluster, arrCinema, arrShowTime } =
         useSelector((state) => state.CinemaReducer);
@@ -160,21 +156,35 @@ export default function CinemaComponent() {
         });
     };
 
-    const handleClickDuration = (st) => {
-        console.log("first", st.maLichChieu);
+    const getMovieStModal = (movie, movieSt) => {
+        let action = cinemaModalAction(
+            OPEN_LIST_CINEMA_MODAL,
+            <MovieStModaleComponent
+                movieSt={movieSt}
+                movie={movie}
+                cinema={cinemaInfo}
+            />
+        );
+        dispatch(action);
     };
 
-    const renderDuration = (showTimes) => {
-        return showTimes.map((st) => {
+    const handleClickDuration = (st, movie) => {
+        getMovieStModal(movie, st);
+    };
+
+    const renderDuration = (movie) => {
+        return movie.movieShowTime.map((st) => {
             return (
-                <div key={st.maLichChieu} className="duration mr-3 mb-2">
-                    <p
-                        onClick={(st) => {
-                            handleClickDuration(st);
-                        }}
-                    >
+                <div
+                    key={st.maLichChieu}
+                    onClick={() => {
+                        handleClickDuration(st, movie);
+                    }}
+                    className="duration mr-3 mb-2"
+                >
+                    <p>
                         <strong>{getTimeISO(st.ngayChieuGioChieu)} </strong>~{" "}
-                        {getTimeDuration(getTimeISO(st.ngayChieuGioChieu))}
+                        {getTimeDuration(st.ngayChieuGioChieu)}
                     </p>
                 </div>
             );
@@ -209,7 +219,7 @@ export default function CinemaComponent() {
 
     const renderShowTimes = () => {
         return arrMovieSt.map((movieSt) => {
-            let { movieId, movieImg, movieName, movieShowTime } = movieSt;
+            let { movieId, movieImg, movieName } = movieSt;
             return (
                 <div key={movieId} className="row mb-5">
                     <div className="col-2">
@@ -222,7 +232,7 @@ export default function CinemaComponent() {
                             <p className="movie__type">Kinh dị, Gây cấn</p>
                             <p className="mt-3">2D Phụ đề</p>
                             <div className="showTimes__detail mt-2">
-                                {renderDuration(movieShowTime)}
+                                {renderDuration(movieSt)}
                             </div>
                         </div>
                     </div>
@@ -230,39 +240,6 @@ export default function CinemaComponent() {
             );
         });
     };
-
-    // const calenderActive = (index) => {
-    //     setActiveDate(index);
-    // };
-
-    // const renderCalender = () => {
-    //     return calender().map((date, index) => {
-    //         return (
-    //             <div
-    //                 key={index}
-    //                 onClick={() => {
-    //                     calenderActive(index);
-    //                 }}
-    //                 className={`calender__card ${
-    //                     activeDate === index ? "active" : ""
-    //                 }`}
-    //             >
-    //                 <div className="calender__header">{date.date}</div>
-    //                 <div className="calender__body">
-    //                     {index === 0 ? "Today" : date.day}
-    //                 </div>
-    //             </div>
-    //         );
-    //     });
-    // };
-
-    // const getCinemaModal = () => {
-    //     let action = cinemaModalAction(
-    //         OPEN_LIST_CINEMA_MODAL,
-    //         <CinemaModalComponent arrCinema={arrCinema} />
-    //     );
-    //     dispatch(action);
-    // };
 
     return (
         <div className="container py-5">

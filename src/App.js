@@ -10,6 +10,7 @@ import MovieAdmin from "./pages/Admin/MovieAdmin/MovieAdmin";
 import ShowtimeAdmin from "./pages/Admin/MovieAdmin/ShowtimeAdmin/ShowtimeAdmin";
 
 import UserAdmin from "./pages/Admin/UserAdmin/UserAdmin";
+import Booking from "./pages/Booking/Booking";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
@@ -29,6 +30,7 @@ function App() {
           {/* default url khi push nhánh nhớ đưa file vào Home*/}
           <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
           <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
+          <HomeTemplate exact path="/select-seat" Component={Booking}></HomeTemplate>
 
           {/* admin */}
           <AdminTemplate exact path="/admin" Component={Admin} />
