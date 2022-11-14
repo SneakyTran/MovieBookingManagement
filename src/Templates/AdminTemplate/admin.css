@@ -28,3 +28,9 @@ span.anticon.anticon-menu-fold.trigger,
 span.anticon.anticon-menu-unfold.trigger {
     color: white;
 }
+.ant-table-column-title{
+    font-size: 18px;
+}
+.ant-table-cell{
+    
+}

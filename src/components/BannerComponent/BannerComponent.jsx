@@ -61,9 +61,9 @@ export default function BannerComponent() {
   const settings2 = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 2000,
   };
   const dispatch = useDispatch();
@@ -76,29 +76,43 @@ export default function BannerComponent() {
     return arrPhim?.map((phim) => {
       const trailerphim = phim.trailer;
       return (
-        <div key={phim.maPhim}>
+        <div key={phim.maPhim} className="position-relative">
           <div
             className="banner"
             style={{
               backgroundImage: `url(${phim.hinhAnh})`,
-              filter: "grayscale(40%)",
+              filter: "grayscale(10%)",
             }}
           >
-            <div
-              className="position-absolute banner_wrap-icon"
-              style={{
-                top: "50%",
-                left: "50%",
-              }}
-              onClick={() => {
-                dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
-              }}
-            >
-              <i
-                className="fa-regular fa-circle-play  banner_play_icon"
-                style={{ fontSize: "50px" }}
-              ></i>
+            <div className="container banner_content-mid">
+              <div className="row">
+                <div className="col-6">
+                  <h2>{phim.tenPhim}</h2>
+                  <h4>
+                    {phim.moTa.length > 50
+                      ? phim.moTa.substring(0, 150) + "..."
+                      : phim.moTa}
+                  </h4>
+                  <div className="mt-4">
+                    <button
+                      className="btn btn_white mr-3"
+                      onClick={() => {
+                        dispatch(
+                          playTrailer(<IframeFilm trailer={trailerphim} />)
+                        );
+                      }}
+                    >
+                      Play Trailer
+                    </button>
+                    <button className="btn btn_primary">Đặt vé</button>
+                  </div>
+                </div>
+                <div className="col-6 ">
+                  <img src={phim.hinhAnh} alt="" className="mr-auto ml-auto" />
+                </div>
+              </div>
             </div>
+            <div className="banner_overlay-dark"></div>
           </div>
         </div>
       );
@@ -113,12 +127,14 @@ export default function BannerComponent() {
             className="bannerMini"
             style={{
               backgroundImage: `url(${phim.hinhAnh})`,
-              filter: "grayscale(40%)",
             }}
           ></div>
+          <div className="bannerMini-star">
+            <span>{phim.danhGia}</span>
+            <i className="fa-solid fa-star"></i>
+          </div>
           <div
             className="position-absolute banner_wrap-icon-mini"
-            style={{}}
             onClick={() => {
               dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
             }}
@@ -128,11 +144,10 @@ export default function BannerComponent() {
           <div className="banner_content container">
             <div className="banner_content-title">
               <h6>{phim.tenPhim}</h6>
-              <h6
-                className="banner_mota"
-                style={{ fontSize: "12px", height: "30px", overflow: "hidden" }}
-              >
-                {phim.moTa}
+              <h6 className="banner_mota">
+                <button className="btn btn-warning font-weight-bold">
+                  Đặt vé
+                </button>
               </h6>
             </div>
           </div>

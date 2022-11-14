@@ -1,15 +1,13 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import "antd/dist/antd.min.css";
 import "./admin.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { NavLink, Route } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
@@ -27,7 +25,7 @@ export default function AdminTemplate(props) {
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={[]}
+                defaultSelectedKeys={['1']}
                 items={[
                   {
                     key: "1",

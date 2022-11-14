@@ -66,7 +66,7 @@
 }
 
 .blog_wrap:hover .banner_overlay {
-    background: linear-gradient(to top right, rgba(185, 4, 39, 0.72) 19%, rgba(105, 34, 0, 0.6) 80%);
+    background: linear-gradient(to top right, rgba(192, 17, 52, 0.72) 19%, rgba(132, 50, 12, 0.6) 50%);
     cursor: pointer;
 }
 

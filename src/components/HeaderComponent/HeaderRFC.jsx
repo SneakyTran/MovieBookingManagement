@@ -83,11 +83,6 @@ export default function Header() {
                         </ul>
                         <div>
                             {renderAccount()}
-                            {/* {uLogin ? <span className="px-3" onClick={() => {
-                                openModalLogin()
-                            }}>{uLogin.hoTen}</span> : <span className="px-3" onClick={() => {
-                                openModalLogin()
-                            }}>Login</span>} */}
                             <span className="px-3" onClick={() => {
                                 openModalRegister()
                             }}>Register</span>
