@@ -2,6 +2,7 @@ import {
     GET_ALL_CINEMA,
     GET_LIST_CINEMA_CLUSTERS,
     GET_MOVIE_DETAIL,
+    GET_SEAT,
     GET_SHOWTIME_ID,
     GET_SHOW_TIMES,
     SELECT_CINEMA,
@@ -15,6 +16,8 @@ const initialState = {
     arrShowTime: [],
     movie: {},
     movieSelected: {},
+    showTimeId: "",
+    arrSeat: [],
 };
 
 export const CinemaReducer = (state = initialState, action) => {
@@ -46,6 +49,10 @@ export const CinemaReducer = (state = initialState, action) => {
 
         case GET_SHOWTIME_ID:
             state.showTimeId = action.showTimeId;
+            return { ...state };
+
+        case GET_SEAT:
+            state.arrSeat = action.arrSeat;
             return { ...state };
 
         default:

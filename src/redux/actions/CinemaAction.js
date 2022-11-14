@@ -16,6 +16,7 @@ import {
     GET_ALL_CINEMA,
     GET_LIST_CINEMA_CLUSTERS,
     GET_MOVIE_DETAIL,
+    GET_SEAT,
     GET_SHOWTIME_ID,
     GET_SHOW_TIMES,
 } from "../type/CinemaType";
@@ -94,6 +95,7 @@ export const getShowTimeByMovieAction = (movieId, cinemaId) => {
                 let cinemaList =
                     res.data.content.heThongRapChieu[0].cumRapChieu;
                 for (const cinema of cinemaList) {
+                    console.log(cinema);
                     if (cinema.maCumRap === cinemaId) {
                         middleWareDispatch({
                             type: GET_SHOWTIME_ID,
@@ -113,7 +115,10 @@ export const getSeatBookingAction = (showTimeId) => {
         bothServiceToken
             .get(SEAT_BOOKING + showTimeId)
             .then((res) => {
-                console.log(res.data.content);
+                middleWareDispatch({
+                    type: GET_SEAT,
+                    arrSeat: res.data.content.danhSachGhe,
+                });
             })
             .catch((err) => {
                 console.log([err]);

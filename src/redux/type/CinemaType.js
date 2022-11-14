@@ -5,4 +5,5 @@ export const GET_SHOW_TIMES = "GET_SHOW_TIMES";
 export const GET_MOVIE_DETAIL = "GET_MOVIE_DETAIL";
 export const SELECT_MOVIE_TICKET = "SELECT_MOVIE_TICKET";
 export const GET_SHOWTIME_ID = "GET_SHOWTIME_ID";
+export const GET_SEAT = "GET_SEAT";
 
