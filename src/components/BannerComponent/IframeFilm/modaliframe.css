@@ -1,0 +1,16 @@
+.iframe_modal img {
+    width: 120px;
+    height: 150px;
+}
+
+.iframe_modal h5 {
+    color: yellow;
+}
+
+.iframe_modal h6 {
+    color: #fff;
+}
+.iframe_modal .btn_primary {
+padding: 4px 10px;
+font-size: 20px;
+}
