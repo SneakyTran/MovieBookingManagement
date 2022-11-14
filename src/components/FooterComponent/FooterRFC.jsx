@@ -101,7 +101,7 @@ export default function Footer() {
         </div>
         <div className="row">
           <div className="coppyright">
-            <p>CopyRight© 2018 <a href="#">Themepul</a> . All Rights Reserved.</p>
+            <p>CopyRight© 2022 <a href="#">Themepul</a> . All Rights Reserved.</p>
           </div>
         </div>
       </div>

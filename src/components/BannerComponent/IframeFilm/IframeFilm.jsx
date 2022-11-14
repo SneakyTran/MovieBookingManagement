@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function IframeFilm({ trailer }) {
+  trailer = trailer.replace("watch?v=", "embed/")
   return (
     <>
       <iframe
