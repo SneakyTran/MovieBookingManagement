@@ -74,7 +74,6 @@ export default function BannerComponent() {
 
   const renderPhim = () => {
     return arrPhim?.map((phim) => {
-      const trailerphim = phim.trailer;
       return (
         <div key={phim.maPhim} className="position-relative">
           <div
@@ -98,7 +97,7 @@ export default function BannerComponent() {
                       className="btn btn_white mr-3"
                       onClick={() => {
                         dispatch(
-                          playTrailer(<IframeFilm trailer={trailerphim} />)
+                          playTrailer(<IframeFilm phim={phim} />)
                         );
                       }}
                     >
@@ -120,7 +119,6 @@ export default function BannerComponent() {
   };
   const renderPhimMini = () => {
     return arrPhim?.map((phim) => {
-      const trailerphim = phim.trailer;
       return (
         <div key={phim.maPhim} className="position-relative banner_wrap-mini">
           <div
@@ -136,7 +134,7 @@ export default function BannerComponent() {
           <div
             className="position-absolute banner_wrap-icon-mini"
             onClick={() => {
-              dispatch(playTrailer(<IframeFilm trailer={trailerphim} />));
+              dispatch(playTrailer(<IframeFilm phim={phim} />));
             }}
           >
             <i className="fa-regular fa-circle-play  banner_play_icon-mini"></i>
