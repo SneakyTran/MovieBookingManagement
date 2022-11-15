@@ -11,7 +11,7 @@ import {
     getCinemaShowTimes,
 } from "../../redux/actions/CinemaAction";
 import { useEffect } from "react";
-import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
+import { OPEN_LIST_CINEMA_MODAL } from "../../redux/types/ModalType";
 import MovieStModaleComponent from "./MovieStModaleComponent";
 
 export default function CinemaComponent() {

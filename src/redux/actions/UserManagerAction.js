@@ -5,7 +5,7 @@ import {
   GET_INFO_USER,
   GET_LIST_USER,
   GET_TYPE_USER,
-} from "../type/UserManagerType";
+} from "../types/UserManagerType";
 //Get all movies, get movieBy Name
 export function getListUser(user = "") {
   return async (dispatch) => {

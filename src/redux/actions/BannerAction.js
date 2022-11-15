@@ -1,7 +1,7 @@
 import axios from "axios";
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { DOMAIN_CINEMA, MA_NHOM, TOKEN } from "../../utils/setting";
-import { GET_BANNER, PLAY_TRAILER } from "../type/BannerType";
+import { GET_BANNER, PLAY_TRAILER } from "../types/BannerType";
 
 export function getBanner() {
   return async (dispatch) => {

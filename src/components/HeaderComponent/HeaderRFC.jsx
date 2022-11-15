@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
-import { OPEN_LOGIN, OPEN_REGISTER } from "../../redux/type/FormType";
+import { OPEN_LOGIN, OPEN_REGISTER } from "../../redux/types/FormType";
 import "./header.css";
 
 export default function Header() {

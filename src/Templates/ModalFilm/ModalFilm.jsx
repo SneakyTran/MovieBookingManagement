@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { CLOSE_MODAL } from "../../redux/type/ModalType";
+import { CLOSE_MODAL } from "../../redux/types/ModalType";
 import "./modal.css";
 
 export default function ModalFilm() {

@@ -9,17 +9,13 @@ import {
     CINEMA_INFO,
     CINEMA_SHOWTIMES,
     MOVIE_INFO,
-    SEAT_BOOKING,
-    SHOWTIME_BY_MOVIE,
 } from "../../utils/setting";
 import {
     GET_ALL_CINEMA,
     GET_LIST_CINEMA_CLUSTERS,
     GET_MOVIE_DETAIL,
-    GET_SEAT,
-    GET_SHOWTIME_ID,
     GET_SHOW_TIMES,
-} from "../type/CinemaType";
+} from "../types/CinemaType";
 
 export const getAllCinema = () => {
     return (middleWareDispatch) => {
@@ -83,45 +79,6 @@ export const getMovieStAction = (movieId) => {
             })
             .catch((err) => {
                 console.log(err);
-            });
-    };
-};
-
-export const getShowTimeByMovieAction = (movieId, cinemaId) => {
-    return (middleWareDispatch) => {
-        bothServiceToken
-            .get(SHOWTIME_BY_MOVIE + movieId)
-            .then((res) => {
-                let cinemaList =
-                    res.data.content.heThongRapChieu[0].cumRapChieu;
-                for (const cinema of cinemaList) {
-                    console.log(cinema);
-                    if (cinema.maCumRap === cinemaId) {
-                        middleWareDispatch({
-                            type: GET_SHOWTIME_ID,
-                            showTimeId: cinema.lichChieuPhim[0].maLichChieu,
-                        });
-                    }
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-};
-
-export const getSeatBookingAction = (showTimeId) => {
-    return (middleWareDispatch) => {
-        bothServiceToken
-            .get(SEAT_BOOKING + showTimeId)
-            .then((res) => {
-                middleWareDispatch({
-                    type: GET_SEAT,
-                    arrSeat: res.data.content,
-                });
-            })
-            .catch((err) => {
-                console.log([err]);
             });
     };
 };

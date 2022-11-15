@@ -1,6 +1,6 @@
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { DOMAIN_CINEMA, MA_NHOM } from "../../utils/setting";
-import { GET_INFO_FILM, GET_LIST_FILM } from "../type/MovieManagerType";
+import { GET_INFO_FILM, GET_LIST_FILM } from "../types/MovieManagerType";
 import { history } from "../../App";
 //Get all movies, get movieBy Name
 export function getListMovie(tenPhim = "") {

@@ -2,12 +2,12 @@ import {
     GET_ALL_CINEMA,
     GET_LIST_CINEMA_CLUSTERS,
     GET_MOVIE_DETAIL,
-    GET_SEAT,
     GET_SHOWTIME_ID,
     GET_SHOW_TIMES,
     SELECT_CINEMA,
     SELECT_MOVIE_TICKET,
-} from "../type/CinemaType";
+} from "../types/CinemaType";
+import { GET_SEAT } from "../types/TIcketBookingTypes";
 
 const initialState = {
     currentCinema: {},
@@ -46,15 +46,7 @@ export const CinemaReducer = (state = initialState, action) => {
         case SELECT_MOVIE_TICKET:
             state.movieSelected = action.movieSelected;
             return { ...state };
-
-        case GET_SHOWTIME_ID:
-            state.showTimeId = action.showTimeId;
-            return { ...state };
-
-        case GET_SEAT:
-            state.arrSeat = action.arrSeat;
-            return { ...state };
-
+            
         default:
             return state;
     }

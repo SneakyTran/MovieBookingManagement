@@ -3,7 +3,7 @@ import styles from "./login.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../redux/actions/FormAction';
 import { useFormik } from 'formik';
-import { CLOSE_MODAL } from '../../redux/type/ModalType';
+import { CLOSE_MODAL } from '../../redux/types/ModalType';
 
 
 export default function Login() {
