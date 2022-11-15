@@ -17,7 +17,7 @@ const initialState = {
     movie: {},
     movieSelected: {},
     showTimeId: "",
-    arrSeat: [],
+    arrSeat: {},
 };
 
 export const CinemaReducer = (state = initialState, action) => {

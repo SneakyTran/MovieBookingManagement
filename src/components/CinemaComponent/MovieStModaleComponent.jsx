@@ -39,12 +39,12 @@ export default function MovieStModaleComponent(props) {
                 cinema: props.cinema,
             },
         });
-        history.push("select-seat");
+        history.push(`booking/${props.movieSt.maLichChieu}`);
         dispatch(cinemaModalAction(CLOSE_MODAL, <MovieStModaleComponent />));
     };
 
     return (
-        <div className="row">
+        <div className="row px-3 py-2">
             <div className="col-4 pr-0">
                 <div className="movie__left">
                     <img className="img-fluid" src={movieImg} alt="" />

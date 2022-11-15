@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
 import HomeTemplate from "./Templates/HomeTemplate/HomeTemplate";
 import ModalFilm from "./Templates/ModalFilm/ModalFilm";
+import BookingTemplate from "./Templates/BookingTemplate/BookingTemplate"
 
 export const history = createBrowserHistory();
 
@@ -29,7 +30,7 @@ function App() {
           {/* default url khi push nhánh nhớ đưa file vào Home*/}
           <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
           <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
-          <HomeTemplate exact path="/select-seat" Component={Booking}></HomeTemplate>
+          <BookingTemplate exact path="/booking/:id" Component={Booking}></BookingTemplate>
 
           {/* admin */}
           <AdminTemplate exact path="/admin" Component={User} />

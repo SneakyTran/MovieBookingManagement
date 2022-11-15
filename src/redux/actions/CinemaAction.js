@@ -117,7 +117,7 @@ export const getSeatBookingAction = (showTimeId) => {
             .then((res) => {
                 middleWareDispatch({
                     type: GET_SEAT,
-                    arrSeat: res.data.content.danhSachGhe,
+                    arrSeat: res.data.content,
                 });
             })
             .catch((err) => {
