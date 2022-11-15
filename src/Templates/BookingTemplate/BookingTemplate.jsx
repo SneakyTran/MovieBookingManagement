@@ -8,7 +8,7 @@ export default function BookingTemplate(props) {
     //isLogin?
     if (!localStorage.getItem(ACCESS_TOKEN)) {
         alert("You must login first");
-        return <Redirect to="home"></Redirect>;
+        return <Redirect to="/"></Redirect>;
     }
     return (
         <Route
