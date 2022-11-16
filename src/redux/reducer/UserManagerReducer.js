@@ -2,7 +2,7 @@ import {
   GET_INFO_USER,
   GET_LIST_USER,
   GET_TYPE_USER,
-} from "../type/UserManagerType";
+} from "../types/UserManagerType";
 
 const initialState = {
   userList: [],

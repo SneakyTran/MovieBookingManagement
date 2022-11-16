@@ -1,4 +1,4 @@
-import { LOGIN, USER_LOGIN } from "../type/FormType";
+import { LOGIN, USER_LOGIN } from "../types/FormType";
 
 
 let uLogin = null;
