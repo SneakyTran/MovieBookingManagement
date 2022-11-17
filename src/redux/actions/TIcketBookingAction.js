@@ -1,6 +1,7 @@
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { BOOK_TICKET, SEAT_BOOKING } from "../../utils/setting";
 import { GET_SEAT } from "../types/CinemaType";
+import { HIDE_PRELOADING } from "../types/PreloadingTypes";
 
 export const getSeatBookingAction = (showTimeId) => {
     return (middleWareDispatch) => {
@@ -10,6 +11,9 @@ export const getSeatBookingAction = (showTimeId) => {
                 middleWareDispatch({
                     type: GET_SEAT,
                     arrSeat: res.data.content,
+                });
+                middleWareDispatch({
+                    type: HIDE_PRELOADING,
                 });
             })
             .catch((err) => {

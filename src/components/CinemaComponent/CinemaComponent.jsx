@@ -13,6 +13,7 @@ import {
 import { useEffect } from "react";
 import { OPEN_LIST_CINEMA_MODAL } from "../../redux/types/ModalType";
 import MovieStModaleComponent from "./MovieStModaleComponent";
+import SpinnerComponent from "../LoadingComponent/SpinnerComponent";
 
 export default function CinemaComponent() {
     const dispatch = useDispatch();
@@ -124,6 +125,9 @@ export default function CinemaComponent() {
     };
 
     const renderCinema = () => {
+        // if (arrCinemaCluster?.length === 0) {
+        //     return <SpinnerComponent />;
+        // }
         return arrCinemaCluster.map((cinema, index) => {
             let { tenCumRap } = cinema;
             return (

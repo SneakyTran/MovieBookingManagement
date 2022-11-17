@@ -1,24 +1,31 @@
 import React, { useEffect } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SpinnerComponent from "../../components/LoadingComponent/SpinnerComponent";
 
 import {
     bookTicketAction,
     getSeatBookingAction,
 } from "../../redux/actions/TIcketBookingAction";
+import { DISPLAY_PRELOADING } from "../../redux/types/PreloadingTypes";
 import { SELECT_TICKET } from "../../redux/types/TIcketBookingTypes";
+import LibrarySupport from "../../utils/lib/LibrarySupport";
 import "./Booking.css";
 
 export default function Booking(props) {
     const { arrSelectedSeat, movieInfo, arrSeat } = useSelector(
         (state) => state.TicketBookingReducer
     );
+    useSelector((state) => state.PreloadingReducer);
     const { tenPhim, tenCumRap, diaChi, ngayChieu, gioChieu, hinhAnh } =
         movieInfo;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch({
+            type: DISPLAY_PRELOADING,
+        });
         getSeatBookingAPI(props.match.params.id);
     }, []);
 
@@ -42,10 +49,13 @@ export default function Booking(props) {
         }
         let arrSeat = [];
         arrSelectedSeat.map((seat) => {
-            arrSeat.push({
-                maGhe: seat.maGhe,
-                giaVe: Number(seat.giaVe),
-            });
+            arrSeat = [
+                ...arrSeat,
+                {
+                    maGhe: seat.maGhe,
+                    giaVe: Number(seat.giaVe),
+                },
+            ];
         });
         let action = bookTicketAction({
             maLichChieu: props.match.params.id,
@@ -115,6 +125,9 @@ export default function Booking(props) {
     };
 
     const renderMovieInfo = () => {
+        if (LibrarySupport.isEmptyObject(movieInfo)) {
+            return <SpinnerComponent height={"463px"} />;
+        }
         return (
             <Fragment>
                 <div className="mb-3">
