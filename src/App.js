@@ -5,7 +5,6 @@ import AddMovie from "./pages/Admin/MovieAdmin/AddMovie/AddMovie";
 import EditMovie from "./pages/Admin/MovieAdmin/EditMovie/EditMovie";
 import MovieAdmin from "./pages/Admin/MovieAdmin/MovieAdmin";
 import ShowtimeAdmin from "./pages/Admin/MovieAdmin/ShowtimeAdmin/ShowtimeAdmin";
-
 import Booking from "./pages/Booking/Booking";
 import AddUser from "./pages/Admin/UserAdmin/AddUser/AddUser";
 import EditUser from "./pages/Admin/UserAdmin/EditUser/EditUser";
@@ -15,7 +14,8 @@ import Login from "./pages/Login/Login";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
 import HomeTemplate from "./Templates/HomeTemplate/HomeTemplate";
 import ModalFilm from "./Templates/ModalFilm/ModalFilm";
-import BookingTemplate from "./Templates/BookingTemplate/BookingTemplate"
+import BookingTemplate from "./Templates/BookingTemplate/BookingTemplate";
+import Detail from "./components/DetailComponent/Detail";
 
 export const history = createBrowserHistory();
 
@@ -30,7 +30,18 @@ function App() {
           {/* default url khi push nhánh nhớ đưa file vào Home*/}
           <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
           <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
-          <BookingTemplate exact path="/booking/:id" Component={Booking}></BookingTemplate>
+          <BookingTemplate
+            exact
+            path="/booking/:id"
+            Component={Booking}
+          ></BookingTemplate>
+          {/* Detail */}
+
+          <HomeTemplate
+            exact
+            path="/detail/:maPhim"
+            Component={Detail}
+          ></HomeTemplate>
 
           {/* admin */}
           <AdminTemplate exact path="/admin" Component={User} />

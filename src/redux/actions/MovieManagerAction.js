@@ -1,6 +1,10 @@
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { DOMAIN_CINEMA, MA_NHOM } from "../../utils/setting";
-import { GET_INFO_FILM, GET_LIST_FILM } from "../type/MovieManagerType";
+import {
+  GET_DETAIL_FILM,
+  GET_INFO_FILM,
+  GET_LIST_FILM,
+} from "../type/MovieManagerType";
 import { history } from "../../App";
 //Get all movies, get movieBy Name
 export function getListMovie(tenPhim = "") {
@@ -92,5 +96,21 @@ export function createCalendar(value) {
     } catch (e) {
       console.log(e.response);
     }
+  };
+}
+// LayThongTinLichChieuPhim
+export function getReleaseFilm(maPhim) {
+  return (dispatch) => {
+    bothServiceToken
+      .get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`)
+      .then((res) => {
+        dispatch({
+          type: GET_DETAIL_FILM,
+          payload: res.data.content,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }

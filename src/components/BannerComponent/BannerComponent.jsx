@@ -4,6 +4,7 @@ import "./banner.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getBanner, playTrailer } from "../../redux/actions/BannerAction";
 import IframeFilm from "./IframeFilm/IframeFilm";
+import { NavLink } from "react-router-dom";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -96,14 +97,16 @@ export default function BannerComponent() {
                     <button
                       className="btn btn_white mr-3"
                       onClick={() => {
-                        dispatch(
-                          playTrailer(<IframeFilm phim={phim} />)
+                        playTrailer(
+                          <IframeFilm phim={phim} isContent={true} />
                         );
                       }}
                     >
                       Play Trailer
                     </button>
-                    <button className="btn btn_primary">Đặt vé</button>
+                    <NavLink to={`/detail/${phim.maPhim}`}>
+                      <button className="btn btn_primary">Buy ticket</button>
+                    </NavLink>
                   </div>
                 </div>
                 <div className="col-6 ">
@@ -134,7 +137,7 @@ export default function BannerComponent() {
           <div
             className="position-absolute banner_wrap-icon-mini"
             onClick={() => {
-              dispatch(playTrailer(<IframeFilm phim={phim} />));
+              playTrailer(<IframeFilm phim={phim} isContent={true} />);
             }}
           >
             <i className="fa-regular fa-circle-play  banner_play_icon-mini"></i>
@@ -143,9 +146,9 @@ export default function BannerComponent() {
             <div className="banner_content-title">
               <h6>{phim.tenPhim}</h6>
               <h6 className="banner_mota">
-                <button className="btn btn-warning font-weight-bold">
-                  Đặt vé
-                </button>
+                <NavLink to={`/detail/${phim.maPhim}`}>
+                  <button className="btn btn_primary">Buy ticket</button>
+                </NavLink>
               </h6>
             </div>
           </div>
