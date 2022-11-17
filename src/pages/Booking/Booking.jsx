@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import SpinnerComponent from "../../components/LoadingComponent/SpinnerComponent";
 
 import {
@@ -21,6 +22,7 @@ export default function Booking(props) {
         movieInfo;
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({
@@ -47,10 +49,11 @@ export default function Booking(props) {
         if (arrSelectedSeat?.length === 0 || arrSelectedSeat === null) {
             return;
         }
-        let arrSeat = [];
+
+        let arrTicket = [];
         arrSelectedSeat.map((seat) => {
-            arrSeat = [
-                ...arrSeat,
+            arrTicket = [
+                ...arrTicket,
                 {
                     maGhe: seat.maGhe,
                     giaVe: Number(seat.giaVe),
@@ -59,9 +62,10 @@ export default function Booking(props) {
         });
         let action = bookTicketAction({
             maLichChieu: props.match.params.id,
-            danhSachVe: arrSeat,
+            danhSachVe: arrTicket,
         });
         dispatch(action);
+        history.push("/");
     };
 
     const renderSeat = () => {

@@ -13,7 +13,9 @@ export function getBanner() {
             );
             console.log(data);
             dispatch({ type: GET_BANNER, payload: data.content });
-            dispatch({ type: HIDE_PRELOADING });
+            setTimeout(() => {
+                dispatch({ type: HIDE_PRELOADING });
+            }, 2000);
         } catch (e) {
             console.log(e.response);
         }

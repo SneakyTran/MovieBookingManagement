@@ -1,7 +1,9 @@
+import { Redirect, useHistory } from "react-router-dom";
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { BOOK_TICKET, SEAT_BOOKING } from "../../utils/setting";
 import { GET_SEAT } from "../types/CinemaType";
 import { HIDE_PRELOADING } from "../types/PreloadingTypes";
+import { CLEAR_SEAT } from "../types/TIcketBookingTypes";
 
 export const getSeatBookingAction = (showTimeId) => {
     return (middleWareDispatch) => {
@@ -23,11 +25,13 @@ export const getSeatBookingAction = (showTimeId) => {
 };
 
 export const bookTicketAction = (seatBookingModel) => {
-    return (middleWaredispatch) => {
+    return (middleWareDispatch) => {
         bothServiceToken
             .post(BOOK_TICKET, seatBookingModel)
             .then((res) => {
-                console.log(res);
+                middleWareDispatch({
+                    type: CLEAR_SEAT,
+                });
             })
             .catch((err) => {
                 console.log(err);

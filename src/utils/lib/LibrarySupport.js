@@ -17,10 +17,6 @@ class LibrarySupport {
             return false;
         }
     };
-
-    delay = (func) => {
-        return new Promise((res) => setTimeout(res, func), DELAY_TIME);
-    };
 }
 
 export default new LibrarySupport();
