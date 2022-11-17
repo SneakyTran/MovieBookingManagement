@@ -1,8 +1,4 @@
-import {
-  GET_DETAIL_FILM,
-  GET_INFO_FILM,
-  GET_LIST_FILM,
-} from "../type/MovieManagerType";
+import { GET_INFO_FILM, GET_LIST_FILM,GET_DETAIL_FILM } from "../types/MovieManagerType";
 
 const initialState = {
   arrMovie: [

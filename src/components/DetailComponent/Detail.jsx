@@ -267,7 +267,11 @@ export default function Detail(props) {
                 <Fragment key={i}>
                   {convertDate.format("DDMMYY") === release && (
                     <div>
-                      <NavLink to={`/booking/${movie.maLichChieu}`}>
+                      <NavLink
+                        to={`/booking/${
+                          movie.maLichChieu
+                        }/${convertDate.format("hh:mm")}`}
+                      >
                         <button className="btn btn_primary mt-3">
                           {convertDate.format("hh:mm A")}
                         </button>

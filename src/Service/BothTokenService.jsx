@@ -15,7 +15,6 @@ export class BothTokenService {
         });
     };
     post = (url, data) => {
-        console.log(url, data);
         return Axios({
             url: `${DOMAIN_CINEMA}${url}`,
             method: "POST",

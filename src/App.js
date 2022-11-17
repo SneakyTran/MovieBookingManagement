@@ -13,8 +13,9 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
 import HomeTemplate from "./Templates/HomeTemplate/HomeTemplate";
-import ModalFilm from "./Templates/ModalFilm/ModalFilm";
 import BookingTemplate from "./Templates/BookingTemplate/BookingTemplate";
+import ModalFilm from "./Templates/ModalFilm/ModalFilm";
+import LoadingComponent from "./components/LoadingComponent/LoadingComponent";
 import Detail from "./components/DetailComponent/Detail";
 
 export const history = createBrowserHistory();
@@ -23,25 +24,28 @@ function App() {
   return (
     <BrowserRouter>
       <Router history={history}>
+        <LoadingComponent />
         <ModalFilm />
         <Switch>
           <HomeTemplate exact path="/home" Component={Home}></HomeTemplate>
 
           {/* default url khi push nhánh nhớ đưa file vào Home*/}
+
           <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
-          <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
-          <BookingTemplate
-            exact
-            path="/booking/:id"
-            Component={Booking}
-          ></BookingTemplate>
-          {/* Detail */}
 
           <HomeTemplate
             exact
             path="/detail/:maPhim"
             Component={Detail}
           ></HomeTemplate>
+
+          <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
+
+          <BookingTemplate
+            exact
+            path="/booking/:id/:time"
+            Component={Booking}
+          ></BookingTemplate>
 
           {/* admin */}
           <AdminTemplate exact path="/admin" Component={User} />

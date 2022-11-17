@@ -7,6 +7,7 @@ import { ModalFilmReducer } from "./reducer/ModalFilmReducer";
 import { FormReducer } from "./reducer/FormReducer";
 import { UserManagerReducer } from "./reducer/UserManagerReducer";
 import { TicketBookingReducer } from "./reducer/TicketBookingReducer";
+import { PreloadingReducer } from "./reducer/PreloadingReducer";
 
 const rootReducer = combineReducers({
     ModalFilmReducer,
@@ -16,5 +17,6 @@ const rootReducer = combineReducers({
     FormReducer,
     UserManagerReducer,
     TicketBookingReducer,
+    PreloadingReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -1,7 +1,13 @@
-import { SELECT_TICKET } from "../type/TIcketBookingTypes";
+import {
+    CLEAR_SEAT,
+    GET_SEAT,
+    SELECT_TICKET,
+} from "../types/TIcketBookingTypes";
 
 const initialState = {
     arrSelectedSeat: [],
+    movieInfo: {},
+    arrSeat: [],
 };
 
 export const TicketBookingReducer = (state = initialState, action) => {
@@ -19,6 +25,17 @@ export const TicketBookingReducer = (state = initialState, action) => {
                     action.selectedSeat,
                 ];
             }
+            return { ...state };
+
+        case GET_SEAT:
+            const { thongTinPhim, danhSachGhe } = action.arrSeat;
+            state.movieInfo = thongTinPhim;
+            state.arrSeat = danhSachGhe;
+
+            return { ...state };
+
+        case CLEAR_SEAT:
+            state.arrSelectedSeat = [];
             return { ...state };
 
         default:
