@@ -1,5 +1,6 @@
 import axios from "axios";
 import { bothServiceToken } from "../../Service/BothTokenService";
+import LibrarySupport from "../../utils/lib/LibrarySupport";
 import { DOMAIN_CINEMA, MA_NHOM, TOKEN } from "../../utils/setting";
 import { GET_BANNER, PLAY_TRAILER } from "../types/BannerType";
 import { HIDE_PRELOADING } from "../types/PreloadingTypes";

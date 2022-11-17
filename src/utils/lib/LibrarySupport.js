@@ -1,3 +1,4 @@
+const DELAY_TIME = 4000;
 class LibrarySupport {
     /**
      * Author: Sneaky
@@ -15,6 +16,10 @@ class LibrarySupport {
         } else {
             return false;
         }
+    };
+
+    delay = (func) => {
+        return new Promise((res) => setTimeout(res, func), DELAY_TIME);
     };
 }
 
