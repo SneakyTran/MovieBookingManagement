@@ -37,11 +37,7 @@ const User = (props) => {
       key: "taiKhoan",
       width: 200,
       sorter: (a, b) => {
-        let tenphimA = a.tenPhim.toLowerCase().trim();
-        let tenphimB = b.tenPhim.toLowerCase().trim();
-
-        if (tenphimA > tenphimB) return 1;
-        return -1;
+        return a.taiKhoan - b.taiKhoan;
       },
     },
     {
@@ -63,16 +59,32 @@ const User = (props) => {
       title: "Loại người dùng",
       dataIndex: "maLoaiNguoiDung",
       key: "maLoaiNguoiDung",
-      sorter: (a, b) => a.maLoaiNguoiDung - b.maLoaiNguoiDung,
+      sorter: (a, b) => {
+        let maLoaiNguoiDungA = a.maLoaiNguoiDung.toLowerCase().trim();
+        let maLoaiNguoiDungB = b.maLoaiNguoiDung.toLowerCase().trim();
+        if (maLoaiNguoiDungA > maLoaiNguoiDungB) return 1;
+        return -1;
+      },
     },
-
     {
-      width: 130,
+      width: 180,
       title: <h6>Tác vụ</h6>,
       dataIndex: "",
       key: "x",
       render: (text, user) => (
         <>
+          {user.maLoaiNguoiDung !== "QuanTri" && (
+            <div>
+              <NavLink to={`/admin/edituser/infouser/${user.taiKhoan}`}>
+                <EditOutlined className="movie_admin-icon text-warning" />
+                <span
+                  className="movie_admin-icon text-warning"
+                >
+                  Xem lịch sử Buy ticket
+                </span>
+              </NavLink>
+            </div>
+          )}
           <div>
             <DeleteOutlined className="movie_admin-icon text-danger" />
             <span

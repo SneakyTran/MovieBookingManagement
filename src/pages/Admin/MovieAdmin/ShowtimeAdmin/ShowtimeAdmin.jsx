@@ -1,14 +1,9 @@
 import {
-  Button,
-  Cascader,
   DatePicker,
   Form,
-  Input,
   InputNumber,
   Radio,
   Select,
-  Switch,
-  TreeSelect,
 } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -19,9 +14,7 @@ import {
   getInfoMovie,
 } from "../../../../redux/actions/MovieManagerAction";
 import { bothServiceToken } from "../../../../Service/BothTokenService";
-import { ACCESS_TOKEN } from "../../../../utils/setting";
 const ShowtimeAdmin = (props) => {
-  // console.log(localStorage.getItem(ACCESS_TOKEN))
 
   const dispatch = useDispatch();
   const { thongTinPhim } = useSelector((state) => state.MovieManagerReducer);
@@ -79,12 +72,10 @@ const ShowtimeAdmin = (props) => {
   // handleChange
   // thẻ của antd lấy ra các giá trị là value, option là object value và label
   const handleChangeHeThongRap = async (value) => {
-    console.log(value)
     try {
       const { data } = await bothServiceToken.get(
         `QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${value}`
       );
-      // console.log(data)
       setState({
         ...state,
         cumRap: data.content,
@@ -94,7 +85,6 @@ const ShowtimeAdmin = (props) => {
     }
   };
   const handleChangeMaRap = (value) => {
-    console.log(value)
     setFieldValue("maRap", value);
   };
   const handleChangeNgayChieu = (value) => {

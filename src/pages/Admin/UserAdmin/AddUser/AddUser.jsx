@@ -34,7 +34,6 @@ export default function AddUser(props) {
       hoTen: "",
     },
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       dispatch(createUser(values));
       resetForm();
     },
@@ -116,7 +115,6 @@ export default function AddUser(props) {
           placeholder="Chọn người dùng"
           optionFilterProp="children"
           onChange={(value) => {
-            console.log(value);
             setFieldValue("maLoaiNguoiDung", value);
           }}
           options={renderTypeUser()}

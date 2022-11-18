@@ -18,20 +18,17 @@ export function getListUser(user = "") {
       }
       const { data } = await bothServiceToken.get(url);
       dispatch({ type: GET_LIST_USER, payload: data.content });
-      console.log(data)
     } catch (e) {
       console.log(e.response);
     }
   };
 }
-// // upLoad User
 export function getTypeUser() {
   return async (dispatch) => {
     try {
       const { data } = await bothServiceToken.get(
         "QuanLyNguoiDung/LayDanhSachLoaiNguoiDung"
       );
-      console.log(data);
       dispatch({ type: GET_TYPE_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
@@ -45,7 +42,6 @@ export function getInfoUser(ma) {
       const { data } = await bothServiceToken.post(
         `QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${ma}`
       );
-      console.log(data)
       dispatch({ type: GET_INFO_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
@@ -90,7 +86,6 @@ export function createUser(value) {
         `QuanLyNguoiDung/ThemNguoiDung`,
         value
       );
-      console.log(data);
       getListUser();
       history.push("/admin/useradmin");
     } catch (e) {

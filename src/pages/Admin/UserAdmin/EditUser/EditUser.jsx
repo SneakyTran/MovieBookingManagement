@@ -27,9 +27,8 @@ export default function EditUser(props) {
       hoTen: userInfo?.hoTen,
     },
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       dispatch(editUser(values));
-      // resetForm();
+      resetForm();
     },
   });
   const { handleSubmit, handleChange, setFieldValue, values } = formik;

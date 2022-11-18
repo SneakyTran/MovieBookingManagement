@@ -43,7 +43,6 @@ export const Calendar = () => {
         </div>
         <div className="row pl-2 pr-2">
           {arr.map((time, i) => {
-            console.log(condition)
             return (
               <div key={i} className={"col cinema_release"}>
                 <label

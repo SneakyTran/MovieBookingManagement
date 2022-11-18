@@ -57,7 +57,7 @@
 }
 
 .banner_play_icon-mini {
-    font-size: 35px;
+    font-size: 26px;
 }
 
 .slick-slide:hover .banner_overlay {
@@ -89,7 +89,9 @@
 }
 
 .banner_content-title h6 {
-    color: #fff;
+    font-size: 1.6vw;
+    color: orange;
+    margin: 0;
 }
 
 .slick-slide:hover .banner_mota {
@@ -105,7 +107,7 @@
 
 .banner_mota button {
     box-shadow: 0px 0px 8px yellow;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .banner_wrap-mini .banner_overlay {
@@ -157,21 +159,25 @@
 }
 
 .banner_content-mid img {
-    width: 300px;
-    height: 350px;
+    max-width: 240px;
+    max-height: 280px;
     border-radius: 16px;
 }
 
 .banner_content-mid h2 {
-    font-size: 40px;
+    font-size: 3.2vw;
     color: orange;
     font-weight: 600;
 }
 
 .banner_content-mid h4 {
-    font-size: 20px;
+    font-size: 2vw;
     color: white;
     font-weight: 600;
+}
+
+.banner_content-mid .row {
+    align-items: center;
 }
 
 .banner_overlay-dark {
@@ -182,3 +188,37 @@
     height: 100%;
 
 }
+
+@media (max-width: 576px) {
+    .bannerMini {
+        height: 200px;
+    }
+
+    .banner {
+        height: 300px;
+    }
+
+    .banner_content-mid img {
+        max-height: 130px;
+    }
+
+    .modal-dialog {
+        max-width: 350px !important;
+
+    }
+
+    .banner_content-title h6 {
+        font-size: 3vw;
+        color: orange;
+        margin: 0;
+    }
+
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

@@ -21,10 +21,10 @@ export default function IframeFilm({ phim, isContent }) {
       />
       {isContent && (
         <div className="row iframe_modal p-3">
-          <div className="col-3">
+          <div className=" col-sm-12 col-lg-6">
             <img src={phim.hinhAnh} alt="" />
           </div>
-          <div className="col-9">
+          <div className=" col-sm-12 col-lg-6 content">
             <h5>{phim.tenPhim}</h5>
             <h6>
               <div className="text-danger mt-1 mb-2">Mô tả</div>
@@ -32,9 +32,12 @@ export default function IframeFilm({ phim, isContent }) {
                 ? phim.moTa?.substring(0, 150) + "..."
                 : phim.moTa}
             </h6>
+            <div className="text-center">
+
             <NavLink to={`/detail/${phim.maPhim}`}>
               <button className="btn btn_primary">Buy ticket</button>
             </NavLink>
+            </div>
           </div>
         </div>
       )}

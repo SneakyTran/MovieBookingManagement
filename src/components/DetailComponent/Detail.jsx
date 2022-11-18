@@ -169,6 +169,7 @@ export default function Detail(props) {
   const renderSystemCinema = () => {
     let prevSys = "";
     let curSys = "";
+    let checkArr = [];
     return detailFilm?.heThongRapChieu?.map((cinema, index) => {
       return cinema?.cumRapChieu?.map((cumRap) => {
         return cumRap?.lichChieuPhim?.map((movie, i) => {
@@ -191,15 +192,13 @@ export default function Detail(props) {
                       setShow(true);
                     }}
                   >
-                    <img
-                      src={cinema.logo}
-                      alt=""
-                      style={{ width: "60px", height: "60px" }}
-                    />
+                    <img src={cinema.logo} alt="" />
                   </div>
                 )}
               </Fragment>
             );
+          } else {
+            return null;
           }
         });
       });
@@ -233,14 +232,12 @@ export default function Detail(props) {
                         : "logo_system row py-2"
                     }
                   >
-                    <div className="col-3 d-flex align-items-center">
-                      <img
-                        src={cinema.logo}
-                        style={{ width: "40px", height: "40px" }}
-                        alt=""
-                      />
+                    <div className="col-sm-12 text-center">
+                      <div>
+                        <img src={cinema.logo} alt="" />
+                      </div>
                     </div>
-                    <div className="col-9 cinema_title-cluster">
+                    <div className="col-sm-12 cinema_title-cluster">
                       <h5 className="cinema_title ">{cumRap.tenCumRap}</h5>
                       <h6 className="cinema_title ">{cumRap.diaChi}</h6>
                     </div>
@@ -262,21 +259,18 @@ export default function Detail(props) {
             let convertDate = moment(movie.ngayChieuGioChieu);
             if (convertDate.format("DDMMYY") === release) {
               checkEmptyFilm.push(movie);
-              console.log(movie);
               return (
                 <Fragment key={i}>
                   {convertDate.format("DDMMYY") === release && (
-                    <div>
-                      <NavLink
-                        to={`/booking/${
-                          movie.maLichChieu
-                        }/${convertDate.format("hh:mm")}`}
-                      >
-                        <button className="btn btn_primary mt-3">
-                          {convertDate.format("hh:mm A")}
-                        </button>
-                      </NavLink>
-                    </div>
+                    <NavLink
+                      to={`/booking/${movie.maLichChieu}/${convertDate.format(
+                        "hh:mm"
+                      )}`}
+                    >
+                      <button className="btn btn_primary mr-2">
+                        {convertDate.format("hh:mm A")}
+                      </button>
+                    </NavLink>
                   )}
                 </Fragment>
               );
@@ -298,14 +292,10 @@ export default function Detail(props) {
       return (
         <div className="col">
           <div className="row">
-            <div className="col-4 text-center mb-4">
-              <img
-                src={detailFilm.hinhAnh}
-                style={{ height: "160px", width: "130px" }}
-                alt=""
-              />
+            <div className="col-2 cinema_calender-img text-center mb-4">
+              <img src={detailFilm.hinhAnh} alt="" />
             </div>
-            <div className="col-8">
+            <div className="col-10">
               <div className="row">
                 <div className="col-9">
                   <h3 className="cinema_title-release">
@@ -318,7 +308,9 @@ export default function Detail(props) {
                   </h3>
                   <div className="mt-3 mb-3">
                     <div className="cinema_title-release-date">
-                      Suất chiếu:{arrFilm}
+                      <div>Suất chiếu:</div>
+
+                      <div className="d-inline-block">{arrFilm}</div>
                     </div>
                   </div>
                 </div>
@@ -339,7 +331,7 @@ export default function Detail(props) {
         }}
       >
         <div className="row banner_content-mid">
-          <div className="col-3 position-relative">
+          <div className="col-4 position-relative detail_banner-img">
             <img src={detailFilm?.hinhAnh} alt="" />
             <div
               className="position-absolute banner_wrap-icon-mini"
@@ -354,7 +346,7 @@ export default function Detail(props) {
               <i className="fa-regular fa-circle-play  banner_play_icon-mini"></i>
             </div>
           </div>
-          <div className="col-9 banner_detail-right text-left">
+          <div className="col-8 banner_detail-right text-left">
             <h3 className="cinema_title-release">
               {detailFilm?.tenPhim}
               {detailFilm?.hot && (
@@ -386,8 +378,9 @@ export default function Detail(props) {
         <div className="banner_overlay-dark"></div>
       </div>
       <div className="cinema">
-        <h2 className="cinema_header">Buy ticket PHIM ONLINE</h2>
-        <div className="row cinema_header-logo">{renderSystemCinema()}</div>
+        <h2 className="cinema_header">BUY TICKET ONLINE</h2>
+        <div className="row cinema_header-logo">
+        </div>
         <div className="row cinema__content mt-3">
           <div className="col-3">{renderClusterCinema()}</div>
           <div className="col-9">

@@ -31,7 +31,6 @@ export function uploadMovie(datas) {
         "QuanLyPhim/ThemPhimUploadHinh",
         datas
       );
-      console.log(data);
       dispatch(getListMovie());
     } catch (e) {
       console.log(e.response);
@@ -58,8 +57,7 @@ export function editMovie(movie) {
       const { data } = await bothServiceToken.post(
         `QuanLyPhim/CapNhatPhimUpload`,
         movie
-      );
-      console.log(data);
+      )
 
       history.push("/admin/movieadmin");
       getListMovie();
@@ -75,7 +73,6 @@ export function deleteMovie(maPhim) {
       const { data } = await bothServiceToken.delete(
         `QuanLyPhim/XoaPhim?MaPhim=${maPhim}`
       );
-      console.log(data);
       getListMovie();
       history.go(0);
     } catch (e) {

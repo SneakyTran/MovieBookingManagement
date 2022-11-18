@@ -48,15 +48,13 @@
     --toastify-spinner-color-empty-area: #e0e0e0;
 
     /* Used when no type is provided */
-    --toastify-color-progress-light: linear-gradient(
-        to right,
-        #4cd964,
-        #5ac8fa,
-        #007aff,
-        #34aadc,
-        #5856d6,
-        #ff2d55
-    );
+    --toastify-color-progress-light: linear-gradient(to right,
+            #4cd964,
+            #5ac8fa,
+            #007aff,
+            #34aadc,
+            #5856d6,
+            #ff2d55);
     /* Used when no type is provided */
     --toastify-color-progress-dark: #bb86fc;
     --toastify-color-progress-info: var(--toastify-color-info);
@@ -88,6 +86,8 @@ body {
 .banner_icon-left {
     opacity: 0;
     transition: all 0.5s;
+    color: rgb(194, 158, 91);
+    font-size: 34px;
 }
 
 .slick-slider.slick-initialized:hover .banner_icon-right,
@@ -112,7 +112,7 @@ body {
 }
 
 .btn_primary {
-    font-size: 20px;
+    font-size: 1.6vw;
     font-weight: 600;
     color: white;
     background-color: orange;
@@ -120,7 +120,7 @@ body {
 }
 
 .btn_white {
-    font-size: 20px;
+    font-size: 1.6vw;
     background-color: rgba(106, 105, 105, 0.168);
     box-shadow: 0px 0px 8px black;
     color: orange;
@@ -143,6 +143,7 @@ body {
     color: white;
     font-size: 14px;
 }
+
 .spinner--loading {
     position: relative;
 }
@@ -175,6 +176,7 @@ body {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -182,6 +184,7 @@ body {
 
 /* ----------------------------- PRE-LOADING CSS ---------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
 .loading {
     position: fixed;
     top: 0;
@@ -191,6 +194,7 @@ body {
     background: var(--bg-main-div);
     z-index: 9999;
 }
+
 .loading--text {
     position: absolute;
     top: 0;
@@ -203,16 +207,19 @@ body {
     height: 100px;
     line-height: 100px;
 }
+
 .loading--text span {
     display: inline-block;
     margin: 0 5px;
     color: orange;
     font-family: "Quattrocento Sans", sans-serif;
 }
+
 @keyframes blur-text {
     0% {
         filter: blur(0px);
     }
+
     100% {
         filter: blur(4px);
     }
@@ -220,6 +227,36 @@ body {
 
 
 /* ------------------------------ Toast Design ------------------------------ */
-.toast--default{
+.toast--default {
     width: 250px;
 }
+
+/* ------------------Media Query---------------- */
+@media (max-width: 576px) {
+    .btn_primary {
+        font-size: 2.5vw;
+        padding: 4px;
+    }
+
+    .title-basic-orange {
+        font-size: 14px;
+    }
+
+    .title-basic-white {
+        font-size: 10px;
+
+    }
+
+    .btn_white {
+        font-size: 2.5vw;
+        padding: 4px;
+    }
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}
