@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cinemaModalAction } from "../../redux/actions/CinemaAction";
-import { SELECT_CINEMA } from "../../redux/type/CinemaType";
-import { CLOSE_MODAL } from "../../redux/type/ModalType";
+import { SELECT_CINEMA } from "../../redux/types/CinemaType";
+import { CLOSE_MODAL } from "../../redux/types/ModalType";
 
 export default function CinemaModalComponent(props) {
     const dispatch = useDispatch();

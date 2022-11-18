@@ -11,8 +11,9 @@ import {
     getCinemaShowTimes,
 } from "../../redux/actions/CinemaAction";
 import { useEffect } from "react";
-import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
+import { OPEN_LIST_CINEMA_MODAL } from "../../redux/types/ModalType";
 import MovieStModaleComponent from "./MovieStModaleComponent";
+import SpinnerComponent from "../LoadingComponent/SpinnerComponent";
 
 export default function CinemaComponent() {
     const dispatch = useDispatch();
@@ -30,6 +31,8 @@ export default function CinemaComponent() {
     const { currentCinema, arrCinemaCluster, arrCinema, arrShowTime } =
         useSelector((state) => state.CinemaReducer);
 
+    const [arrCinemaFilter, setArrCinemaFilter] = useState([]);
+
     //load all cinema
     useEffect(() => {
         getCinemaAPI();
@@ -46,6 +49,7 @@ export default function CinemaComponent() {
         if (arrCinemaCluster !== undefined) {
             if (arrCinemaCluster.length > 0) {
                 cinemaActive(0, arrCinemaCluster[0]);
+                setArrCinemaFilter(arrCinemaCluster);
             }
         }
     }, [arrCinemaCluster]);
@@ -59,6 +63,10 @@ export default function CinemaComponent() {
     useEffect(() => {
         setShowTimeMovie();
     }, [activeDate]);
+
+    useEffect(() => {
+        if (arrCinemaFilter.length > 0) cinemaActive(0, arrCinemaFilter[0]);
+    }, [arrCinemaFilter]);
 
     const getCinemaClustersAPI = () => {
         if (!currentCinema.maHeThongRap) {
@@ -124,7 +132,10 @@ export default function CinemaComponent() {
     };
 
     const renderCinema = () => {
-        return arrCinemaCluster.map((cinema, index) => {
+        // if (arrCinemaCluster?.length === 0) {
+        //     return <SpinnerComponent />;
+        // }
+        return arrCinemaFilter.map((cinema, index) => {
             let { tenCumRap } = cinema;
             return (
                 <div
@@ -241,6 +252,19 @@ export default function CinemaComponent() {
         });
     };
 
+    const handleChangeSearchInput = (evt) => {
+        const { value } = evt.target;
+        setArrCinemaFilter(
+            arrCinemaCluster.filter((cinema) => {
+                return cinema.tenCumRap
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "") //convert vnese
+                    .includes(value.toLowerCase());
+            })
+        );
+    };
+
     return (
         <div className="container py-5">
             <h2 className="movie__title mb-5">Cinema Showtimes</h2>
@@ -264,6 +288,7 @@ export default function CinemaComponent() {
                                 <input
                                     className="form__cinema py-1 pl-3"
                                     placeholder="Seach cinema ..."
+                                    onChange={handleChangeSearchInput}
                                 ></input>
                                 <span className="icon__search">
                                     <i className="fa-solid fa-magnifying-glass"></i>

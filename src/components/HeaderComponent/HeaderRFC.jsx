@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import { getUserInfoAction } from "../../redux/actions/FormAction";
-import { LOGOUT, OPEN_LOGIN, OPEN_REGISTER, USER_LOGIN, USER_PROFILE } from "../../redux/type/FormType";
+import { LOGOUT, OPEN_LOGIN, OPEN_REGISTER, USER_LOGIN, USER_PROFILE } from "../../redux/types/FormType";
 import { BothTokenService } from "../../Service/BothTokenService";
 import "./header.css";
 

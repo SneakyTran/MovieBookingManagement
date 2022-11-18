@@ -1,38 +1,36 @@
-import { getAllByDisplayValue } from "@testing-library/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import SpinnerComponent from "../../components/LoadingComponent/SpinnerComponent";
+
 import {
+    bookTicketAction,
     getSeatBookingAction,
-    getShowTimeByMovieAction,
-} from "../../redux/actions/CinemaAction";
-import { SELECT_TICKET } from "../../redux/type/TIcketBookingTypes";
+} from "../../redux/actions/TIcketBookingAction";
+import { DISPLAY_PRELOADING } from "../../redux/types/PreloadingTypes";
+import { SELECT_TICKET } from "../../redux/types/TIcketBookingTypes";
+import LibrarySupport from "../../utils/lib/LibrarySupport";
 import "./Booking.css";
 
 export default function Booking(props) {
-    const { movieSelected, arrSeat } = useSelector(
-        (state) => state.CinemaReducer
-    );
-
-    const { arrSelectedSeat } = useSelector(
+    const { arrSelectedSeat, movieInfo, arrSeat } = useSelector(
         (state) => state.TicketBookingReducer
     );
-
-    const { movie, cinema } = movieSelected;
-
+    
+    useSelector((state) => state.PreloadingReducer);
+    const { tenPhim, tenCumRap, diaChi, ngayChieu, gioChieu, hinhAnh } =
+    movieInfo;
+    
     const dispatch = useDispatch();
-    useEffect(() => {
-        getShowTimeByMovieAPI();
-    }, []);
+    const history = useHistory();
 
     useEffect(() => {
+        dispatch({
+            type: DISPLAY_PRELOADING,
+        });
         getSeatBookingAPI(props.match.params.id);
     }, []);
-
-    const getShowTimeByMovieAPI = () => {
-        let action = getShowTimeByMovieAction(movie.movieId, cinema.cinemaCode);
-        dispatch(action);
-    };
 
     const getSeatBookingAPI = (showTimeId) => {
         let action = getSeatBookingAction(showTimeId);
@@ -47,9 +45,32 @@ export default function Booking(props) {
         });
     };
 
-    const { danhSachGhe } = arrSeat;
+    const bookTicketAPI = () => {
+        //check empty selected seat
+        if (arrSelectedSeat?.length === 0 || arrSelectedSeat === null) {
+            return;
+        }
+
+        let arrTicket = [];
+        arrSelectedSeat.map((seat) => {
+            arrTicket = [
+                ...arrTicket,
+                {
+                    maGhe: seat.maGhe,
+                    giaVe: Number(seat.giaVe),
+                },
+            ];
+        });
+        let action = bookTicketAction({
+            maLichChieu: props.match.params.id,
+            danhSachVe: arrTicket,
+        });
+        dispatch(action);
+        history.push("/");
+    };
+
     const renderSeat = () => {
-        return danhSachGhe?.map((seat, index) => {
+        return arrSeat?.map((seat, index) => {
             const { maGhe, tenGhe, loaiGhe, giaVe, daDat } = seat;
             let seatStyle = "seat ";
             if (loaiGhe === "Vip") {
@@ -109,20 +130,33 @@ export default function Booking(props) {
     };
 
     const renderMovieInfo = () => {
-        const { movieName } = movie;
-        const { cinemaName, address } = cinema;
+        if (LibrarySupport.isEmptyObject(movieInfo)) {
+            return <SpinnerComponent height={"463px"} />;
+        }
         return (
             <Fragment>
                 <div className="mb-3">
-                    <img className="img-fluid" src={movie.movieImg} alt="" />
+                    <img className="img-fluid" src={hinhAnh} alt="" />
                 </div>
-                <h3 className="ticket__title">Movie Name</h3>
-                <p>{movieName}</p>
-                <h3 className="ticket__title">Cinema</h3>
-                <p>{cinemaName}</p>
-                <h3 className="ticket__title">Address</h3>
-                <p>{address}</p>
-                <h3 className="ticket__title">Seats detail</h3>
+                <div className="movie__info">
+                    <h3>Movie Name</h3>
+                    <p>{tenPhim}</p>
+                    <div className="calender__container">
+                        <div className="calender__ticket">
+                            <h3>Date</h3>
+                            <p>{ngayChieu}</p>
+                        </div>
+                        <div className="calender__ticket ml-5">
+                            <h3>Time</h3>
+                            <p>{props.match.params.time}</p>
+                        </div>
+                    </div>
+                    <h3>Cinema</h3>
+                    <p>{tenCumRap}</p>
+                    <h3>Address</h3>
+                    <p>{diaChi}</p>
+                    <h3>Seats detail</h3>
+                </div>
                 <div className="row ticket__bill">
                     {renderTitleSeat()}
                     {renderSelectingSeat()}
@@ -138,7 +172,12 @@ export default function Booking(props) {
                             .toLocaleString()}
                     </p>
                 </div>
-                <button className="btn btn-success btn--payment mt-1">
+                <button
+                    onClick={() => {
+                        bookTicketAPI();
+                    }}
+                    className="btn btn-success btn--payment mt-1"
+                >
                     Payment
                 </button>
             </Fragment>
@@ -149,7 +188,7 @@ export default function Booking(props) {
         <Fragment>
             <div className="booking__bg">
                 <div className="bg__overlay"></div>
-                <img src={movie.movieImg} alt="" />
+                <img src={hinhAnh} alt="" />
             </div>
             <div className="container my-4">
                 <div className="row">

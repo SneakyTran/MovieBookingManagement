@@ -14,6 +14,55 @@
     --bg-main-div: #182028;
     /* btn color */
     --btn-primary: #ff1744;
+
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: #3498db;
+    --toastify-color-success: #07bc0c;
+    --toastify-color-warning: #f1c40f;
+    --toastify-color-error: #e74c3c;
+    --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+    --toastify-icon-color-info: var(--toastify-color-info);
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-warning: var(--toastify-color-warning);
+    --toastify-icon-color-error: var(--toastify-color-error);
+
+    --toastify-toast-width: 320px;
+    --toastify-toast-background: #fff;
+    --toastify-toast-min-height: 64px;
+    --toastify-toast-max-height: 800px;
+    --toastify-font-family: sans-serif;
+    --toastify-z-index: 9999;
+
+    --toastify-text-color-light: #757575;
+    --toastify-text-color-dark: #fff;
+
+    /* Used only for colored theme */
+    --toastify-text-color-info: #fff;
+    --toastify-text-color-success: #fff;
+    --toastify-text-color-warning: #fff;
+    --toastify-text-color-error: #fff;
+
+    --toastify-spinner-color: #616161;
+    --toastify-spinner-color-empty-area: #e0e0e0;
+
+    /* Used when no type is provided */
+    --toastify-color-progress-light: linear-gradient(
+        to right,
+        #4cd964,
+        #5ac8fa,
+        #007aff,
+        #34aadc,
+        #5856d6,
+        #ff2d55
+    );
+    /* Used when no type is provided */
+    --toastify-color-progress-dark: #bb86fc;
+    --toastify-color-progress-info: var(--toastify-color-info);
+    --toastify-color-progress-success: var(--toastify-color-success);
+    --toastify-color-progress-warning: var(--toastify-color-warning);
+    --toastify-color-progress-error: var(--toastify-color-error);
 }
 
 html {
@@ -65,13 +114,112 @@ body {
 .btn_primary {
     font-size: 20px;
     font-weight: 600;
-    color: black;
-    background-color: yellow;
-    box-shadow: 0px 0px 8px yellow;
+    color: white;
+    background-color: orange;
+    box-shadow: 0px 0px 8px orange;
 }
 
 .btn_white {
     font-size: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 8px white;
+    background-color: rgba(106, 105, 105, 0.168);
+    box-shadow: 0px 0px 8px black;
+    color: orange;
+    font-weight: 600;
+}
+
+.title-basic {
+    font-weight: 600;
+    color: yellow;
+}
+
+.title-basic-orange {
+    font-weight: 600;
+    color: orange;
+    font-size: 16px;
+}
+
+.title-basic-white {
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+.spinner--loading {
+    position: relative;
+}
+
+.spinner--loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 5px solid darkgray;
+    border-radius: 50%;
+    border-top: 5px solid var(--btn-primary);
+    width: 25px;
+    height: 25px;
+    animation: spin 2s linear infinite;
+}
+
+.btn--loader {
+    border: 5px solid darkgray;
+    border-radius: 50%;
+    border-top: 5px solid orange;
+    width: 15px;
+    height: 15px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ----------------------------- PRE-LOADING CSS ---------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-main-div);
+    z-index: 9999;
+}
+.loading--text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+}
+.loading--text span {
+    display: inline-block;
+    margin: 0 5px;
+    color: orange;
+    font-family: "Quattrocento Sans", sans-serif;
+}
+@keyframes blur-text {
+    0% {
+        filter: blur(0px);
+    }
+    100% {
+        filter: blur(4px);
+    }
+}
+
+
+/* ------------------------------ Toast Design ------------------------------ */
+.toast--default{
+    width: 250px;
 }

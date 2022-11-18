@@ -1,9 +1,8 @@
 import axios from "axios";
 import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
-import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN } from "../type/FormType";
+import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN } from "../types/FormType";
 import Login from "../../pages/Login/Login";
 import Swal from "sweetalert2";
-
 
 export const loginAction = (userInfo) => {
     return (dispatch2) => {

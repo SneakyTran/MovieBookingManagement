@@ -1,10 +1,10 @@
-import { PLAY_TRAILER } from "../type/BannerType";
-import { OPEN_LOGIN, OPEN_REGISTER } from "../type/FormType";
+import { PLAY_TRAILER } from "../types/BannerType";
+import { OPEN_LOGIN, OPEN_REGISTER } from "../types/FormType";
 import {
     CLOSE_MODAL,
     OPEN_LIST_CINEMA_MODAL,
     OPEN_MODAL,
-} from "../type/ModalType";
+} from "../types/ModalType";
 
 const initialState = {
     show: false,

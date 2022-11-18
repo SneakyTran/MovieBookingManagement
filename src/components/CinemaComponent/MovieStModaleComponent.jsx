@@ -9,8 +9,8 @@ import "./MovieStModaleComponent.css";
 import "./lib/Calender";
 import { getDateShowTime, getTimeDuration, getTimeISO } from "./lib/Calender";
 import { useHistory } from "react-router-dom";
-import { CLOSE_MODAL } from "../../redux/type/ModalType";
-import { SELECT_MOVIE_TICKET } from "../../redux/type/CinemaType";
+import { CLOSE_MODAL } from "../../redux/types/ModalType";
+import { SELECT_MOVIE_TICKET } from "../../redux/types/CinemaType";
 
 export default function MovieStModaleComponent(props) {
     const { movieId, movieImg, movieName } = props.movie;
@@ -39,7 +39,11 @@ export default function MovieStModaleComponent(props) {
                 cinema: props.cinema,
             },
         });
-        history.push(`booking/${props.movieSt.maLichChieu}`);
+        history.push(
+            `/booking/${props.movieSt.maLichChieu}/${getTimeISO(
+                props.movieSt.ngayChieuGioChieu
+            )}`
+        );
         dispatch(cinemaModalAction(CLOSE_MODAL, <MovieStModaleComponent />));
     };
 

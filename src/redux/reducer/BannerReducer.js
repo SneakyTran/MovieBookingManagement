@@ -1,4 +1,4 @@
-import { GET_BANNER } from "../type/BannerType";
+import { GET_BANNER } from "../types/BannerType";
 
 const initialState = {
   arrPhim: [],
