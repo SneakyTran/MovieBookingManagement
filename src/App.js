@@ -20,6 +20,7 @@ import LoadingComponent from "./components/LoadingComponent/LoadingComponent";
 import Detail from "./components/DetailComponent/Detail";
 import { ToastContainer } from "react-toastify";
 import InfoUser from "./pages/Admin/UserAdmin/InfoUser/InfoUser";
+import Profile from "./pages/Profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -101,7 +102,12 @@ function App() {
             path="/admin/edituser/infouser/:taiKhoan"
             Component={InfoUser}
           />
-          {/*  */}
+         {/* User Profile */}
+         <HomeTemplate
+exact
+        path="/profile"
+     Component={Profile}
+                    />
         </Switch>
       </Router>
     </BrowserRouter>

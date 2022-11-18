@@ -11,7 +11,6 @@ export function getBanner() {
             const { data } = await bothServiceToken.get(
                 `QuanLyPhim/LayDanhSachPhim?maNhom=${MA_NHOM}`
             );
-            console.log(data);
             dispatch({ type: GET_BANNER, payload: data.content });
             setTimeout(() => {
                 dispatch({ type: HIDE_PRELOADING });
