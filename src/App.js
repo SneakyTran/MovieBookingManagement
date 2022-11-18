@@ -16,6 +16,7 @@ import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
 import HomeTemplate from "./Templates/HomeTemplate/HomeTemplate";
 import ModalFilm from "./Templates/ModalFilm/ModalFilm";
 import BookingTemplate from "./Templates/BookingTemplate/BookingTemplate"
+import Profile from "./pages/Profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -66,7 +67,12 @@ function App() {
             Component={EditUser}
           />
 
-          {/*  */}
+          {/* User Profile */}
+          <HomeTemplate
+            exact
+            path="/profile"
+            Component={Profile}
+          />
         </Switch>
       </Router>
     </BrowserRouter>

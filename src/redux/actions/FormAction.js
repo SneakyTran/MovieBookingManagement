@@ -3,7 +3,7 @@ import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN } from "../type/FormType";
 import Login from "../../pages/Login/Login";
 import Swal from "sweetalert2";
-import { CLOSE_MODAL } from "../type/ModalType";
+
 
 export const loginAction = (userInfo) => {
     return (dispatch2) => {
@@ -71,6 +71,32 @@ export const registerAction = (userInfo) => {
                 title: "Oops...",
                 text: "Tài khoản hoặc email đã tồn tại!",
             });
+            console.log(error.response?.data);
+        });
+    };
+};
+
+export const getUserInfoAction = (userInfo) => {
+    return (dispatch2) => {
+        let promise = axios({
+            url: `${DOMAIN_CINEMA}QuanLyNguoiDung/ThongTinTaiKhoan`,
+            method: "post",
+            // data: userInfo,
+            headers: {
+                Authorization: "Bearer" + JSON.parse(localStorage.getItem(ACCESS_TOKEN)),
+                TokenCybersoft: TOKEN,
+            },
+        });
+        promise.then((result) => {
+            console.log(result.data);
+            // let action = {
+            //     type: "USER_PROFILE",
+            //     userDetail: result.data.content,
+            // };
+            // dispatch2(action);
+        });
+        promise.catch((error) => {
+
             console.log(error.response?.data);
         });
     };

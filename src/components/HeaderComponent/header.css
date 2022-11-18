@@ -8,3 +8,45 @@
     color: #ff1744;
     transition: all 0.3s;
 }
+.header_login{
+    position: relative;
+}
+.header_login:hover .user_profile{
+    opacity: 1;
+}
+.header_user{
+    padding: 0 1rem;
+    cursor: pointer;
+}
+.header_user:hover{
+    cursor: pointer;
+    color: #ff1744;
+    transition: all 0.3s;
+}
+.user_profile{
+    position: absolute;
+    left: 0;
+    border: 1px solid;
+    z-index: 10;
+    padding: 5px 10px;
+    width: 111px;
+    border-radius: 8px;
+    color: #000;
+    background: #fff;
+}
+.user_detail:hover,.user_logout:hover{
+    background: #ff1744;
+    cursor: pointer;
+    color: #fff;
+}
+.user_profile a{
+    color: #000;
+}
+.user_profile a:hover{
+    background: #ff1744;
+    cursor: pointer;
+    color: #fff;
+}
+.user_profile.active{
+    display: block;
+}
