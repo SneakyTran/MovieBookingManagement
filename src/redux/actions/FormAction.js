@@ -3,6 +3,7 @@ import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN } from "../types/FormType";
 import Login from "../../pages/Login/Login";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 export const loginAction = (userInfo) => {
     return (dispatch2) => {
@@ -20,12 +21,15 @@ export const loginAction = (userInfo) => {
                 JSON.stringify(result.data.content.accessToken)
             );
 
-            Swal.fire({
-                position: "top-center",
-                icon: "success",
-                title: "Đăng nhập thành công",
-                showConfirmButton: false,
-                timer: 1500,
+            toast.success("Login successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
             });
             let action = {
                 type: LOGIN,
@@ -39,6 +43,16 @@ export const loginAction = (userInfo) => {
         });
         promise.catch((error) => {
             console.log(error.response?.data);
+            toast.error("Login failed!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         });
     };
 };
@@ -54,21 +68,28 @@ export const registerAction = (userInfo) => {
             },
         });
         promise.then((result) => {
-            console.log(result.data);
-            Swal.fire({
-                position: "top-center",
-                icon: "success",
-                title: "Đăng ký thành công",
-                showConfirmButton: false,
-                timer: 1500,
+            toast.success("Register successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
             });
             dispatch2({ type: OPEN_LOGIN, modalLogin: <Login /> });
         });
         promise.catch((error) => {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Tài khoản hoặc email đã tồn tại!",
+            toast.error("Username or email is existed!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
             });
             console.log(error.response?.data);
         });

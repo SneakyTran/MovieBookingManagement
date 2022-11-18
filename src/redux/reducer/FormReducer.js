@@ -1,5 +1,5 @@
 
-import { ACCESS_TOKEN, LOGIN, LOGOUT, USER_UPDATE, USER_LOGIN, USER_PROFILE } from "../type/FormType";
+import { ACCESS_TOKEN, LOGIN, LOGOUT, USER_UPDATE, USER_LOGIN, USER_PROFILE } from "../types/FormType";
 
 
 let uLogin = undefined;
