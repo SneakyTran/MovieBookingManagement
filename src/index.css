@@ -65,17 +65,36 @@ body {
 .btn_primary {
     font-size: 20px;
     font-weight: 600;
-    color: black;
-    background-color: yellow;
-    box-shadow: 0px 0px 8px yellow;
+    color: white;
+    background-color: orange;
+    box-shadow: 0px 0px 8px orange;
 }
 
 .btn_white {
     font-size: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 8px white;
+    background-color: rgba(106, 105, 105, 0.168);
+    box-shadow: 0px 0px 8px black;
+    color: orange;
+    font-weight: 600;
+
 }
 
+.title-basic {
+    font-weight: 600;
+    color: yellow;
+}
+
+.title-basic-orange {
+    font-weight: 600;
+    color: orange;
+    font-size: 16px;
+}
+
+.title-basic-white {
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
 .spinner--loading {
     position: relative;
 }

@@ -17,12 +17,15 @@ export default function Booking(props) {
     const { arrSelectedSeat, movieInfo, arrSeat } = useSelector(
         (state) => state.TicketBookingReducer
     );
+    
     useSelector((state) => state.PreloadingReducer);
     const { tenPhim, tenCumRap, diaChi, ngayChieu, gioChieu, hinhAnh } =
-        movieInfo;
-
+    movieInfo;
+    
     const dispatch = useDispatch();
     const history = useHistory();
+    console.log(movieInfo)
+console.log(props.match.params.time)
 
     useEffect(() => {
         dispatch({

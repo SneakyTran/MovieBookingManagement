@@ -1,4 +1,4 @@
-import { GET_INFO_FILM, GET_LIST_FILM } from "../types/MovieManagerType";
+import { GET_INFO_FILM, GET_LIST_FILM,GET_DETAIL_FILM } from "../types/MovieManagerType";
 
 const initialState = {
   arrMovie: [
@@ -64,6 +64,7 @@ const initialState = {
   ],
   arrMovieDefault: [],
   thongTinPhim: {},
+  detailFilm: {},
 };
 
 export const MovieManagerReducer = (state = initialState, action) => {
@@ -74,6 +75,9 @@ export const MovieManagerReducer = (state = initialState, action) => {
       return { ...state };
     case GET_INFO_FILM:
       state.thongTinPhim = action.payload;
+      return { ...state };
+    case GET_DETAIL_FILM:
+      state.detailFilm = action.payload;
       return { ...state };
     default:
       return state;
