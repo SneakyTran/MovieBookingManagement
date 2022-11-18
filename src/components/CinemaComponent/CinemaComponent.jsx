@@ -31,6 +31,10 @@ export default function CinemaComponent() {
     const { currentCinema, arrCinemaCluster, arrCinema, arrShowTime } =
         useSelector((state) => state.CinemaReducer);
 
+    const [arrCinemaFilter, setarrCinemaFilter] = useState([
+        ...arrCinemaCluster,
+    ]);
+
     //load all cinema
     useEffect(() => {
         getCinemaAPI();
@@ -128,7 +132,7 @@ export default function CinemaComponent() {
         // if (arrCinemaCluster?.length === 0) {
         //     return <SpinnerComponent />;
         // }
-        return arrCinemaCluster.map((cinema, index) => {
+        return arrCinemaFilter.map((cinema, index) => {
             let { tenCumRap } = cinema;
             return (
                 <div
@@ -245,6 +249,20 @@ export default function CinemaComponent() {
         });
     };
 
+    const handleChangeSearchInput = (evt) => {
+        const { value } = evt.target;
+        setarrCinemaFilter(
+            arrCinemaCluster.filter((cinema) => {
+                return cinema.tenCumRap
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "") //convert vnese
+                    .includes(value.toLowerCase());
+            })
+        );
+        console.log(arrCinemaFilter);
+    };
+
     return (
         <div className="container py-5">
             <h2 className="movie__title mb-5">Cinema Showtimes</h2>
@@ -268,6 +286,7 @@ export default function CinemaComponent() {
                                 <input
                                     className="form__cinema py-1 pl-3"
                                     placeholder="Seach cinema ..."
+                                    onChange={handleChangeSearchInput}
                                 ></input>
                                 <span className="icon__search">
                                     <i className="fa-solid fa-magnifying-glass"></i>

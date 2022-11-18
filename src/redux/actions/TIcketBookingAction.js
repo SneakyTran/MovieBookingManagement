@@ -1,4 +1,5 @@
 import { Redirect, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { BOOK_TICKET, SEAT_BOOKING } from "../../utils/setting";
 import { GET_SEAT } from "../types/CinemaType";
@@ -29,6 +30,16 @@ export const bookTicketAction = (seatBookingModel) => {
         bothServiceToken
             .post(BOOK_TICKET, seatBookingModel)
             .then((res) => {
+                toast.success("Book successfully!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
                 middleWareDispatch({
                     type: CLEAR_SEAT,
                 });

@@ -24,8 +24,6 @@ export default function Booking(props) {
     
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(movieInfo)
-console.log(props.match.params.time)
 
     useEffect(() => {
         dispatch({
@@ -33,7 +31,6 @@ console.log(props.match.params.time)
         });
         getSeatBookingAPI(props.match.params.id);
     }, []);
-    console.log(props.match.params);
 
     const getSeatBookingAPI = (showTimeId) => {
         let action = getSeatBookingAction(showTimeId);
