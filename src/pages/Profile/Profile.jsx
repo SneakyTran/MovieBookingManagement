@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { USER_UPDATE, USER_LOGIN, USER_PROFILE } from '../../redux/type/FormType';
+import { USER_UPDATE, USER_LOGIN, USER_PROFILE } from '../../redux/types/FormType';
 import { DOMAIN_CINEMA, TOKEN } from '../../utils/setting';
 import "./profile.css"
 

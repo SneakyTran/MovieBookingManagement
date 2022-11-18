@@ -19,6 +19,7 @@ import ModalFilm from "./Templates/ModalFilm/ModalFilm";
 import LoadingComponent from "./components/LoadingComponent/LoadingComponent";
 import Detail from "./components/DetailComponent/Detail";
 import { ToastContainer } from "react-toastify";
+import Profile from "./pages/Profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -112,7 +113,12 @@ function App() {
                         Component={EditUser}
                     />
 
-                    {/*  */}
+                    {/* User Profile */}
+                    <HomeTemplate
+                        exact
+                        path="/profile"
+                        Component={Profile}
+                    />
                 </Switch>
             </Router>
         </BrowserRouter>
