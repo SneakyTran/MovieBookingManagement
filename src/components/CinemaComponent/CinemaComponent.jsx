@@ -31,9 +31,7 @@ export default function CinemaComponent() {
     const { currentCinema, arrCinemaCluster, arrCinema, arrShowTime } =
         useSelector((state) => state.CinemaReducer);
 
-    const [arrCinemaFilter, setarrCinemaFilter] = useState([
-        ...arrCinemaCluster,
-    ]);
+    const [arrCinemaFilter, setArrCinemaFilter] = useState([]);
 
     //load all cinema
     useEffect(() => {
@@ -51,6 +49,7 @@ export default function CinemaComponent() {
         if (arrCinemaCluster !== undefined) {
             if (arrCinemaCluster.length > 0) {
                 cinemaActive(0, arrCinemaCluster[0]);
+                setArrCinemaFilter(arrCinemaCluster);
             }
         }
     }, [arrCinemaCluster]);
@@ -64,6 +63,10 @@ export default function CinemaComponent() {
     useEffect(() => {
         setShowTimeMovie();
     }, [activeDate]);
+
+    useEffect(() => {
+        if (arrCinemaFilter.length > 0) cinemaActive(0, arrCinemaFilter[0]);
+    }, [arrCinemaFilter]);
 
     const getCinemaClustersAPI = () => {
         if (!currentCinema.maHeThongRap) {
@@ -251,7 +254,7 @@ export default function CinemaComponent() {
 
     const handleChangeSearchInput = (evt) => {
         const { value } = evt.target;
-        setarrCinemaFilter(
+        setArrCinemaFilter(
             arrCinemaCluster.filter((cinema) => {
                 return cinema.tenCumRap
                     .toLowerCase()
@@ -260,7 +263,6 @@ export default function CinemaComponent() {
                     .includes(value.toLowerCase());
             })
         );
-        console.log(arrCinemaFilter);
     };
 
     return (
