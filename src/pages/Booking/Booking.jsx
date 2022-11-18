@@ -30,6 +30,7 @@ export default function Booking(props) {
         });
         getSeatBookingAPI(props.match.params.id);
     }, []);
+    console.log(props.match.params);
 
     const getSeatBookingAPI = (showTimeId) => {
         let action = getSeatBookingAction(showTimeId);
@@ -147,7 +148,7 @@ export default function Booking(props) {
                         </div>
                         <div className="calender__ticket ml-5">
                             <h3>Time</h3>
-                            <p>{gioChieu}</p>
+                            <p>{props.match.params.time}</p>
                         </div>
                     </div>
                     <h3>Cinema</h3>

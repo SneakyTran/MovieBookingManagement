@@ -39,7 +39,11 @@ export default function MovieStModaleComponent(props) {
                 cinema: props.cinema,
             },
         });
-        history.push(`booking/${props.movieSt.maLichChieu}`);
+        history.push(
+            `/booking/${props.movieSt.maLichChieu}/${getTimeISO(
+                props.movieSt.ngayChieuGioChieu
+            )}`
+        );
         dispatch(cinemaModalAction(CLOSE_MODAL, <MovieStModaleComponent />));
     };
 

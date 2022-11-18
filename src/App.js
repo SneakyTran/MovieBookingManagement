@@ -50,7 +50,7 @@ function App() {
 
                     <BookingTemplate
                         exact
-                        path="/booking/:id"
+                        path="/booking/:id/:time"
                         Component={Booking}
                     ></BookingTemplate>
 
