@@ -102,12 +102,8 @@ function App() {
             path="/admin/edituser/infouser/:taiKhoan"
             Component={InfoUser}
           />
-         {/* User Profile */}
-         <HomeTemplate
-exact
-        path="/profile"
-     Component={Profile}
-                    />
+          {/* User Profile */}
+          <HomeTemplate exact path="/profile" Component={Profile} />
         </Switch>
       </Router>
     </BrowserRouter>

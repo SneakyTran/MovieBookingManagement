@@ -6,6 +6,7 @@ import {
   GET_LIST_USER,
   GET_TYPE_USER,
 } from "../types/UserManagerType";
+import { toast } from "react-toastify";
 //Get all movies, get movieBy Name
 export function getListUser(user = "") {
   return async (dispatch) => {
@@ -20,6 +21,8 @@ export function getListUser(user = "") {
       dispatch({ type: GET_LIST_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }
@@ -32,6 +35,8 @@ export function getTypeUser() {
       dispatch({ type: GET_TYPE_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }
@@ -45,6 +50,8 @@ export function getInfoUser(ma) {
       dispatch({ type: GET_INFO_USER, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }
@@ -57,10 +64,14 @@ export function editUser(user) {
         user
       );
       console.log(data);
+      toast.success("Success");
+
       history.push("/admin/useradmin");
       getListUser();
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }
@@ -72,9 +83,13 @@ export function deleteUser(user) {
         `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user}`
       );
       console.log(data);
+      toast.success("Success");
+
       getListUser();
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }
@@ -88,8 +103,11 @@ export function createUser(value) {
       );
       getListUser();
       history.push("/admin/useradmin");
+      toast.success("Success");
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
+      
     }
   };
 }

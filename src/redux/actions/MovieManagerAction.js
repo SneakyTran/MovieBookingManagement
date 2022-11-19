@@ -6,6 +6,7 @@ import {
   GET_DETAIL_FILM,
 } from "../types/MovieManagerType";
 import { history } from "../../App";
+import { toast } from "react-toastify";
 //Get all movies, get movieBy Name
 export function getListMovie(tenPhim = "") {
   return async (dispatch) => {
@@ -20,6 +21,7 @@ export function getListMovie(tenPhim = "") {
       dispatch({ type: GET_LIST_FILM, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -31,9 +33,12 @@ export function uploadMovie(datas) {
         "QuanLyPhim/ThemPhimUploadHinh",
         datas
       );
+      toast.success("Success");
+
       dispatch(getListMovie());
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -44,9 +49,12 @@ export function getInfoMovie(maPhim) {
       const { data } = await bothServiceToken.get(
         `QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`
       );
+      toast.success("Success");
+
       dispatch({ type: GET_INFO_FILM, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -57,12 +65,15 @@ export function editMovie(movie) {
       const { data } = await bothServiceToken.post(
         `QuanLyPhim/CapNhatPhimUpload`,
         movie
-      )
+      );
+
+      toast.success("Success");
 
       history.push("/admin/movieadmin");
       getListMovie();
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -73,10 +84,13 @@ export function deleteMovie(maPhim) {
       const { data } = await bothServiceToken.delete(
         `QuanLyPhim/XoaPhim?MaPhim=${maPhim}`
       );
+      toast.success("Success");
+
       getListMovie();
       history.go(0);
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -88,10 +102,13 @@ export function createCalendar(value) {
         `QuanLyDatVe/TaoLichChieu`,
         value
       );
+      toast.success("Success");
+
       getListMovie();
       history.push("/admin/movieadmin");
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
