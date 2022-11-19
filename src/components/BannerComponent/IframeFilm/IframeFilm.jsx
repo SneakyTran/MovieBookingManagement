@@ -21,10 +21,10 @@ export default function IframeFilm({ phim, isContent }) {
       />
       {isContent && (
         <div className="row iframe_modal p-3">
-          <div className=" col-sm-12 col-lg-6">
+          <div className=" col-sm-12 col-lg-4">
             <img src={phim.hinhAnh} alt="" />
           </div>
-          <div className=" col-sm-12 col-lg-6 content">
+          <div className=" col-sm-12 col-lg-8 content">
             <h5>{phim.tenPhim}</h5>
             <h6>
               <div className="text-danger mt-1 mb-2">Mô tả</div>
