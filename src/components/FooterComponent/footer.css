@@ -10,7 +10,7 @@
 }
 .ft_content ul li a:hover{
     margin-left: 10px;
-    color: #ff1744;
+    color: orange;
     transition: all 0.4s ease-in-out;
     text-decoration: none;
 }
@@ -33,7 +33,7 @@
     content: "";
     width: 0;
     height: 2px;
-    background: #ff1744;
+    background: orange;
     position: absolute;
     left: 0;
     bottom: -3px;
@@ -99,7 +99,7 @@
 }
 .ft_twitter_icon i{
    padding: 20px 20px 0 20px;
-   color: #ff1744;
+   color: orange;
    font-size: 20px;
    position: relative;
 }
@@ -107,7 +107,7 @@
     content: "";
     height: 45px;
     width: 2px;
-    background: #ff1744;
+    background: orange;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -120,10 +120,10 @@
     font-weight: bold;
 }
 .ft_twitter_dec a:hover{
-    color: #ff1744;
+    color: orange;
 }
 .ft_twitter_dec span {
-    color: #ff1744;
+    color: orange;
     font-size: 14px;
 }
 .ft_twitter_meta ul li{
@@ -136,7 +136,7 @@
     color: #999;
 }
 .ft_twitter_dec .ft_twitter_meta ul li:hover span {
-    color: #ff1744;
+    color: orange;
 }
 .twitter_content span{
     margin-left: 15px;
@@ -173,8 +173,8 @@
     border-radius: 0 20px 20px 0;
 }
 .newsletter_btn:hover{
-    border-color: #ff1744;
-    background: #ff1744
+    border-color: orange;
+    background: orange;
 }
 .coppyright{
     display: flex;
@@ -183,5 +183,5 @@
     width: 100%;
 }
 .coppyright a{
-    color: #ff1744;
+    color: orange;
 }
