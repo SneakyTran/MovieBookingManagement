@@ -51,21 +51,21 @@ export default function Register() {
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name="taiKhoan" required />
               <label>Account</label>
               {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
-                <span className='text-info'>{formik.errors.taiKhoan}</span>
+                <span className='text-danger'>{formik.errors.taiKhoan}</span>
               ) : null}
             </div>
             <div className={styles.user_box}>
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" name="matKhau" required />
               <label>Password</label>
               {formik.touched.matKhau && formik.errors.matKhau ? (
-                <span className='text-info'>{formik.errors.matKhau}</span>
+                <span className='text-danger'>{formik.errors.matKhau}</span>
               ) : null}
             </div>
             <div className={styles.user_box}>
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" name="xacNhanMK" required />
               <label>Password Confirm</label>
               {formik.touched.xacNhanMK && formik.errors.xacNhanMK ? (
-                <span className='text-info'>{formik.errors.xacNhanMK}</span>
+                <span className='text-danger'>{formik.errors.xacNhanMK}</span>
               ) : null}
             </div>
           </div>
@@ -74,30 +74,32 @@ export default function Register() {
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name="hoTen" required />
               <label>Username</label>
               {formik.touched.hoTen && formik.errors.hoTen ? (
-                <span className='text-info'>{formik.errors.hoTen}</span>
+                <span className='text-danger'>{formik.errors.hoTen}</span>
               ) : null}
             </div>
             <div className={styles.user_box}>
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name="email" required />
               <label>Email</label>
               {formik.touched.email && formik.errors.email ? (
-                <span className='text-info'>{formik.errors.email}</span>
+                <span className='text-danger'>{formik.errors.email}</span>
               ) : null}
             </div>
             <div className={styles.user_box}>
               <input onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name="soDt" required />
               <label>Phone number</label>
               {formik.touched.soDt && formik.errors.soDt ? (
-                <span className='text-info'>{formik.errors.soDt}</span>
+                <span className='text-danger'>{formik.errors.soDt}</span>
               ) : null}
             </div>
-            <button type='submit' className={styles.form_submit}>
-              <span />
-              <span />
-              <span />
-              <span />
-              Submit
-            </button>
+            <div className='btn_div'>
+              <button type='submit' className="btn_movie">
+                <span />
+                <span />
+                <span />
+                <span />
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </form>
