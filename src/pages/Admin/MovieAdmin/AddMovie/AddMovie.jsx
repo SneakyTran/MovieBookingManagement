@@ -74,7 +74,7 @@ const AddMovie = () => {
 
       <Form.Item label="Ngày Khởi Chiếu">
         <DatePicker
-          className="form-control w-50"
+          className="w-50"
           format={"DD/MM/YYYY"}
           name="ngayKhoiChieu"
           onChange={handleChangeDatePicker}
@@ -83,7 +83,7 @@ const AddMovie = () => {
 
       <Form.Item label="Tình trạng">
         <select
-          className="form-control w-50"
+          className="p-2 border-0 w-50"
           defaultValue={"dangChieu"}
           name="tinhTrang"
           onChange={(e) => {
@@ -112,7 +112,7 @@ const AddMovie = () => {
       <Form.Item label="Số sao">
         <InputNumber
           value={values.danhGia}
-          className="form-control w-50"
+          className="w-50"
           onChange={handleChangeSetFieldValue("danhGia")}
         />
       </Form.Item>
