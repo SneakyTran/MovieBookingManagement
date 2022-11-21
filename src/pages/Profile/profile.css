@@ -45,7 +45,7 @@
     border: 0;
     margin-bottom: 1rem;
 }
-.form-control {
+.form-control.form-update-profile {
     border: 1px solid #596280;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -108,9 +108,47 @@
     color: orange;
 }
 .ticket__movie__img {
-    width: 200px;
+    max-width: 200px;
     height: 200px;
 }
 .ticket__history td {
     color: white;
+}
+
+.ticket__movie__date {
+    white-space: nowrap;
+}
+
+/* ------------------------------- RESPONSIVE ------------------------------- */
+@media screen and (max-width: 992px) {
+    .ticket__history .ticket__movie__img {
+        max-width: 350px;
+    }
+    .ticket__history th,
+    .ticket__history td {
+        padding: 8px;
+    }
+    .ticket__history th {
+        font-size: 0.8rem;
+    }
+
+    .ticket__history tr td {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .ticket__history th,
+    .ticket__history td {
+        padding: 4px;
+    }
+    .ticket__history th {
+        font-size: 0.7rem;
+    }
+    .ticket__history tr td {
+        font-size: 0.7rem;
+    }
+    .ticket__history .history__title{
+        white-space: normal;
+    }
 }
