@@ -99,3 +99,18 @@
 .user-profile h5.user-name {
     color: white !important;
 }
+.ticket__history .table tr,
+.ticket__history .table th,
+.ticket__history .table td {
+    border: none;
+}
+.ticket__history .history__title {
+    color: orange;
+}
+.ticket__movie__img {
+    width: 200px;
+    height: 200px;
+}
+.ticket__history td {
+    color: white;
+}

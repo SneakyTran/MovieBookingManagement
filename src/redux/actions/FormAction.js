@@ -1,6 +1,13 @@
 import axios from "axios";
-import { DOMAIN_CINEMA, TOKEN , USER_PROFILE_API } from "../../utils/setting";
-import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN, USER_PROFILE, USER_UPDATE } from "../types/FormType";
+import { DOMAIN_CINEMA, TOKEN, USER_PROFILE_API } from "../../utils/setting";
+import {
+    ACCESS_TOKEN,
+    LOGIN,
+    OPEN_LOGIN,
+    USER_LOGIN,
+    USER_PROFILE,
+    USER_UPDATE,
+} from "../types/FormType";
 import Login from "../../pages/Login/Login";
 import { toast } from "react-toastify";
 import { bothServiceToken } from "../../Service/BothTokenService";
@@ -97,31 +104,39 @@ export const registerAction = (userInfo) => {
 
 export const getUserInfoAction = () => {
     return (dispatch2) => {
-        bothServiceToken.post(USER_PROFILE_API)
-        .then((result) => {
-            let action = {
-                type: USER_PROFILE,
-                userProfile: result.data.content,
-            };
-            dispatch2(action);
-        })
-        .catch((error) => {
-            console.log(error.response?.data);
-        });
+        bothServiceToken
+            .post(USER_PROFILE_API)
+            .then((result) => {
+                console.log(result.data.content);
+                let action = {
+                    type: USER_PROFILE,
+                    userProfile: result.data.content,
+                };
+                dispatch2(action);
+            })
+            .catch((error) => {
+                console.log(error.response?.data);
+            });
     };
 };
 
 export const updateUser = (values) => {
     return (dispatch2) => {
-        bothServiceToken.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
+        bothServiceToken
+            .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
             .then((result) => {
-                console.log("reusss", result.data)
-                dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
-                localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));
+                console.log("reusss", result.data);
+                dispatch2({
+                    type: USER_UPDATE,
+                    userUpdate: result.data.content,
+                });
+                localStorage.setItem(
+                    USER_LOGIN,
+                    JSON.stringify(result.data.content)
+                );
             })
             .catch((error) => {
-                console.log(error)
-            })
-    }
-
-}
+                console.log(error);
+            });
+    };
+};

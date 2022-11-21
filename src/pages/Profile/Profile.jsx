@@ -11,6 +11,7 @@ import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import * as Yup from "yup";
 import "./profile.css";
 import bgSrc from "../../assets/img/bg.jpg";
+import { getDateTimeFormat } from "../../components/CinemaComponent/lib/Calender";
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -18,26 +19,30 @@ export default function Profile() {
     const [tabActive, setTabActive] = useState(0);
     useEffect(() => {
         setTabActive(0);
+        setUProfile(userProfile);
     }, []);
     useEffect(() => {
-      setUProfile(userProfile)
-    },[userProfile])
+        setUProfile(userProfile);
+        setArrTicket(userProfile.thongTinDatVe);
+    }, [userProfile]);
     // const { taiKhoan, soDT, email, hoTen } = userProfile;
-    let [uProfile,setUProfile] = useState({ 
-      taiKhoan: "",
-      hoTen: "",
-      soDT: "",
-      email: "",
-      matKhau: "******",})
-      const { taiKhoan, soDT, email, hoTen } = uProfile;
+    let [uProfile, setUProfile] = useState({
+        taiKhoan: "",
+        hoTen: "",
+        soDT: "",
+        email: "",
+        matKhau: "******",
+    });
+    const [arrTicket, setArrTicket] = useState([]);
+    const { taiKhoan, soDT, email, hoTen } = uProfile;
     const formik = useFormik({
-        enableReinitialize:true,
+        enableReinitialize: true,
         initialValues: {
-            taiKhoan: taiKhoan,
-            hoTen: hoTen,
-            soDT: soDT,
-            email: email,
-            matKhau: "******",
+            taiKhoan: uProfile?.taiKhoan,
+            hoTen: uProfile?.hoTen,
+            soDT: uProfile?.soDT,
+            email: uProfile?.email,
+            matKhau: uProfile?.matKhau,
         },
         validationSchema: Yup.object({
             taiKhoan: Yup.string().required("Tài khoản không được để trống"),
@@ -55,7 +60,6 @@ export default function Profile() {
                 .matches(/^[0-9]*$/, "Số điện thoại phải là số"),
         }),
         onSubmit: (values) => {
-            console.log("val",values);
             dispatch({ type: USER_UPDATE, userUpdate: values });
             localStorage.setItem(USER_LOGIN, JSON.stringify(values));
         },
@@ -64,6 +68,46 @@ export default function Profile() {
     useEffect(() => {
         renderUserProfile();
     }, [tabActive]);
+
+    const getCinemaInfo = (arrSeat) => {
+        let seatData = {
+            tenHeThongRap: "",
+            tenGhe: "",
+        };
+        let strSeat = "";
+        arrSeat.map((seat, index) => {
+            const { tenHeThongRap, tenGhe } = seat;
+            if (index !== arrSeat.length - 1) {
+                strSeat += tenGhe + ", ";
+            } else {
+                strSeat += tenGhe;
+            }
+            seatData = { ...seatData, tenHeThongRap };
+        });
+        seatData = { ...seatData, tenGhe: strSeat };
+        return seatData;
+    };
+
+    const renderBookedTicket = () => {
+        return arrTicket.map((ticket, index) => {
+            console.log(ticket);
+            const { hinhAnh, ngayDat, tenPhim, thoiLuongPhim, danhSachGhe } =
+                ticket;
+            let { tenHeThongRap, tenGhe } = getCinemaInfo(danhSachGhe);
+            return (
+                <tr key={index}>
+                    <td className="ticket__movie__img">
+                        <img className="img-fluid" src={hinhAnh} alt="" />
+                    </td>
+                    <td>{tenPhim}</td>
+                    <td>{thoiLuongPhim}</td>
+                    <td>{tenHeThongRap}</td>
+                    <td>{tenGhe}</td>
+                    <td>{getDateTimeFormat(ngayDat)}</td>
+                </tr>
+            );
+        });
+    };
 
     const renderUserProfile = () => {
         if (tabActive === 0) {
@@ -256,7 +300,39 @@ export default function Profile() {
                 </form>
             );
         } else {
-            return <div>Booking history</div>;
+            return (
+                <Fragment>
+                    <div className="card p-4">
+                        <div className="ticket__history">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th className="history__title">
+                                            Movie Banner
+                                        </th>
+                                        <th className="history__title">
+                                            Movie Name
+                                        </th>
+                                        <th className="history__title">
+                                            Duration
+                                        </th>
+                                        <th className="history__title">
+                                            Cinema
+                                        </th>
+                                        <th className="history__title">
+                                            Seats
+                                        </th>
+                                        <th className="history__title">
+                                            Booking date
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>{renderBookedTicket()}</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </Fragment>
+            );
         }
     };
 
