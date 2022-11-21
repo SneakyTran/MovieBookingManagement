@@ -48,13 +48,15 @@
     --toastify-spinner-color-empty-area: #e0e0e0;
 
     /* Used when no type is provided */
-    --toastify-color-progress-light: linear-gradient(to right,
-            #4cd964,
-            #5ac8fa,
-            #007aff,
-            #34aadc,
-            #5856d6,
-            #ff2d55);
+    --toastify-color-progress-light: linear-gradient(
+        to right,
+        #4cd964,
+        #5ac8fa,
+        #007aff,
+        #34aadc,
+        #5856d6,
+        #ff2d55
+    );
     /* Used when no type is provided */
     --toastify-color-progress-dark: #bb86fc;
     --toastify-color-progress-info: var(--toastify-color-info);
@@ -78,7 +80,7 @@ body {
 .movie__title {
     font-size: 1.875rem;
     text-align: center;
-    color: #ff1744;
+    color: rgba(255, 165, 0, 0.9);
 }
 
 /* Overide css Slick */
@@ -225,14 +227,13 @@ body {
     }
 }
 
-
 /* ------------------------------ Toast Design ------------------------------ */
 .toast--default {
     width: 250px;
 }
 
 /* ----------------- Button css -------------- */
-.btn_div{
+.btn_div {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -307,7 +308,6 @@ body {
 
     .title-basic-white {
         font-size: 10px;
-
     }
 
     .btn_white {
@@ -316,10 +316,14 @@ body {
     }
 }
 
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+}
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+}
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+}
