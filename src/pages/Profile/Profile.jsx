@@ -45,7 +45,7 @@ export default function Profile() {
                 .matches(/^[0-9]*$/, "Số điện thoại phải là số"),
         }),
         onSubmit: (values) => {
-            console.log(values);
+            console.log("val",values);
             dispatch({ type: USER_UPDATE, userUpdate: values });
             localStorage.setItem(USER_LOGIN, JSON.stringify(values));
         },
