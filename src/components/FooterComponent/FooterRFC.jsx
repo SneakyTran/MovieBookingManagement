@@ -4,7 +4,7 @@ import "./footer.css"
 
 export default function Footer() {
   return (
-    <div style={{ padding: "50px 0" }}>
+    <div className='bg__footer' style={{ padding: "50px 0" }}>
       <div className="container">
         <div className="row footer_movie">
           <div className="col-lg-3 col-md-12 col-sm-12">

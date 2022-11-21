@@ -169,7 +169,6 @@ export default function Detail(props) {
   const renderSystemCinema = () => {
     let prevSys = "";
     let curSys = "";
-    let checkArr = [];
     return detailFilm?.heThongRapChieu?.map((cinema, index) => {
       return cinema?.cumRapChieu?.map((cumRap) => {
         return cumRap?.lichChieuPhim?.map((movie, i) => {
@@ -197,8 +196,6 @@ export default function Detail(props) {
                 )}
               </Fragment>
             );
-          } else {
-            return null;
           }
         });
       });
@@ -358,7 +355,6 @@ export default function Detail(props) {
             <div>
               <span className="title-basic-orange"> Đánh giá :</span>
               <span>
-                {" "}
                 {detailFilm.danhGia}
                 <i className="fa-solid fa-star title-basic"></i>
               </span>
@@ -379,8 +375,7 @@ export default function Detail(props) {
       </div>
       <div className="cinema">
         <h2 className="cinema_header">BUY TICKET ONLINE</h2>
-        <div className="row cinema_header-logo">
-        </div>
+        <div className="row cinema_header-logo">{renderSystemCinema()}</div>
         <div className="row cinema__content mt-3">
           <div className="col-3">{renderClusterCinema()}</div>
           <div className="col-9">

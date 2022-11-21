@@ -80,7 +80,7 @@ const User = (props) => {
                 <span
                   className="movie_admin-icon text-warning"
                 >
-                  Xem lịch sử Buy ticket
+                  Xem lịch sử đặt vé
                 </span>
               </NavLink>
             </div>

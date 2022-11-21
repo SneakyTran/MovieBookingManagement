@@ -10,7 +10,10 @@ import "./lib/Calender";
 import { getDateShowTime, getTimeDuration, getTimeISO } from "./lib/Calender";
 import { useHistory } from "react-router-dom";
 import { CLOSE_MODAL } from "../../redux/types/ModalType";
-import { SELECT_MOVIE_TICKET } from "../../redux/types/CinemaType";
+import { ACCESS_TOKEN } from "../../utils/setting";
+import { toast } from "react-toastify";
+import { OPEN_LOGIN } from "../../redux/types/FormType";
+import Login from "../../pages/Login/Login";
 
 export default function MovieStModaleComponent(props) {
     const { movieId, movieImg, movieName } = props.movie;
@@ -31,14 +34,23 @@ export default function MovieStModaleComponent(props) {
     };
 
     const routeChange = () => {
-        dispatch({
-            type: SELECT_MOVIE_TICKET,
-            movieSelected: {
-                movie: props.movie,
-                movieSt: props.movieSt,
-                cinema: props.cinema,
-            },
-        });
+        if (!localStorage.getItem(ACCESS_TOKEN)) {
+            toast.warning("You must login first", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            dispatch(
+                cinemaModalAction(CLOSE_MODAL, <MovieStModaleComponent />)
+            );
+            dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
+            return;
+        }
         history.push(
             `/booking/${props.movieSt.maLichChieu}/${getTimeISO(
                 props.movieSt.ngayChieuGioChieu

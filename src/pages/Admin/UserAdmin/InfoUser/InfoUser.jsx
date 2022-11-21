@@ -60,7 +60,9 @@ export default function InfoUser(props) {
       <h2>Lịch sử Buy ticket</h2>
       {filterFilm?.length === 0 ? (
         <div>
-          <h2 className="text-warning">Trong tháng {monthCur} bạn chưa Buy ticket nào </h2>
+          <h2 className="text-warning">
+            Trong tháng {monthCur} bạn chưa đặt vé nào cả!!!{" "}
+          </h2>
         </div>
       ) : (
         ""

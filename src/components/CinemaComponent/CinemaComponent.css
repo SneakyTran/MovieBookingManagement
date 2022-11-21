@@ -20,7 +20,7 @@
     border: 1px;
     font-weight: 600;
     border-radius: 0.25rem;
-    background-color: #ff1744;
+    background-color: rgba(255, 165, 0, 0.9);
     cursor: pointer;
 }
 
@@ -33,7 +33,7 @@
     border-radius: 0.3rem;
     background-color: transparent;
     width: 100%;
-    caret-color: #ff1744;
+    caret-color: orange;
 
     color: white;
     font-size: 0.875rem;
@@ -148,11 +148,11 @@ p {
 }
 
 .calender__card.active .calender__header {
-    background-color: rgba(255, 48, 90, 0.9);
+    background-color: rgba(255, 165, 0, 0.9);
 }
 
 .calender__card.active {
-    border: 1px solid rgba(255, 48, 90, 0.9);
+    border: 1px solid rgba(255, 165, 0, 0.9);
 }
 
 .calender__card:not(.calender__card.active):hover {
@@ -199,7 +199,7 @@ p {
 }
 
 .showTimes__detail .duration:hover {
-    border: 1px solid rgba(255, 48, 90, 0.9);
+    border: 1px solid rgba(255, 165, 0, 0.9);
     transition: all 0.3s;
 }
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
+import { DOMAIN_CINEMA, TOKEN, USER_PROFILE } from "../../utils/setting";
 import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN, USER_UPDATE } from "../types/FormType";
 import Login from "../../pages/Login/Login";
 import Swal from "sweetalert2";
@@ -98,22 +98,15 @@ export const registerAction = (userInfo) => {
 
 export const getUserInfoAction = () => {
     return (dispatch2) => {
-        let promise = axios({
-            url: `${DOMAIN_CINEMA}QuanLyNguoiDung/ThongTinTaiKhoan`,
-            method: "post",
-            headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem(ACCESS_TOKEN)),
-                TokenCybersoft: TOKEN,
-            },
-        });
-        promise.then((result) => {
+        bothServiceToken.post(USER_PROFILE)
+        .then((result) => {
             let action = {
                 type: "USER_PROFILE",
                 userProfile: result.data.content,
             };
             dispatch2(action);
-        });
-        promise.catch((error) => {
+        })
+        .catch((error) => {
             console.log(error.response?.data);
         });
     };
@@ -124,7 +117,7 @@ export const updateUser = (values) => {
         bothServiceToken.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
             .then((result) => {
                 console.log("reusss", result.data)
-                // dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
+                dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
                 localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));
             })
             .catch((error) => {
