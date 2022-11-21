@@ -117,9 +117,29 @@ export const updateUser = (values) => {
             .then((result) => {
                 dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
                 localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));
+                toast.success("Update profile successfully!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch((error) => {
                 console.log(error)
+                toast.error("User profile is existed!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
     }
 
