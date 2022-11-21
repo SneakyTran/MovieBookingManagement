@@ -1,9 +1,10 @@
 import axios from "axios";
 import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
-import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN } from "../types/FormType";
+import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN, USER_UPDATE } from "../types/FormType";
 import Login from "../../pages/Login/Login";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { bothServiceToken } from "../../Service/BothTokenService";
 
 export const loginAction = (userInfo) => {
     return (dispatch2) => {
@@ -38,7 +39,6 @@ export const loginAction = (userInfo) => {
             dispatch2(action);
 
             let userInfo = JSON.stringify(result.data.content);
-            console.log(result.data.content);
             localStorage.setItem(USER_LOGIN, userInfo);
         });
         promise.catch((error) => {
@@ -96,28 +96,40 @@ export const registerAction = (userInfo) => {
     };
 };
 
-export const getUserInfoAction = (userInfo) => {
+export const getUserInfoAction = () => {
     return (dispatch2) => {
         let promise = axios({
             url: `${DOMAIN_CINEMA}QuanLyNguoiDung/ThongTinTaiKhoan`,
             method: "post",
-            // data: userInfo,
             headers: {
-                Authorization: "Bearer" + JSON.parse(localStorage.getItem(ACCESS_TOKEN)),
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem(ACCESS_TOKEN)),
                 TokenCybersoft: TOKEN,
             },
         });
         promise.then((result) => {
-            console.log(result.data);
-            // let action = {
-            //     type: "USER_PROFILE",
-            //     userDetail: result.data.content,
-            // };
-            // dispatch2(action);
+            let action = {
+                type: "USER_PROFILE",
+                userProfile: result.data.content,
+            };
+            dispatch2(action);
         });
         promise.catch((error) => {
-
             console.log(error.response?.data);
         });
     };
 };
+
+export const updateUser = (values) => {
+    return (dispatch2) => {
+        bothServiceToken.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
+            .then((result) => {
+                console.log("reusss", result.data)
+                // dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
+                localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+}

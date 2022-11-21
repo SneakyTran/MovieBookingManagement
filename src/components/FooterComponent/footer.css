@@ -20,16 +20,19 @@
     flex-direction: column;
     height: 100%;
 }
+.footer_img{
+    width: 100%;
+}
 .ft_content.ft_aboutus p{
     font-size: 14px;
 }
-.col-3 span{
+.footer_title{
     color: #fff;
     position: relative;
     cursor: pointer;
     font-size: 18px;
 }
-.col-3 h2 span::after{
+.footer_title::after{
     content: "";
     width: 0;
     height: 2px;
@@ -40,7 +43,7 @@
     transition: all 0.5s;
     
 }
-.col-3 h2 span:hover::after{
+.footer_title:hover::after{
     width: 100%;   
 }
 
@@ -184,4 +187,30 @@
 }
 .coppyright a{
     color: orange;
+}
+
+/* --------------------- */
+
+@media screen and (max-width:992px) {
+    .footer_img{
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+    }
+    .ft_content.ft_aboutus p{
+        padding: 10px 100px;
+    }
+    .newsletter{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .col-lg-3.col-md-6.col-sm-12{
+        text-align: center;
+    }
+    .social_link .social_icon {
+        display: flex;
+        justify-content: space-evenly;
+    }
 }

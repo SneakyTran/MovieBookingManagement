@@ -19,16 +19,7 @@ export default function Header() {
     const openModalLogin = () => dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
     const openModalRegister = () => dispatch({ type: OPEN_REGISTER, modalRegister: <Register /> });
     const logout = () => dispatch({type: LOGOUT});
-    const goToProfile= () => {
-        // let getService = new BothTokenService();
-        // let action = getService.post("QuanLyNguoiDung/ThongTinTaiKhoan");
-        // dispatch(action)
-
-        let userProfile = JSON.parse(localStorage.getItem(USER_LOGIN))
-        dispatch({type:USER_PROFILE, userProfile: userProfile})
-    };
-
-    
+ 
     let renderAccount = () => {
         if (uLogin !== undefined) {
             // đã đăng nhập
@@ -39,9 +30,7 @@ export default function Header() {
                     }}>{uLogin.hoTen}
                     </div>   
                     <div className="user_profile" style={{display:`${active ? "block" : "none"}`}}>
-                        <NavLink  to="/profile"  onClick={() => {
-                            goToProfile();
-                        }} className="user_detail">User Profile</NavLink>
+                        <NavLink  to="/profile" className="user_detail">User Profile</NavLink>
                         <div onClick={() => {
                             logout();
                         }} className="user_logout">Log out</div>

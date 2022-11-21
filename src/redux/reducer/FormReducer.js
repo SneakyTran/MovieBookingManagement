@@ -18,6 +18,7 @@ export const FormReducer = (state = initialState, action) => {
 
         case LOGIN:
             state.uLogin = {...action.uLogin};
+            console.log("ulogin",state.uLogin)
             return {...state}
 
         case LOGOUT:
@@ -28,10 +29,11 @@ export const FormReducer = (state = initialState, action) => {
         
         case USER_PROFILE:
             state.userProfile = action.userProfile;
+            console.log("profile",state.userProfile)
             return {...state}
         
         case USER_UPDATE:
-            state.uLogin= action.userUpdate;
+            state.userProfile = action.userUpdate;
             console.log(state)
             return {...state}
         default:
