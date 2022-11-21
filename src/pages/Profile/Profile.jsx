@@ -1,4 +1,4 @@
-import axios from "axios";
+ 
 import { useFormik } from "formik";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +7,10 @@ import {
     USER_LOGIN,
     USER_PROFILE,
 } from "../../redux/types/FormType";
-import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import * as Yup from "yup";
 import "./profile.css";
 import bgSrc from "../../assets/img/bg.jpg";
+import { updateUser } from "../../redux/actions/FormAction";
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -22,14 +22,18 @@ export default function Profile() {
     useEffect(() => {
       setUProfile(userProfile)
     },[userProfile])
-    // const { taiKhoan, soDT, email, hoTen } = userProfile;
+
     let [uProfile,setUProfile] = useState({ 
       taiKhoan: "",
       hoTen: "",
       soDT: "",
       email: "",
-      matKhau: "******",})
-      const { taiKhoan, soDT, email, hoTen } = uProfile;
+      matKhau: "",
+      maNhom: "GP01",
+      maLoaiNguoiDung: "KhachHang",
+    })
+      const { taiKhoan, soDT, email, hoTen, matKhau } = uProfile;
+      console.log(uProfile)
     const formik = useFormik({
         enableReinitialize:true,
         initialValues: {
@@ -37,25 +41,28 @@ export default function Profile() {
             hoTen: hoTen,
             soDT: soDT,
             email: email,
-            matKhau: "******",
+            matKhau: matKhau,
+            maNhom: "GP01",
+            maLoaiNguoiDung: "KhachHang",
         },
         validationSchema: Yup.object({
-            taiKhoan: Yup.string().required("Tài khoản không được để trống"),
+            taiKhoan: Yup.string().required("Username is not empty!"),
             matKhau: Yup.string()
-                .required("Mật khẩu không được để trống")
-                .min(6, "Mật khẩu ít nhất có 6 kí tự."),
+                .required("Passwword is not empty!")
+                .min(6, "Password must be have at least 6 characters"),
             email: Yup.string()
-                .required("Email không được để trống")
-                .email("Email chưa đúng định dạng"),
+                .required("Email is not empty!")
+                .email("Email is not valid"),
             hoTen: Yup.string()
-                .required("Họ tên không được để trống")
-                .matches(/^[A-Z a-z]+$/, "Họ tên không đúng định dạng"),
+                .required("Fullname is not empty")
+                .matches(/^[A-Z a-z]+$/, "Fullname is not valid"),
             soDT: Yup.string()
-                .required("Số điện thoại không được để trống")
-                .matches(/^[0-9]*$/, "Số điện thoại phải là số"),
+                .required("Phone number is not empty")
+                .matches(/^[0-9]*$/, "Phone number must be contain only number"),
         }),
         onSubmit: (values) => {
-            console.log(values);
+            let action = updateUser(values)
+            dispatch(action)
             dispatch({ type: USER_UPDATE, userUpdate: values });
             localStorage.setItem(USER_LOGIN, JSON.stringify(values));
         },

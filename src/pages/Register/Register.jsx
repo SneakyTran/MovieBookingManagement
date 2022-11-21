@@ -21,21 +21,20 @@ export default function Register() {
       xacNhanMK: '',
     },
     validationSchema: Yup.object({
-      taiKhoan: Yup.string().required("Tài khoản không được để trống"),
-      matKhau: Yup.string().required("Mật khẩu không được để trống")
-      .min(6, 'Mật khẩu ít nhất có 6 kí tự.'),
+      taiKhoan: Yup.string().required("Username is not empty!"),
+      matKhau: Yup.string().required("Password is not empty!")
+      .min(6, 'Password must be have at least 6 characters'),
       xacNhanMK: Yup.string()
-        .oneOf([Yup.ref('matKhau'), null], 'Mật khẩu chưa hợp lệ')
-        .required("Mật khẩu không được để trống"),
-      email: Yup.string().required("Email không được để trống")
-        .email("Email chưa đúng định dạng"),
-      hoTen: Yup.string().required("Họ tên không được để trống")
-        .matches(/^[A-Z a-z]+$/, "Họ tên không đúng định dạng"),
-      soDt: Yup.string().required("Số điện thoại không được để trống")
-        .matches(/^[0-9]*$/, "Số điện thoại phải là số")
+        .oneOf([Yup.ref('matKhau'), null], 'Password is not valid')
+        .required("Password is not empty!"),
+      email: Yup.string().required("Email is not empty!")
+        .email("Email is not valid"),
+      hoTen: Yup.string().required("Fullname is not empty!")
+        .matches(/^[A-Z a-z]+$/, "Fullname is not valid"),
+      soDt: Yup.string().required("Phone number is not empty!")
+        .matches(/^[0-9]*$/, "Phone number must be contain only number")
     }),
     onSubmit: values => {
-      console.log(values);
       let action = registerAction(values);
       dispatch(action);
     },

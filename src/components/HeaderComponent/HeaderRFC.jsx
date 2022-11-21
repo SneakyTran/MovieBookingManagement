@@ -11,7 +11,6 @@ import {
     USER_LOGIN,
     USER_PROFILE,
 } from "../../redux/types/FormType";
-import { BothTokenService } from "../../Service/BothTokenService";
 import "./header.css";
 
 export default function Header() {
@@ -48,9 +47,9 @@ export default function Header() {
                         <NavLink onClick={() => {
                             goToProfile();
                         }} to="/profile" className="user_detail">User Profile</NavLink>
-                        <div onClick={() => {
+                        <NavLink onClick={() => {
                             logout();
-                        }} className="user_logout">Log out</div>
+                        }} to="/home" className="user_logout">Log out</NavLink>
                     </div>             
                 </div>       
             )

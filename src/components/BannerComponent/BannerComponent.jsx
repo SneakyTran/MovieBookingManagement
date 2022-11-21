@@ -185,7 +185,9 @@ export default function BannerComponent() {
     <>
       <div className="bg-dark ">
         <Slider {...settings}>{renderPhim()}</Slider>
-        <Slider {...settings2}>{renderPhimMini()}</Slider>
+        <div id="movie">
+          <Slider {...settings2}>{renderPhimMini()}</Slider>
+        </div>
       </div>
     </>
   );
