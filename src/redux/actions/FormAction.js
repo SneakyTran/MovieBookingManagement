@@ -1,8 +1,7 @@
 import axios from "axios";
-import { DOMAIN_CINEMA, TOKEN, USER_PROFILE } from "../../utils/setting";
-import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN, USER_UPDATE } from "../types/FormType";
+import { DOMAIN_CINEMA, TOKEN , USER_PROFILE_API } from "../../utils/setting";
+import { ACCESS_TOKEN, LOGIN, OPEN_LOGIN, USER_LOGIN, USER_PROFILE, USER_UPDATE } from "../types/FormType";
 import Login from "../../pages/Login/Login";
-import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { bothServiceToken } from "../../Service/BothTokenService";
 
@@ -98,10 +97,10 @@ export const registerAction = (userInfo) => {
 
 export const getUserInfoAction = () => {
     return (dispatch2) => {
-        bothServiceToken.post(USER_PROFILE)
+        bothServiceToken.post(USER_PROFILE_API)
         .then((result) => {
             let action = {
-                type: "USER_PROFILE",
+                type: USER_PROFILE,
                 userProfile: result.data.content,
             };
             dispatch2(action);
