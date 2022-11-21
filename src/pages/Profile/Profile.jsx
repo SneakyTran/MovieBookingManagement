@@ -19,9 +19,19 @@ export default function Profile() {
     useEffect(() => {
         setTabActive(0);
     }, []);
-    const { taiKhoan, soDT, email, hoTen } = userProfile;
-
+    useEffect(() => {
+      setUProfile(userProfile)
+    },[userProfile])
+    // const { taiKhoan, soDT, email, hoTen } = userProfile;
+    let [uProfile,setUProfile] = useState({ 
+      taiKhoan: "",
+      hoTen: "",
+      soDT: "",
+      email: "",
+      matKhau: "******",})
+      const { taiKhoan, soDT, email, hoTen } = uProfile;
     const formik = useFormik({
+        enableReinitialize:true,
         initialValues: {
             taiKhoan: taiKhoan,
             hoTen: hoTen,

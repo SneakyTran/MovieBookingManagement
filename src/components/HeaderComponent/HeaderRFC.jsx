@@ -28,12 +28,11 @@ export default function Header() {
         dispatch({ type: OPEN_REGISTER, modalRegister: <Register /> });
     const logout = () => dispatch({ type: LOGOUT });
     const goToProfile = () => {
-        // let getService = new BothTokenService();
-        // let action = getService.post("QuanLyNguoiDung/ThongTinTaiKhoan");
-        // dispatch(action)
+        let action = getUserInfoAction();
+        dispatch(action)
         setActive(false);
-        let userProfile = JSON.parse(localStorage.getItem(USER_LOGIN));
-        dispatch({ type: USER_PROFILE, userProfile: userProfile });
+        // let userProfile = JSON.parse(localStorage.getItem(USER_LOGIN));
+        // dispatch({ type: USER_PROFILE, userProfile: userProfile });
     };
 
     let renderAccount = () => {
@@ -41,38 +40,20 @@ export default function Header() {
             // đã đăng nhập
             return (
                 <div className="header_login">
-                    <div
-                        className="header_user prevent--select header_account"
-                        onClick={() => {
-                            setActive(!active);
-                        }}
-                    >
-                        {uLogin.hoTen}
-                    </div>
-                    <div
-                        className="user_profile"
-                        style={{ display: `${active ? "block" : "none"}` }}
-                    >
-                        <NavLink
-                            to="/profile"
-                            onClick={() => {
-                                goToProfile();
-                            }}
-                            className="user_detail"
-                        >
-                            User Profile
-                        </NavLink>
-                        <div
-                            onClick={() => {
-                                logout();
-                            }}
-                            className="user_logout"
-                        >
-                            Log out
-                        </div>
-                    </div>
-                </div>
-            );
+                    <div className="header_user header_account" onClick={() => {
+                        setActive(!active)
+                    }}>{uLogin.hoTen}
+                    </div>   
+                    <div className="user_profile" style={{display:`${active ? "block" : "none"}`}}>
+                        <NavLink onClick={() => {
+                            goToProfile();
+                        }} to="/profile" className="user_detail">User Profile</NavLink>
+                        <div onClick={() => {
+                            logout();
+                        }} className="user_logout">Log out</div>
+                    </div>             
+                </div>       
+            )
         } else {
             return (
                 <>

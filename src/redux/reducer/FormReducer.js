@@ -32,12 +32,10 @@ export const FormReducer = (state = initialState, action) => {
 
         case USER_PROFILE:
             state.userProfile = action.userProfile;
-            console.log("profile", state.userProfile);
             return { ...state };
 
         case USER_UPDATE:
             state.uLogin = action.userUpdate;
-            console.log(state);
             return { ...state };
         default:
             return state;
