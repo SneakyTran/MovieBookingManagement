@@ -78,17 +78,19 @@ export default function MovieStModaleComponent(props) {
                             </p>
                         </div>
                         <div className="col p-1">
-                            <p className="title__date">DATE</p>
-                            <p className="movie__showtime">
-                                {getDateShowTime(ngayChieuGioChieu)}
-                            </p>
-                        </div>
-                        <div className="col p-1">
-                            <p className="title__date">TIME</p>
-                            <p className="movie__showtime">
-                                {getTimeISO(ngayChieuGioChieu)} ~{" "}
-                                {getTimeDuration(ngayChieuGioChieu)}
-                            </p>
+                            <div className="mv__booking__time">
+                                <p className="title__date">DATE</p>
+                                <p className="movie__showtime">
+                                    {getDateShowTime(ngayChieuGioChieu)}
+                                </p>
+                            </div>
+                            <div className="mv__booking__time">
+                                <p className="title__date">TIME</p>
+                                <p className="movie__showtime">
+                                    {getTimeISO(ngayChieuGioChieu)} ~{" "}
+                                    {getTimeDuration(ngayChieuGioChieu)}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div className="cinema__info__modal">

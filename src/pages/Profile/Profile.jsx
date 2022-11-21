@@ -11,7 +11,7 @@ import { DOMAIN_CINEMA, TOKEN } from "../../utils/setting";
 import * as Yup from "yup";
 import "./profile.css";
 import bgSrc from "../../assets/img/bg.jpg";
-import { getDateTimeFormat } from "../../components/CinemaComponent/lib/Calender";
+import { getDateShowTime } from "../../components/CinemaComponent/lib/Calender";
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -90,7 +90,6 @@ export default function Profile() {
 
     const renderBookedTicket = () => {
         return arrTicket.map((ticket, index) => {
-            console.log(ticket);
             const { hinhAnh, ngayDat, tenPhim, thoiLuongPhim, danhSachGhe } =
                 ticket;
             let { tenHeThongRap, tenGhe } = getCinemaInfo(danhSachGhe);
@@ -103,7 +102,7 @@ export default function Profile() {
                     <td>{thoiLuongPhim}</td>
                     <td>{tenHeThongRap}</td>
                     <td>{tenGhe}</td>
-                    <td>{getDateTimeFormat(ngayDat)}</td>
+                    <td className="ticket__movie__date">{getDateShowTime(ngayDat)}</td>
                 </tr>
             );
         });

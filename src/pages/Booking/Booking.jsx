@@ -190,9 +190,9 @@ export default function Booking(props) {
                 <div className="bg__overlay"></div>
                 <img src={hinhAnh} alt="" />
             </div>
-            <div className="container my-4">
+            <div className="container booking__container my-4">
                 <div className="row">
-                    <div className="col-9">
+                    <div className="col-12 col-xl-9">
                         <div className="booking__left">
                             <div className="screen"></div>
                             <div className="screen__shape text-center mb-4"></div>
@@ -209,7 +209,7 @@ export default function Booking(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-3">
+                    <div className="col-12 col-xl-3">
                         <div className="card__shadow pl-3 pb-3">
                             <div className="ticket__info">
                                 {renderMovieInfo()}
