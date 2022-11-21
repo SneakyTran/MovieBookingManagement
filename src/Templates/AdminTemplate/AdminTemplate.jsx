@@ -9,11 +9,20 @@ import "antd/dist/antd.min.css";
 import "./admin.css";
 import React, { useState } from "react";
 import { NavLink, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { history } from "../../App";
 const { Header, Sider, Content } = Layout;
 
 export default function AdminTemplate(props) {
   const [collapsed, setCollapsed] = useState(false);
   const { Component, ...rest } = props;
+  const { maLoaiNguoiDung } = useSelector((state) => state.FormReducer.uLogin);
+  console.log(maLoaiNguoiDung.trim().toLowerCase());
+  if (maLoaiNguoiDung.trim().toLowerCase() !== "quantri") {
+    history.push("/home");
+  }
+  useEffect(() => {}, []);
   return (
     <Route
       {...rest}
@@ -25,7 +34,7 @@ export default function AdminTemplate(props) {
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={["1"]}
                 items={[
                   {
                     key: "1",

@@ -9,6 +9,8 @@ import {
 } from "../../../../redux/actions/UserManagerAction";
 export default function EditUser(props) {
   const { userInfo } = useSelector((state) => state.UserManagerReducer);
+  const { userProfile } = useSelector((state) => state.FormReducer);
+  console.log(userProfile)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getInfoUser(props.match.params.taiKhoan));

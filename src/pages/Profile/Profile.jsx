@@ -16,6 +16,7 @@ import { getDateTimeFormat } from "../../components/CinemaComponent/lib/Calender
 export default function Profile() {
     const dispatch = useDispatch();
     const { userProfile } = useSelector((state) => state.FormReducer);
+    console.log(userProfile)
     const [tabActive, setTabActive] = useState(0);
     useEffect(() => {
         setTabActive(0);
