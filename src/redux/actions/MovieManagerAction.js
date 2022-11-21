@@ -34,8 +34,8 @@ export function uploadMovie(datas) {
         datas
       );
       toast.success("Success");
-
       dispatch(getListMovie());
+      history.push("/admin/movieadmin");
     } catch (e) {
       console.log(e.response);
       toast.err("Error!!!");
@@ -49,7 +49,6 @@ export function getInfoMovie(maPhim) {
       const { data } = await bothServiceToken.get(
         `QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`
       );
-      toast.success("Success");
 
       dispatch({ type: GET_INFO_FILM, payload: data.content });
     } catch (e) {

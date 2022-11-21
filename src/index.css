@@ -238,6 +238,7 @@ body {
     justify-content: end;
     align-items: center;
 }
+
 .btn_movie {
     --c: orange;
     color: var(--c);
@@ -295,8 +296,15 @@ body {
 .btn_movie span:nth-child(4) {
     --n: 4;
 }
+
 /* ------------------Media Query---------------- */
 @media (max-width: 576px) {
+
+    .banner_icon-right,
+    .banner_icon-left {
+        font-size: 27px;
+    }
+
     .btn_primary {
         font-size: 2.5vw;
         padding: 4px;
@@ -320,6 +328,17 @@ body {
 }
 
 @media (min-width: 768px) {
+     .banner_icon-right,
+    .banner_icon-left {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 768px) {
+     .banner_icon-right,
+    .banner_icon-left {
+        font-size: 40px;
+    }
 }
 
 @media (min-width: 992px) {

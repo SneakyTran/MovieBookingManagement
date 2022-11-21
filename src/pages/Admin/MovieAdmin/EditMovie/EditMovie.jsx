@@ -85,7 +85,7 @@ const EditMovie = (props) => {
           label={<h6 className="font-weight-bold m-0">Ngày Khởi Chiếu</h6>}
         >
           <DatePicker
-            className="form-control w-50"
+            className="w-50"
             format={"DD/MM/YYYY"}
             name="ngayKhoiChieu"
             allowClear={false}
@@ -96,7 +96,7 @@ const EditMovie = (props) => {
 
         <Form.Item label={<h6 className="font-weight-bold m-0">Tình trạng</h6>}>
           <select
-            className="form-control w-50"
+            className="w-50 p-2 border-0"
             defaultValue={"dangChieu"}
             name="tinhTrang"
             onChange={(e) => {
@@ -129,7 +129,7 @@ const EditMovie = (props) => {
         <Form.Item label={<h6 className="font-weight-bold m-0">Số sao</h6>}>
           <InputNumber
             value={values.danhGia}
-            className="form-control w-50"
+            className="w-50"
             onChange={handleChangeSetFieldValue("danhGia")}
           />
         </Form.Item>
