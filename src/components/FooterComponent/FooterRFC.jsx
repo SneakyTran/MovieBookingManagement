@@ -40,12 +40,12 @@ export default function Footer() {
             </h2>
             <div className="ft_content">
               <ul>
-                <li><a href="#">Hot movies</a> </li>
-                <li><a href="#">Videos</a></li>
-                <li><a href="#">Cinema</a></li>
-                <li><a href="#">Show time</a></li>
-                <li><a href="#">Upcoming Movies</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="/#">Hot movies</a> </li>
+                <li><a href="/#">Videos</a></li>
+                <li><a href="/#">Cinema</a></li>
+                <li><a href="/#">Show time</a></li>
+                <li><a href="/#">Upcoming Movies</a></li>
+                <li><a href="/#">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -55,12 +55,12 @@ export default function Footer() {
             </h2>
             <div className="ft_content">
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About us</a> </li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Event</a></li>
+                <li><a href="/#">Home</a></li>
+                <li><a href="/#">About us</a> </li>
+                <li><a href="/#">Contact</a></li>
+                <li><a href="/#">Pages</a></li>
+                <li><a href="/#">Blog</a></li>
+                <li><a href="/#">Event</a></li>
               </ul>
             </div>
           </div>
@@ -76,14 +76,14 @@ export default function Footer() {
                     <i className="fa-brands fa-twitter"></i>
                   </div>
                   <div className="ft_twitter_dec">
-                    <a href="">black-one <span>@24Webpro</span></a>
+                    <a href="/#">black-one <span>@24Webpro</span></a>
                     <p>Lorem Ipsum is simply dumy text of the printing.</p>
                     <div className="ft_twitter_meta">
                       <ul className='d-lfex'>
-                        <li><a href="#"><span className="fa fa-mail-reply"></span></a></li>
-                        <li><a href="#"><span className="fa fa-retweet"></span>12</a></li>
-                        <li><a href="#"><span className="fa fa-heart"></span>21</a></li>
-                        <li><a href="#"><span className="fa fa-ellipsis-h"></span></a></li>
+                        <li><a href="/#"><span className="fa fa-mail-reply"></span></a></li>
+                        <li><a href="/#"><span className="fa fa-retweet"></span>12</a></li>
+                        <li><a href="/#"><span className="fa fa-heart"></span>21</a></li>
+                        <li><a href="/#"><span className="fa fa-ellipsis-h"></span></a></li>
                       </ul>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ export default function Footer() {
         </div>
         <div className="row">
           <div className="coppyright">
-            <p>CopyRight© 2022 <a href="#">Themepul</a> . All Rights Reserved.</p>
+            <p>CopyRight© 2022 <a href="/#">Themepul</a> . All Rights Reserved.</p>
           </div>
         </div>
       </div>

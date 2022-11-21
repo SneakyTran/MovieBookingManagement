@@ -1,10 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { CLOSE_MODAL } from "../../../redux/types/ModalType";
 import "./modaliframe.css";
 export default function IframeFilm({ phim, isContent }) {
   let { trailer } = phim;
   trailer = trailer.replace("watch?v=", "embed/");
-
+const dispatch= useDispatch();
   return (
     <>
       <iframe
@@ -35,7 +37,9 @@ export default function IframeFilm({ phim, isContent }) {
             <div className="text-center">
 
             <NavLink to={`/detail/${phim.maPhim}`}>
-              <button className="btn btn_primary">Buy ticket</button>
+              <button className="btn btn_primary" onClick={()=>{
+                dispatch({type:CLOSE_MODAL})
+              }}>Buy ticket</button>
             </NavLink>
             </div>
           </div>

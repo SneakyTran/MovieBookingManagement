@@ -49,7 +49,6 @@ function App() {
           {/* default url khi push nhánh nhớ đưa file vào Home*/}
 
           <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
-
           <HomeTemplate
             exact
             path="/detail/:maPhim"
