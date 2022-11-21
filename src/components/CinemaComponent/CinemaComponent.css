@@ -224,3 +224,56 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* ------------------------------- RESPONSIVE ------------------------------- */
+@media screen and (max-width: 1200px) {
+    .container__cinema {
+        max-width: 992px;
+    }
+    .calender__card {
+        width: 80px !important;
+    }
+    .calender__header,
+    .calender__body {
+        padding: 0 !important;
+    }
+    .cinema__logo__left span,
+    .cinema__info .cinema__address {
+        font-size: 0.8rem;
+    }
+    .movie__title {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .movie__right .movie__showtime,
+    .movie__right .movie__name {
+        font-size: 0.8rem;
+    }
+    .movie__right .title__date {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .cinema__content .cinema__left {
+        border-right: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cinema__arrow__left {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .calender {
+        flex-flow: row wrap;
+    }
+    .cinema__info {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

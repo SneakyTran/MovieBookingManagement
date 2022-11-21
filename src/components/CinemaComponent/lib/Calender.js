@@ -4,6 +4,7 @@ const TOTAL_DATE_CALENDER = 8;
 const CURRENT_DATE = "Jan 1, 2019 00:00:00";
 const SHOWTIME_FORMAT = "hh:mm";
 const MOMENT_FORMAT_DATE = "DD-MM-yyyy";
+const MOMENT_FORMAT_DATE_TIME = "DD-MM-yyyy hh:mm";
 const MOMENT_DAY_FORMAT = "dddd";
 const MOMENT_ADD_HOURS = "hours";
 
@@ -51,3 +52,7 @@ export const getTimeDuration = (strDate) => {
 export const getDateShowTime = (strDate) => {
     return moment(strDate).format(MOMENT_FORMAT_DATE);
 };
+
+export const getDateTimeFormat = (strDate) => { 
+    return moment(strDate).format(MOMENT_FORMAT_DATE_TIME);
+ }

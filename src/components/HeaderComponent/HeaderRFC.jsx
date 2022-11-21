@@ -49,6 +49,7 @@ export default function Header() {
                         }} to="/profile" className="user_detail">User Profile</NavLink>
                         <NavLink onClick={() => {
                             logout();
+                            setActive(false);
                         }} to="/home" className="user_logout">Log out</NavLink>
                     </div>             
                 </div>       

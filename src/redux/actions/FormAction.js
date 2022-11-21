@@ -113,7 +113,8 @@ export const getUserInfoAction = () => {
 
 export const updateUser = (values) => {
     return (dispatch2) => {
-        bothServiceToken.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
+        bothServiceToken
+            .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", values)
             .then((result) => {
                 dispatch2({ type: USER_UPDATE, userUpdate: result.data.content });
                 localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));

@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import "./profile.css";
 import bgSrc from "../../assets/img/bg.jpg";
 import { updateUser } from "../../redux/actions/FormAction";
+import { getDateShowTime } from "../../components/CinemaComponent/lib/Calender";
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -18,9 +19,11 @@ export default function Profile() {
     const [tabActive, setTabActive] = useState(0);
     useEffect(() => {
         setTabActive(0);
+        setUProfile(userProfile);
     }, []);
     useEffect(() => {
-      setUProfile(userProfile)
+      setUProfile(userProfile);
+      setArrTicket(userProfile.thongTinDatVe);
     },[userProfile])
 
     let [uProfile,setUProfile] = useState({ 
@@ -32,10 +35,11 @@ export default function Profile() {
       maNhom: "GP01",
       maLoaiNguoiDung: "KhachHang",
     })
-      const { taiKhoan, soDT, email, hoTen, matKhau } = uProfile;
-      console.log(uProfile)
+    const { taiKhoan, soDT, email, hoTen, matKhau } = uProfile;
+    const [arrTicket, setArrTicket] = useState([]);
+   
     const formik = useFormik({
-        enableReinitialize:true,
+        enableReinitialize: true,
         initialValues: {
             taiKhoan: taiKhoan,
             hoTen: hoTen,
@@ -63,14 +67,51 @@ export default function Profile() {
         onSubmit: (values) => {
             let action = updateUser(values)
             dispatch(action)
-            dispatch({ type: USER_UPDATE, userUpdate: values });
-            localStorage.setItem(USER_LOGIN, JSON.stringify(values));
         },
     });
 
     useEffect(() => {
         renderUserProfile();
     }, [tabActive]);
+
+    const getCinemaInfo = (arrSeat) => {
+        let seatData = {
+            tenHeThongRap: "",
+            tenGhe: "",
+        };
+        let strSeat = "";
+        arrSeat.map((seat, index) => {
+            const { tenHeThongRap, tenGhe } = seat;
+            if (index !== arrSeat.length - 1) {
+                strSeat += tenGhe + ", ";
+            } else {
+                strSeat += tenGhe;
+            }
+            seatData = { ...seatData, tenHeThongRap };
+        });
+        seatData = { ...seatData, tenGhe: strSeat };
+        return seatData;
+    };
+
+    const renderBookedTicket = () => {
+        return arrTicket.map((ticket, index) => {
+            const { hinhAnh, ngayDat, tenPhim, thoiLuongPhim, danhSachGhe } =
+                ticket;
+            let { tenHeThongRap, tenGhe } = getCinemaInfo(danhSachGhe);
+            return (
+                <tr key={index}>
+                    <td className="ticket__movie__img">
+                        <img className="img-fluid" src={hinhAnh} alt="" />
+                    </td>
+                    <td>{tenPhim}</td>
+                    <td>{thoiLuongPhim}</td>
+                    <td>{tenHeThongRap}</td>
+                    <td>{tenGhe}</td>
+                    <td className="ticket__movie__date">{getDateShowTime(ngayDat)}</td>
+                </tr>
+            );
+        });
+    };
 
     const renderUserProfile = () => {
         if (tabActive === 0) {
@@ -129,7 +170,7 @@ export default function Profile() {
                                                         formik.handleChange
                                                     }
                                                     type="text"
-                                                    className="form-control"
+                                                    className="form-control form-update-profile"
                                                     id="taiKhoan"
                                                     name="taiKhoan"
                                                     disabled
@@ -148,8 +189,8 @@ export default function Profile() {
                                                     onChange={
                                                         formik.handleChange
                                                     }
-                                                    type="text"
-                                                    className="form-control"
+                                                    type="password"
+                                                    className="form-control form-update-profile"
                                                     id="matKhau"
                                                     name="matKhau"
                                                     placeholder="Enter your password"
@@ -176,7 +217,7 @@ export default function Profile() {
                                                     }
                                                     onBlur={formik.handleBlur}
                                                     type="text"
-                                                    className="form-control"
+                                                    className="form-control form-update-profile"
                                                     id="hoTen"
                                                     name="hoTen"
                                                     placeholder="Enter full name"
@@ -201,7 +242,7 @@ export default function Profile() {
                                                     }
                                                     onBlur={formik.handleBlur}
                                                     type="email"
-                                                    className="form-control"
+                                                    className="form-control form-update-profile"
                                                     id="email"
                                                     name="email"
                                                     placeholder="Enter your email"
@@ -226,7 +267,7 @@ export default function Profile() {
                                                     }
                                                     onBlur={formik.handleBlur}
                                                     type="text"
-                                                    className="form-control"
+                                                    className="form-control form-update-profile"
                                                     id="soDT"
                                                     name="soDT"
                                                     placeholder="Enter your phone number"
@@ -263,7 +304,39 @@ export default function Profile() {
                 </form>
             );
         } else {
-            return <div>Booking history</div>;
+            return (
+                <Fragment>
+                    <div className="card p-4">
+                        <div className="ticket__history">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th className="history__title">
+                                            Movie Banner
+                                        </th>
+                                        <th className="history__title">
+                                            Movie Name
+                                        </th>
+                                        <th className="history__title">
+                                            Duration
+                                        </th>
+                                        <th className="history__title">
+                                            Cinema
+                                        </th>
+                                        <th className="history__title">
+                                            Seats
+                                        </th>
+                                        <th className="history__title">
+                                            Booking date
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>{renderBookedTicket()}</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </Fragment>
+            );
         }
     };
 

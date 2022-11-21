@@ -143,7 +143,7 @@ export default function CinemaComponent() {
                     onClick={() => {
                         cinemaActive(index, cinema);
                     }}
-                    className={`cinema__detail px-4 py-2 ${
+                    className={`cinema__detail px-sm-4 px-md-3 py-2 ${
                         activeCinemaIndex === index ? "active" : ""
                     }`}
                 >
@@ -151,7 +151,7 @@ export default function CinemaComponent() {
                         <img src={currentCinema["logo"]} alt="" />
                         <span className="pl-3 pr-3">{tenCumRap}</span>
                     </div>
-                    <span className="pl-5">
+                    <span className="cinema__arrow__left pl-5 pl-md-1">
                         <i className="fa-solid fa-chevron-right"></i>
                     </span>
                 </div>
@@ -267,7 +267,7 @@ export default function CinemaComponent() {
 
     return (
         <div className="container py-5">
-            <h2 className="movie__title mb-5">Cinema Showtimes</h2>
+            <h2 className="movie__title mb-xl-5 mb-sm-3">Cinema Showtimes</h2>
             <div className="cinema__content">
                 <div className="cinema__header py-3">
                     <span className="mx-3">Cinema</span>
@@ -282,8 +282,8 @@ export default function CinemaComponent() {
                     </span>
                 </div>
                 <div className="row">
-                    <div className="col-4 cinema__left pr-0">
-                        <div className="px-3 py-2">
+                    <div className="col-lg-4 col-12 cinema__left pr-lg-0">
+                        <div className="px-0 px-lg-3 py-2 ">
                             <div className="cinema__search">
                                 <input
                                     className="form__cinema py-1 pl-3"
@@ -297,7 +297,7 @@ export default function CinemaComponent() {
                         </div>
                         <div className="cinema__list">{renderCinema()}</div>
                     </div>
-                    <div className="col-8 pl-0">
+                    <div className="col-lg-8 col-12 pl-lg-0">
                         <div className="cinema__info">
                             <img src={cinemaInfo.img} alt="" />
                             <div className="cinema__address pl-2">
